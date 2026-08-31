@@ -249,6 +249,7 @@ BUILD_DIR_NAME = "build"
 BUILD_TARGET = ""
 DICT_FILE    = SCRIPT_DIR / "translations.txt"
 HASH_DICT    = SCRIPT_DIR / "hash_dict.txt"
+REWARD_QR_FILE = SCRIPT_DIR / "assets" / "wechat-reward-qr.jpg"
 OUTPUT_DIR = Path(os.environ.get("REF_OUTPUT_DIR", str(SCRIPT_DIR)))
 TOOLCHAIN_FILE = os.environ.get("REF_TOOLCHAIN_FILE", "")
 
@@ -1944,6 +1945,8 @@ def package(zip_label: str):
     dll_path = BUILD_ROOT / BUILD_DIR_NAME / "bin" / BUILD_TARGET / "dinput8.dll"
     if not dll_path.exists():
         fail(f"找不到编译产物: {dll_path}")
+    if not REWARD_QR_FILE.exists():
+        fail(f"找不到打赏二维码: {REWARD_QR_FILE}")
 
     dll_size = dll_path.stat().st_size
     log(f"DLL 大小: {dll_size:,} 字节")
@@ -1953,9 +1956,11 @@ def package(zip_label: str):
     zip_path = OUTPUT_DIR / zip_name
     with zipfile.ZipFile(str(zip_path), 'w', zipfile.ZIP_DEFLATED) as zf:
         zf.write(str(dll_path), "dinput8.dll")
+        zf.write(str(REWARD_QR_FILE), "赏口饭吃.jpg")
 
     zip_size = zip_path.stat().st_size
     log(f"已打包: {zip_path}")
+    log("已包含打赏二维码: 赏口饭吃.jpg")
     log(f"ZIP 大小: {zip_size:,} 字节")
     return zip_path
 
