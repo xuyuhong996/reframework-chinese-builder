@@ -2,7 +2,7 @@ name: Build and release REFramework Chinese
 
 on:
   schedule:
-    - cron: "17 3 * * *"
+    - cron: "*/15 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -29,25 +29,13 @@ jobs:
             exit 0
           fi
 
-          latest_created_at=$(gh api "repos/${GITHUB_REPOSITORY}/releases/latest" --jq '.created_at' 2>/dev/null || true)
-          if [ -z "$latest_created_at" ]; then
-            echo "should_build=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
           latest_notes=$(gh api "repos/${GITHUB_REPOSITORY}/releases/latest" --jq '.body' 2>/dev/null || true)
           if printf '%s' "$latest_notes" | grep -Fq "上游提交: $upstream_sha"; then
             echo "should_build=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
-          latest_epoch=$(date -d "$latest_created_at" +%s)
-          current_epoch=$(date +%s)
-          if [ $((current_epoch - latest_epoch)) -ge 259200 ]; then
-            echo "should_build=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "should_build=false" >> "$GITHUB_OUTPUT"
-          fi
+          echo "should_build=true" >> "$GITHUB_OUTPUT"
 
   build:
     needs: decide
