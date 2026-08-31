@@ -1,0 +1,83 @@
+name: Build and release REFramework Chinese
+
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  decide:
+    runs-on: ubuntu-latest
+    outputs:
+      should_build: ${{ steps.interval.outputs.should_build }}
+    steps:
+      - id: interval
+        env:
+          GH_TOKEN: ${{ github.token }}
+          FORCE_BUILD: ${{ github.event_name == 'workflow_dispatch' }}
+        shell: bash
+        run: |
+          if [ "$FORCE_BUILD" = "true" ]; then
+            echo "should_build=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          latest_created_at=$(gh api "repos/${GITHUB_REPOSITORY}/releases/latest" --jq '.created_at' 2>/dev/null || true)
+          if [ -z "$latest_created_at" ]; then
+            echo "should_build=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          latest_epoch=$(date -d "$latest_created_at" +%s)
+          current_epoch=$(date +%s)
+          if [ $((current_epoch - latest_epoch)) -ge 259200 ]; then
+            echo "should_build=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "should_build=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  build:
+    needs: decide
+    if: needs.decide.outputs.should_build == 'true'
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Build localized ZIP
+        env:
+          SKIP_GITHUB_PUBLISH: "1"
+        shell: pwsh
+        run: python build_chinese.py
+
+      - name: Create historical release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: pwsh
+        run: |
+          $package = Get-ChildItem -Filter 'REF Nightly *.zip' -File |
+            Sort-Object LastWriteTime -Descending |
+            Select-Object -First 1
+          if ($null -eq $package) { throw '未找到构建生成的 ZIP。' }
+
+          $hash = (Get-FileHash -LiteralPath $package.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+          $checksum = "$($package.FullName).sha256"
+          Set-Content -LiteralPath $checksum -Value "$hash  $($package.Name)" -Encoding ascii
+          $tag = "build-$($hash.Substring(0, 12))"
+
+          gh release view $tag --repo $env:GITHUB_REPOSITORY 2>$null
+          if ($LASTEXITCODE -eq 0) {
+            Write-Host '这个 ZIP 已有历史发布版本，不重复创建。'
+            exit 0
+          }
+
+          gh release create $tag $package.FullName $checksum `
+            --repo $env:GITHUB_REPOSITORY `
+            --title $package.BaseName `
+            --notes '由 GitHub Actions 的 Windows Visual Studio 2022 环境自动构建。'

@@ -1,0 +1,15 @@
+﻿# Local environment
+.venv/
+REFramework-src/
+__pycache__/
+*.pyc
+
+# Build artifacts
+ref_build/
+REF Nightly *.zip
+dinput8.dll
+
+# Recovery / temporary files
+*.bak
+recovered_*.py
+build_chinese_recovered*.py

@@ -1,0 +1,3359 @@
+# REFramework 汉化翻译字典
+# 格式：英文=中文（每行一条，#开头为注释）
+# 支持 printf 格式字符串（如 %s %d %.2f）
+# 此文件使用UTF-8编码保存
+#
+# === 主窗口 / 关于 ===
+Default Menu Key: Insert=默认菜单按键：Insert
+Transparency=透明
+Makes the UI transparent when not focused.=让REF在未选中时变得透明。
+Input Passthrough=UI透过
+Allows mouse and keyboard inputs to register to the game while the UI is focused.=让鼠标能够穿过REF界面点击到游戏内。
+REFramework is currently initializing...=REFramework当前正在初始化……
+This menu will close after initialization if you have the remember option enabled.=如果启用了"保存"选项，此菜单将在初始化后关闭。
+REFramework error: %s=REFramework错误: %s
+About=关于
+Author: praydog=原版作者：praydog\n汉化作者：花舞汉化组
+Inspired by the Kanan project.=灵感来自Kanan项目。
+Branch: %s=分支: %s
+Commits: %i=提交: %i
+Commit hash: %s=提交哈希: %s
+Tag: %s=标签: %s
+Commits past tag: %i=超过标签的提交: %i
+Build date: %s=构建日期: %s
+Build time: %s=构建时间: %s
+Licenses=许可证
+Engine information=引擎信息
+ Config: %s= 配置: %s
+ Version: %s= 版本: %s
+ TDB Version: %i= TDB版本: %i
+Unable to determine engine version.=无法确定引擎版本。
+#
+# === 全局配置 ===
+Configuration=配置
+Menu Key=菜单按键
+Show Cursor Key=显示光标键
+Remember Menu Open/Closed State=界面显示/隐藏是否保存
+Draw Cursor With Menu Open=菜单打开时绘制光标
+Font=字体
+Font Size=字体大小
+#
+# === 通用 ===
+Enabled=启用
+Disabled=禁用
+Press any key...=按下任意键...
+Unknown key=未知按键
+Not bound=未绑定按键
+#
+# === 相机 Camera ===
+Camera=相机
+Make sure to tick "Enabled" for any of the below settings to take effect.=勾选下面的"启用"来让设置生效。
+Disable Vignette=禁用晕影
+Vignette Brightness=晕影亮度
+These below settings are separate and do not require "Enabled" to be ticked.=这个设置会一直生效，无需点击上面的"启用"
+Use Custom Global FOV=使用自定义全局FOV视角
+Global FOV=全局FOV
+RE8 FOV=RE8 视角
+RE8 Aiming FOV=RE8 瞄准视角
+#
+# === 图形 Graphics ===
+Graphics=图形
+RE4 Scope Tweaks=RE4 瞄准镜调整
+Enable Scope Tweaks=启用瞄准镜调整
+Enable Interlaced Rendering=启用交错渲染
+Scope Image Quality=瞄准镜画质
+Ultrawide/FOV Options=超宽/FOV选项
+Ultrawide/FOV/Aspect Ratio Fix=超宽/纵横比修复
+Ultrawide: Constrain UI to 16:9=超宽:约束UI到16:9
+Ultrawide: Constrain Child UI to 16:9=超宽:约束子UI到16:9
+Ultrawide: UI Correction=超宽:UI修正
+Ultrawide: Enable Vertical FOV=超宽:启用垂直视野
+Ultrawide: Override FOV=超宽:覆盖FOV
+Ultrawide: FOV Multiplier=超宽:视野放大
+Force Render Resolution to Window Size=强制渲染分辨率匹配窗口大小
+GUI Options=GUI设置
+Hide GUI=隐藏GUI
+Hide GUI key=隐藏GUI按键
+Ray Tracing Tweaks=光线追踪调整
+Enable Ray Tracing Tweaks=启用光线追踪调整
+Disable Raster Shadows (with PT)=禁用光栅阴影(PT模式)
+Always Recreate RT Component=始终重建RT组件
+Recreates the RT component. Useful if Ray Tracing Tweaks is not working.=重建RT组件。如果光追调整不生效时可以尝试。
+Ray Trace Type=光追类型
+Ray Trace Clone Type Pre=光追克隆类型 Pre
+Ray Trace Clone Type Post=光追克隆类型 Post
+Ray Trace Clone Type True=光追克隆类型 True
+Bounce Count=弹射次数
+Samples Per Pixel=每像素采样数
+Shader Playground=着色器试验场
+Enable Shader Playground=启用着色器试验场
+Dispatch Mode=调度模式
+#
+# === 自由相机 FreeCam ===
+FreeCam=自由视角
+Lock Position=锁定位置
+Disable Character Movement=禁用角色移动
+Toggle Key=切换按键
+Move camera up Key=视角向上移动
+Move camera down Key=视角向下移动
+Lock Position Toggle Key=禁用位置切换键
+Disable Movement Toggle Key=禁用移动切换键
+Speed modifier Fast key=快速移动
+Speed modifier Slow key=减速移动
+Rotation Speed=旋转速度
+Speed=速度
+Speed Modifier=速度倍数
+#
+# === 第一人称 FirstPerson ===
+FirstPerson=第一人称
+Show In Cutscenes=在剪接场景中显示
+VR Specific Settings=VR具体设置
+Smooth XZ Movement (VR)=平滑XZ移动(VR)
+Smooth Y Movement (VR)=平滑Y移动(VR)
+Roomscale Movement (VR)=房间规模移动(VR)
+Adjust Hand Offset=调整手部偏移
+VR Scale=VR缩放
+Controller rotation (Left)=控制器旋转(左)
+Controller rotation (Right)=控制器旋转(右)
+Controller position (Left)=控制器位置(左)
+Controller position (Right)=控制器位置(右)
+Controller 1=控制器1
+Controller 2=控制器2
+General Settings=常规设置
+Disable Camera Light=禁用闪光灯
+Hide Joint Mesh=隐藏关节网
+Force Rotate Joint=强制旋转关节
+Rotate Body=旋转身体
+Change Toggle Key=更改切换键
+CameraOffset=镜头偏移
+CameraSpeed=镜头速度
+CameraShake=镜头抖动
+FOVOffset=FOV偏移
+FOVMultiplier=FOV倍增
+CurrentFOV=当前FOV
+BodyRotateSpeed=身体旋转速度
+Joint=关节
+Joints=关节列表
+#
+# === 脚本运行器 ScriptRunner ===
+ScriptRunner=脚本运行器
+Online match detected. Scripts will not be loaded. Existing scripts have been unloaded.=检测到在线匹配。脚本将不会被加载。现有脚本已被卸载。
+Run script=运行脚本
+Reset scripts=重载脚本
+Spawn Debug Console=呼出调试控制台
+Garbage Collection Stats=垃圾收集统计信息
+Megabytes in use: %.2f=已使用MB:%.2f
+Garbage Collection Handler=垃圾收集处理管理器
+Garbage Collection Mode=垃圾收集模式
+Minor GC Multiplier=次垃圾收集倍增
+Major GC Multiplier=主垃圾收集倍增
+Garbage Collection Type=垃圾收集类型
+Garbage Collection Budget=垃圾收集预算
+Log Lua Errors to Disk=将Lua错误记录到磁盘
+Last Error Time: %.2f seconds ago=上次报错时间: %.2f 秒前
+Last Script Error: %s=上一个脚本错误: %s
+No Script Errors... yet!=没有脚本错误…牛逼！
+Known scripts:=已加载脚本:
+No scripts loaded.=无脚本加载。
+Script Generated UI=脚本运行设置
+#
+# === 插件加载器 PluginLoader ===
+PluginLoader=插件加载器
+Loaded plugins:=已加载插件：
+No plugins loaded.=无已加载插件。
+Errors:=错误：
+Warnings:=警告：
+#
+# === 性能 Hooks ===
+Performance=性能
+Enable Profiling=启用性能分析
+Application Entry Times=应用入口耗时
+Total REFramework Time: %.3fms=REFramework总耗时: %.3fms
+Total Game Time: %.3fms=游戏总耗时: %.3fms
+#
+# === 场景设置 Scene ===
+Scene=场景设置
+Timescale (Toggle) Key=时间比例（切换）热键
+Timescale (Continuous) Key=时间比例（持续）热键
+Use Application Timescale=使用应用程序时间刻度
+Timescale=时间尺度
+#
+# === 手电筒 ManualFlashlight ===
+ManualFlashlight=手电筒
+Change Key=更改按键
+Ignore Light Power On Zones=忽略灯光开启区域
+#
+# === 松散文件加载 LooseFileLoader ===
+LooseFileLoader=松散文件加载器
+Failed to hook successfully. This mod will not work.=未能成功加载。这个mod不起作用。
+Enable Loose File Loader=启动松散文件加载器
+Files encountered: %d=搜索到的文件：%d
+Loose files loaded: %d=已加载的松散文件：%d
+Clear stats=清理统计数据
+Enable file cache=启用文件缓存
+Cache hits: %d=缓存点击数：%d
+Uncached hits: %d=未命中次数: %d
+Clear existence cache=清除现有缓存
+Log accessed files=记录访问的文件
+Logs all accessed files to <game_dir>/reframework_accessed_files.txt=将所有访问的文件记录到<游戏根目录>/reframework_accessed_files.txt
+Log loose files=记录松散文件
+Logs loaded loose files to <game_dir>/reframework_loose_files.txt=将松散文件记录加载到<游戏根目录>/reframework_loose_files.txt
+Show recent files=显示最近的文件
+Recent accessed files=最近访问的文件
+Recent loose files=最近的松散文件
+#
+# === VR ===
+No runtime loaded.=没有运行时被加载。
+Hardware scheduling: %s=硬件调度中:%s
+Resolution can be changed in SteamVR=分辨率可以在SteamVR中更改
+Bindings=绑定
+Resolution Scale=分辨率缩放
+Set Standing Height=设置站立高度
+Set Standing Origin=设置站立原点
+Recenter View=重置视角中心
+Reinitialize Runtime=重新初始化运行时
+Set Standing Origin Key=设置站立原点按键
+Recenter View Key=重置视角中心按键
+Use AFR=使用AFR
+Decoupled Camera Pitch=解耦相机俯仰
+Positional Tracking=位置追踪
+Head Oriented Audio=头部朝向音频
+Use Custom View Distance=使用自定义视距
+View Distance/FarZ=视距/FarZ
+Inactivity Timer=不活跃计时器
+Joystick Deadzone=手柄死角
+2D UI Scale=2D UI缩放
+2D UI Distance=2D UI距离
+World-Space UI Scale=世界空间UI缩放
+Graphical Options=图形选项
+Force Uncap FPS=强制解锁帧率
+Force Disable TAA=强制禁用TAA
+Force Disable Motion Blur=强制禁用动态模糊
+Force Disable V-Sync=强制禁用垂直同步
+Force Disable Lens Distortion=强制禁用镜头畸变
+Force Disable Volumetrics=强制禁用体积雾
+Force Disable Lens Flares=强制禁用镜头光晕
+Force Enable Dynamic Shadows=强制启用动态阴影
+Allow Engine Overlays=允许引擎覆盖层
+Enable Asynchronous Rendering=启用异步渲染
+Desktop Recording Fix=桌面录制修复
+Skip Present=跳过呈现
+Debug info=调试信息
+Disable Projection Matrix Override=禁用投影矩阵覆盖
+Disable GUI Projection Matrix Override=禁用GUI投影矩阵覆盖
+Disable View Matrix Override=禁用视图矩阵覆盖
+Disable Backbuffer Size Override=禁用后缓冲区大小覆盖
+Disable Temporal Fix=禁用时间修复
+Disable Post Effect Fix=禁用后处理修复
+Prediction Scale=预测比例
+Avg Input Processing Delay (MS)=平均输入处理延迟(MS)
+VR Runtime: %s=VR运行时间: %s
+Render Resolution: %d x %d=渲染分辨率: %d x %d
+Sync Mode=同步模式
+Early=提前
+Late=延迟
+Very Late=非常延迟
+Overlay Position=叠加层位置
+Overlay Rotation=叠加层旋转
+Raw Left=原始左值
+Raw Right=原始右值
+Left Bounds=左边界
+Right Bounds=右边界
+#
+# === VR 绑定 (OpenXR) ===
+Interaction Profile: %s=交互配置: %s
+Interaction profile not loaded, try putting on your headset.=交互配置未加载，请尝试戴上头显。
+Vector2 Associations=Vector2关联
+Restore Default Bindings=恢复默认绑定
+Save Bindings=保存绑定
+Add Binding=添加绑定
+Insert New Output=插入新输出
+Add Vector2 Association=添加Vector2关联
+New Binding (e.g. /user/hand/left/input/trigger)=新绑定 (例如 /user/hand/left/input/trigger)
+Action=动作
+New Vector2 Activator=新Vector2激活器
+New Vector2 Modifier=新Vector2修饰器
+New Vector2 Output=新Vector2输出
+New Vector2 Value=新Vector2值
+Value=值
+#
+# === RE8 VR ===
+Hide Upper Body=隐藏上半身
+Hide Lower Body=隐藏下半身
+Hide Arms=隐藏手臂
+Auto Hide Upper Body in Cutscenes=过场动画中自动隐藏上半身
+Auto Hide Lower Body in Cutscenes=过场动画中自动隐藏下半身
+#
+# === 图形/着色器扩展 ===
+Interception Shader=拦截着色器
+Custom Shader=自定义着色器
+Thread Group X=线程组X
+Thread Group Y=线程组Y
+Thread Group Z=线程组Z
+Constant=常量
+Valid hash=有效哈希
+Enable=启用
+#
+# === 完整性检查/PAK ===
+PAK Directory Loading=PAK目录加载
+Restart the game to apply changes.=重启游戏以应用更改。
+List of custom PAKs loaded:=已加载的自定义PAK列表:
+#
+# === 松散文件加载 扩展 ===
+Debug=调试
+#
+# === 性能/Hooks 扩展 ===
+Game Time: %s: %.2fms=游戏耗时: %s: %.2fms
+REFramework Pre Time: %.2fms=REFramework前置耗时: %.2fms
+REFramework Post Time: %.2fms=REFramework后置耗时: %.2fms
+Total Time: %.2fms=总耗时: %.2fms
+#
+# === 开发者工具 ===
+DeveloperTools=开发者工具
+GameObjectsDisplay=游戏资源显示
+ObjectExplorer=对象浏览器
+ChainViewer=链查看器
+#
+# === 对象浏览器 (ObjectExplorer) ===
+Dump SDK=转储SDK
+Singletons=单例
+Native Singletons=原生单例
+Renderer=渲染器
+Types=类型
+Assemblies=程序集
+Type Name=类型名称
+Search using Regex=使用正则搜索
+Create new game object=创建新的游戏资源
+Address=地址
+Copy Address=复制地址
+Copy Name=复制名称
+Name=名称
+Index=索引
+Type=类型
+Info=信息
+Options=选项
+Hook=挂钩
+Unhook=取消挂钩
+Pin=固定
+Unpin=取消固定
+Pinned objects=已固定的对象
+Children=子对象
+Array Entries=数组条目
+Additional Information=附加信息
+Type Information=类型信息
+Method Signature=方法签名
+Method Address=方法地址
+TDB Method Address=TDB方法地址
+Field Signature=字段签名
+Called Method=已调用方法
+Callers=调用者
+Return Addresses=返回地址
+Thread IDs=线程ID
+Sort by=排序方式
+Sort Callers by=调用者排序
+Hooked methods=已挂钩方法
+Hook All Methods=挂钩全部方法
+Hide uncalled methods=隐藏未调用方法
+Assembly Methods=程序集方法
+Assembly Instantiated Methods=程序集实例化方法
+Assembly Member References=程序集成员引用
+Assembly Types=程序集类型
+Impl flags=实现标志
+Flags=标志
+Bytes=字节
+Call=调用
+Set Value=设置值
+Listen for reads=监听读取
+Read Listeners=读取监听器
+Invalid address=无效地址
+Null pointer=空指针
+Invalid enum size, falling back to int32=无效的枚举大小，回退到int32
+Reset Stats=重置统计
+Log Hierarchy=记录层级
+Root Layer=根层
+Scene Layer=场景层
+Selector=选择器
+Selector Condition=选择器条件
+AutoGenerated Types=自动生成类型
+Generic Type Definition=泛型类型定义
+Add Component=添加组件
+Destroy Component=销毁组件
+Attempt to Clone=尝试克隆
+Attempt to call=尝试调用
+Skip function call=跳过函数调用
+Virtual Index=虚拟索引
+Instruction=指令
+Trees=树
+Nodes=节点
+Child Layers=子层
+Dump il2cpp json Only=仅转储il2cpp json
+Dumping Types...=正在转储类型...
+Dumping Fields...=正在转储字段...
+Dumping Methods...=正在转储方法...
+Dumping Properties...=正在转储属性...
+Dumping RSZ...=正在转储RSZ...
+Adjusting RSZ...=正在调整RSZ...
+Dumping Deserializer Chains...=正在转储反序列化链...
+Dumping Non-TDB Types...=正在转储非TDB类型...
+Generating IDA SDK...=正在生成IDA SDK...
+Initializing Dump...=正在初始化转储...
+Successfully added component=成功添加组件
+Failed to add component=添加组件失败
+Type is not a component=类型不是组件
+Invalid Type=无效类型
+Reflection Methods: %i=反射方法: %i
+Reflection Properties: %i=反射属性: %i
+(?)==(?)
+#
+# === 链查看器 (ChainViewer) ===
+Effect Alpha=效果透明度
+Chains=链
+Pair Joint=配对关节
+Radius=半径
+Pair Offset=配对偏移
+Offset=偏移
+#
+# === 游戏资源显示 (GameObjectsDisplay) ===
+Max Distance for GameObjects=游戏资源显示距离
+Legacy Mode=传统模式
+Object Effect Alpha=对象效果透明度
+#
+# === 通用/跨模块翻译 ===
+true=是
+false=否
+X=X
+#
+# === 通用插件翻译（常见第三方MOD插件的UI文本）===
+# 你可以在此添加更多翻译条目来翻译第三方插件
+#
+# --- 通用/共享UI (CatLib 等) ---
+Color=颜色
+Outline Thickness=描边粗细
+Outline Options=描边选项
+Outline Color=描边颜色
+Fill Options=填充选项
+Use Background=使用背景
+Background Color=背景颜色
+Use Color=使用颜色
+MarginX=外边距X
+MarginY=外边距Y
+PaddingX=内边距X
+PaddingY=内边距Y
+Center=居中
+Offset Percentage=偏移百分比
+Block Render=阻止渲染
+Enable=启用
+_CatLib Global Config=_CatLib 全局配置
+Restore to default (require reset script)=恢复默认值（需要重载脚本）
+UI Scale: by default, 0.5x for 1080p, 0.75x for 2K, 1x for 4K (2160p).=UI缩放：默认 1080p为0.5倍，2K为0.75倍，4K(2160p)为1倍。
+This option is used to initialize mod configuration, doesn't work if the config file has been generated.=此选项用于初始化mod配置，如果配置文件已生成则不生效。
+You need to delete existed config files under reframework/data directory.=你需要删除reframework/data目录下已有的配置文件。
+UI Scale=UI缩放
+You need to reset script or restart the game after changing this=更改此选项后需要重载脚本或重启游戏
+Override Language=覆盖语言
+Language=语言
+Default font size only affects fonts that using default size=默认字号仅影响使用默认大小的字体
+Default Font Size=默认字号
+Global font scale affects all texts=全局字体缩放影响所有文字
+Global Font Scale=全局字体缩放
+Experimental [don't use]=实验性功能 [请勿使用]
+Render Backend=渲染后端
+Bold=粗体
+Italic=斜体
+Font Color=字体颜色
+Width=宽度
+Height=高度
+Parallelogram OffsetX=平行四边形偏移X
+Shrink Size=缩小尺寸
+Right to Left=从右到左
+Top to Down=从上到下
+Down to Top=从下到上
+Ring Mode=环形模式
+Ring Width=环形宽度
+Use Circle Background=使用圆形背景
+Auto Circle Background Radius=自动圆形背景半径
+Background Radius=背景半径
+Clockwise=顺时针
+Start Angle Offset=起始角度偏移
+Background Ratio=背景比例
+Outline Fill Mode=描边填充模式
+Verbose Log=详细日志
+[Render]=[渲染]
+[Perf]=[性能]
+OffsetX=偏移X
+OffsetY=偏移Y
+Horizontal (X)=水平(X)
+RightAlign=右对齐
+Offset Half Width=偏移半宽
+Vertical (Y)=垂直(Y)
+Bottom=底部
+Offset Half Height=偏移半高
+SomeOption=某选项
+#
+# --- REFramework D2D (1002/1028) ---
+REFramework D2D=REFramework D2D
+Max Update Rate=最大更新频率
+Last Script Error:=上次脚本错误:
+#
+# --- 自动磨刀 Seikret Auto Sharpening (1008) ---
+Seikret Auto Sharpening=坐骑自动磨刀
+Restore Delay (sec)=恢复延迟（秒）
+#
+# --- 冠金王/小金冠筛选 Crown Only (1010) ---
+Crown Only=冠金筛选
+If both options are false, the mod is disabled.=如果两个选项都关闭，此mod将被禁用。
+BigCrown=大金冠
+SmallCrown=小金冠
+BigCrown Fish=大金冠鱼
+SmallCrown Fish=小金冠鱼
+#
+# --- 自动道具增益 Auto Item Buff (1016) ---
+Auto Item Buff=自动道具增益
+Consume Item=消耗道具
+Apply Free Meal Lv.3 (45% chance of not consuming item)=应用免费用餐Lv.3（45%概率不消耗道具）
+Apply Item Prolonger Lv.3 (Buff duration x 1.5)=应用道具持续Lv.3（增益时间×1.5）
+Rebuff when buff time less than=增益时间低于以下值时重新使用
+Minutes=分钟
+Auto use item:=自动使用道具:
+#
+# --- 无限消耗品 Infinite Consumables (1020) ---
+Infinite Consumables=无限消耗品
+Infinite Consumables Options##Infinite_Consumables=无限消耗品选项##Infinite_Consumables
+These will override the individual 'Infinite' settings.=这些将覆盖下方单独的"无限"设置。
+Enable in Multiplayer=在多人模式中启用
+Infinite Ammo=无限弹药
+Show HP=显血
+Enabled in Multiplayer##Infinite_Consumables=在多人模式中启用##Infinite_Consumables
+Enabled in Arena Quests##Infinite_Consumables=在竞技场任务中启用##Infinite_Consumables
+Infinite Ammo (for Bowguns)##Infinite_Consumables=无限弹药（铳枪用）##Infinite_Consumables
+Infinite Items (Potions, Traps, carried Slinger ammos, etc.)##Infinite_Consumables=无限道具（药水、陷阱、投射器弹等）##Infinite_Consumables
+Infinite Slinger Ammo (Burst Pod, Thorn Pod, etc.)##Infinite_Consumables=无限投射器弹药（爆裂弹、荆棘弹等）##Infinite_Consumables
+Infinite Radial Menu Items (Always usable, even when not in Pouch)##Infinite_Consumables=无限快捷盘道具（即使不在道具包中也可使用）##Infinite_Consumables
+Infinite Pictomancy (Removes cooldown; disabled in Multiplayer, regardless of settings)##Infinite_Consumables=无限描绘术（移除冷却；多人模式下无论设置均禁用）##Infinite_Consumables
+Refund Consumable Items##Infinite_Consumables=退还消耗道具##Infinite_Consumables
+Refund Consumable Ammo##Infinite_Consumables=退还消耗弹药##Infinite_Consumables
+#
+# --- 后处理禁用 Disable Post Processing (1033) ---
+Save settings=保存设置
+Load script defaults=加载脚本默认值
+Load game defaults=加载游戏默认值
+Load saved settings=加载已保存设置
+Anti-Aliasing & filters=抗锯齿和滤镜
+TAA=TAA（时间性抗锯齿）
+TAA jitter=TAA抖动
+Color correction=色彩校正
+Local exposure=局部曝光
+Use blurred luminance (sharpens)=使用模糊亮度（锐化效果）
+Enable custom contrast=启用自定义对比度
+Contrast=对比度
+SDR gamma & Brightness=SDR伽马和亮度
+Enable SDR custom gamma & brightness=启用SDR自定义伽马和亮度
+Use in game brightness options for HDR=HDR使用游戏内亮度选项
+Reset gamma & brightness=重置伽马和亮度
+Gamma=伽马
+Max brightness=最大亮度
+Min brightness=最小亮度
+UI gamma=UI伽马
+UI max brightness=UI最大亮度
+UI min brightness=UI最小亮度
+Graphics Settings=图形设置
+Apply graphics settings=应用图形设置
+Lens distortion=镜头畸变
+Fog=雾
+Volumetric fog=体积雾
+Film grain=胶片颗粒
+Lens flare=镜头光晕
+Godray=神光
+#
+# --- 击杀镜头控制 Killcam Control (1034) ---
+Killcam Control=击杀镜头控制
+Disable Kill Cam=禁用击杀镜头
+Enable Slow Motion on Kill=击杀时启用慢动作
+Hide UI During Slow Motion=慢动作期间隐藏UI
+Slow Motion Speed=慢动作速度
+Slow Motion Duration (s)=慢动作持续时间（秒）
+#
+# --- 武器/护石编辑器 Artian/Charm Editor (1040/1042) ---
+Weapon=武器
+Element Type=属性类型
+Focus Type=集中类型
+No skill data=无技能数据
+Group Skill##CreateGroupSkill=组合技能##CreateGroupSkill
+Series Skill##CreateSeriesSkill=系列技能##CreateSeriesSkill
+First Bonus##CreateFirst=第一加成##CreateFirst
+Second Bonus##CreateSecond=第二加成##CreateSecond
+Third Bonus##CreateThird=第三加成##CreateThird
+First Bonus##GrindFirst=第一加成##GrindFirst
+Second Bonus##GrindSecond=第二加成##GrindSecond
+Third Bonus##GrindThird=第三加成##GrindThird
+Fourth Bonus##GrindFourth=第四加成##GrindFourth
+Fifth Bonus##GrindFifth=第五加成##GrindFifth
+Charm Type=护石类型
+#
+# --- 自定义FOV (1041) ---
+Custom FOV=自定义FOV
+FOV=视野
+Save=保存
+Load=加载
+Reset=重置
+#
+# --- Free Lunch (1046) ---
+Free Lunch=免费用餐
+#
+# --- Better Insurance Meal (1065) ---
+Better insurance Meal=更好的保险猫饭
+#
+# --- 道具箱编辑器 Item Box Editor (1071) ---
+Item Box Editor=道具箱编辑器
+#
+# --- 怪物信息覆盖层 MHWilds Overlay (1076) ---
+Overlay=信息覆盖层
+Show Capturable (dying) Icon=显示可捕获（濒死）图标
+Show Capture Threshold in HP=以HP显示捕获阈值
+DPS Chart=DPS图表
+Others Colors=其他颜色
+Report=报告
+Hunter Stats=猎人数据
+#
+# --- 禁用后处理 Disable Post Processing (1033) ---
+Disable Post Processing Effects=禁用后处理效果
+Disable Post Processing Effects v1.3.3=禁用后处理效果 v1.3.3
+NOTE: requires game restart after disabling to revert changes=注意：禁用后需要重启游戏才能恢复更改
+NOTE: requires game restart after loading defaults to fully revert brightness changes=注意：加载默认值后需要重启游戏才能完全恢复亮度更改
+WARNING: applying graphics settings will set=警告：应用图形设置将会设置
+ambient lighting to high due to a bug in the game=环境光照为高（由于游戏Bug）
+until returning to title or restarting the game=直到返回标题画面或重启游戏
+#
+# --- 无限消耗品 Infinite Consumables (1020) 补充 ---
+[Infinite Consumables] Options##Infinite_Consumables=[无限消耗品] 选项##Infinite_Consumables
+'Infinite' consumables will not be removed from your Pouch on use.="无限"消耗品使用时不会从背包中移除。
+If not 'Infinite', used 'Refundable' consumables will be handed back to you when entering a Tent,=如果不是"无限"模式，使用的"可退还"消耗品会在进入帐篷时退还，
+Any overflow will go to your Box, e.g. if you picked up or crafted more of a consumable.=溢出的道具会放入道具箱，例如你捡到或制作了更多的消耗品。
+Other items you have picked up may also push Refunds to the Box if your Pouch is full,=你捡到的其他道具也可能将退还的消耗品推入道具箱（如果背包已满），
+You are in 'Multiplayer' when on a Quest in a Lobby, joining an SoS, or after launching=当你在大厅中执行任务、加入SoS、或发射
+an SoS flare which can find Players from an Online Single Player hunt.=SoS信号弹（可从在线单人狩猎中找到玩家）时，视为"多人游戏"模式。
+returning to Base from a non-Survey Quest, or Save & Quitting.=从非调查任务返回据点，或保存并退出时生效。
+so don't rely on this alone to keep your Loadout intact.=所以不要仅依赖此功能来保持装备配置完整。
+#
+# --- 太刀 LongSword (1027) ---
+LongSword=太刀
+#
+# --- 夜花 Nightflower (1029) ---
+Nightflower Proper Bloom=夜花正常绽放
+#
+# --- 道具箱编辑器 Item Box Editor (1071) 补充 ---
+[Item Box Editor]=【道具箱编辑器】
+[Item Box Editor] Mod Initializing...=【道具箱编辑器】Mod初始化中...
+[Item Box Editor] Mod Initialization Error=【道具箱编辑器】Mod初始化错误
+#
+# --- 护石编辑器 Charm Editor (1042) 补充 ---
+Skill 1:=技能 1：
+Skill 2:=技能 2：
+Skill 3:=技能 3：
+Slots:=孔位：
+Valid Amulet types:=有效护石类型：
+Valid Slot types:=有效孔位类型：
+ERROR, not such amulet type=错误，无此护石类型
+found=已找到
+#
+# --- 怪物信息覆盖层 MHWilds Overlay (1076) 补充 ---
+No Character=无角色
+valid character=有效角色
+invalid character=无效角色
+Boss [DEBUG]=Boss [调试]
+Status [DEBUG] Buffs=状态 [调试] Buff
+DPS:=DPS：
+HP:=HP：
+HR:=HR：
+Cool:=冷却：
+Count:=计数：
+Size:=大小：
+Time:=时间：
+Timer:=计时器：
+Total:=总计：
+Target:=目标：
+Red Gauge=红刃槽
+White Gauge=白刃槽
+Yellow Gauge=黄刃槽
+Orange=橙色
+Red=红色
+White=白色
+Triple=三连
+Renki Recover Buff=炼气恢复Buff
+Valid Filter=有效过滤器
+No Cond error found!=未发现条件错误！
+#
+# --- CatLib 通用 ---
+Outline Options=轮廓选项
+Fill Options=填充选项
+Horizontal (X)=水平 (X)
+Vertical (Y)=垂直 (Y)
+_CatLib Global Config=_CatLib 全局配置
+_CatLib Test=_CatLib 测试
+Mod Template=Mod 模板
+#
+# --- REFramework D2D (1002) ---
+REFramework D2D=REFramework D2D
+#
+# --- 骑乘自动磨刀 (1008) ---
+Seikret Auto Sharpening=骑乘自动磨刀
+#
+# --- 通用MOD翻译 ---
+Free Craft=免费制作
+Auto Meal=自动吃猫饭
+Auto Sharpen Weapon=自动磨刀
+Auto Restock=自动补充道具
+#
+# --- 怪物大小金 Crown Only ---
+If both options are false, the mod is disabled.=如果两个选项都关闭，则mod被禁用。
+BigCrown=大金冠
+SmallCrown=小金冠
+#
+# --- 太刀自动居合见切 (拼音标签) ---
+hongren=红刃
+nadaoTime=纳刀时间
+denglong_hit=登龙斩命中次数
+#
+# ============================================================================
+# 新增翻译 2026-02-28
+# ============================================================================
+#
+# --- REFramework 核心 (格式化后字符串) ---
+Allow loading PAKs inside pak_mods directory. PAKs can be of any filename and ends with .pak (case-sensitive)=允许加载 pak_mods 目录内的PAK文件。PAK可以是任意文件名，但必须以.pak结尾（区分大小写）
+Replace Shader=替换着色器
+REObject Address=REObject 地址
+#
+# --- CameraLightRemover (1085) ---
+CameraLightRemover=相机灯光移除
+Mod Enabled=Mod 启用
+Color Tweaks=颜色调整
+Environment Light=环境光
+Intensity=强度
+Shadow Tweaks=阴影调整
+#
+# --- KillcamControl 击杀镜头控制 (1081) ---
+Cinematic Fade=过场渐变
+Fade IN Duration (s)=淡入时长 (秒)
+Fade OUT Duration (s)=淡出时长 (秒)
+Skip slow motion (Controller)=跳过慢动作 (手柄)
+Skip slow motion (Keyboard)=跳过慢动作 (键盘)
+Click button above to rebind.=点击上方按钮重新绑定。
+#
+# --- Smart Camp Picker (1078) ---
+Smart Camp Picker=智能营地选择
+Init failed:=初始化失败:
+#
+# --- CustomFOV 自定义FOV (1041) ---
+v1.1=v1.1
+#
+# --- REFramework D2D (1079) ---
+Output Mode:=输出模式:
+Paper White (nits)=纸白亮度 (尼特)
+reframework-d2d not found. Please install mod requirements properly.=未找到 reframework-d2d。请正确安装mod依赖。
+#
+# --- Artian Element Overrider 机械武器属性变换 (1096) ---
+- This option will be applied on restart MOD=- 此选项将在重启MOD后生效
+Font Size 字体大小=字体大小
+Icon Anchor Point 图标锚点=图标锚点
+Icon Label 图标文字标签=图标文字标签
+Icon Offset X 图标横向偏移=图标横向偏移
+Icon Offset Y 图标纵向偏移=图标纵向偏移
+Icon Size 图标尺寸大小=图标尺寸大小
+Show Label 显示属性文字=显示属性文字
+Blink icon near time limit 有效时间临近结束时闪烁提示=有效时间临近结束时闪烁提示
+Show tiny pie for time left 显示剩余有效时间的图示=显示剩余有效时间的图示
+Selecting Icon Adjustment 武器属性变换时图标位置调整=武器属性变换时图标位置调整
+Status Icon Adjustment 武器属性变换后图标位置调整=武器属性变换后图标位置调整
+Reset 重置##=重置##
+Remove time limit 移除有效时间限制（默认有效时间3分钟，激活技能"道具使用强化" 可延长有效时间至4.5分钟）=移除有效时间限制（默认有效时间3分钟，激活技能"道具使用强化"可延长有效时间至4.5分钟）
+#
+# --- MHWilds Overlay 怪物信息覆盖层 (1086/1076) ---
+# Boss HP 模块
+Abnormal Status Options=异常状态选项
+Always Display=始终显示
+Always Display (if not, auto hide full hp parts)=始终显示（否则自动隐藏满血部位）
+Always Display Breakable (follows only in battle)=始终显示可破坏部位（仅在战斗中跟随）
+Always Display Severable (follows only in battle)=始终显示可切断部位（仅在战斗中跟随）
+Column Margin=列间距
+Column Width=列宽
+Columns=列数
+Columns Options=列选项
+Display Name=显示名称
+Draw Parts Before Abnormal Status=在异常状态前绘制部位
+Enemy Icon=怪物图标
+Enemy Icon Size=怪物图标大小
+Hide Parts that HP higher than Monster Max HP=隐藏HP高于怪物最大HP的部位
+Legendary Color=传说色
+Multi Targets: Only In Battle=多目标: 仅在战斗中
+Multi-Target Margin=多目标间距
+Normal Color=普通色
+Only Breakable (including severable)=仅可破坏（含可切断）
+Only Damaged=仅受损部位
+Only In Battle=仅在战斗中
+Parts Options=部位选项
+Raw Color=原始色
+Ride Color=骑乘色
+Row Margin=行间距
+Scar Colors=伤痕颜色
+Scars Options=伤痕选项
+Show Breakable Icon=显示可破坏图标
+Show Condition Current Value=显示状态当前值
+Show Condition Level=显示状态等级
+Show Condition Max Value=显示状态最大值
+Show Condition Name=显示状态名称
+Show Current Weapon Type Only=仅显示当前武器类型
+Show Elemental Weakness Icon=显示属性弱点图标
+Show Legendary Scar=显示传说伤痕
+Show Part HP=显示部位HP
+Show Part Level=显示部位等级
+Show Part MaxHP=显示部位最大HP
+Show Part Name=显示部位名称
+Show Physical Weakness Icon=显示物理弱点图标
+Show Ride Scar=显示骑乘伤痕
+Show Scar HP=显示伤痕HP
+Show Scar Index=显示伤痕索引
+Show Scar Level=显示伤痕等级
+Show Scar Max HP=显示伤痕最大HP
+Show Severable Icon=显示可切断图标
+Show only current target=仅显示当前目标
+Tear Color=撕裂色
+Theme=主题
+Use Default Bar Style=使用默认血条样式
+Use Default Font Style=使用默认字体样式
+Use Default Scar Style=使用默认伤痕样式
+Use Default Scar Text Style=使用默认伤痕文字样式
+Use Special Legendary Scar Color=使用特殊传说伤痕颜色
+Use Special Ride Scar Color=使用特殊骑乘伤痕颜色
+Background Image Size=背景图片大小
+Regenerate Config=重新生成配置
+#
+# Boss HP 条样式
+Auto Crown Icon Size=自动皇冠图标大小
+Auto Weakness Icon Size=自动弱点图标大小
+Boss Red HP Enable=Boss红血启用
+Crown Icon Size=皇冠图标大小
+Delay Time=延迟时间
+Fade Time=渐隐时间
+Header=标题栏
+Hide Drain Indicator=隐藏消耗指示器
+Hp Bar Segmented Mode=HP条分段模式
+Indicator Options=指示器选项
+Realtime Weakness=实时弱点
+Red Hp Options=红血选项
+Seg Mode Options=分段模式选项
+Seg Percentage=分段百分比
+Seg Value=分段值
+Show Crown Icon=显示皇冠图标
+Show Current HP=显示当前HP
+Show HP Ratio=显示HP比例
+Show Max HP=显示最大HP
+Show Small Icon=显示小图标
+Show Weakness Detail Number=显示弱点详细数值
+Show Weakness Icon=显示弱点图标
+Use Circle Shape Indicator=使用圆形指示器
+Use Percentage=使用百分比
+Use Seg HP in Bar=在血条中使用分段HP
+Use Seg HP in Text=在文本中使用分段HP
+Weakness Icon Size=弱点图标大小
+#
+# DPS 图表模块
+Align HR Label in Weapon Icon=在武器图标中对齐HR标签
+Auto Column Width=自动列宽
+Auto DPS Meter=自动DPS计量
+Auto Height=自动高度
+Auto Width=自动宽度
+Auto Width by Party Ratio=按队伍比例自动宽度
+Auto Hide If Zero Value=零值时自动隐藏
+Auto Hide Zero Value Columns=自动隐藏零值列
+Colors Options=颜色选项
+DPS Graph=DPS图表
+DPS Line Config=DPS折线配置
+DPS Line Height=DPS折线高度
+DPS Meter=DPS计量器
+DPS Meter Interval=DPS计量间隔
+Data OffsetX=数据X偏移
+Fill=填充
+Fill Color Options=填充颜色选项
+Highest DPS Fill the Line=最高DPS填满折线
+Highest Fill Row as 100%=最高填充行作为100%
+HideOthers=隐藏其他人
+Min. Width=最小宽度
+P2 Color=P2 颜色
+P2 Solid Color=P2 纯色
+P3 Color=P3 颜色
+P3 Solid Color=P3 纯色
+P4 Color=P4 颜色
+P4 Solid Color=P4 纯色
+Padding=内边距
+PaddingDown=下边距
+PaddingLeft=左边距
+PaddingRight=右边距
+PaddingTop=上边距
+Player Color=玩家颜色
+Player Colors=玩家颜色组
+Player Info & Chart=玩家信息与图表
+Player Solid Color=玩家纯色
+Quest Info=任务信息
+Quest Time Interval=任务时间间隔
+Quest Time Meter=任务时间计量
+Quest Time Meter Height (-1 = full)	任务时间计量高度（-1 = 充满）
+SampleRate (seconds)=采样率（秒）
+Sample rate, change value will clear data=采样率，更改将清除数据
+Show DPS Line=显示DPS折线
+Show DPS Line Background=显示DPS折线背景
+Show Total Damage instead of DPS=显示总伤害而非DPS
+Show Weapon Icon=显示武器图标
+Weapon Icon OffsetX=武器图标X偏移
+Weapon Icon OffsetY=武器图标Y偏移
+Weapon Icon Size=武器图标大小
+#
+# DPS 表格模块
+Columns Options=列选项
+Enable QuestTargets=启用任务目标
+Enable QuestTime=启用任务时间
+Quest Info Options=任务信息选项
+Table Header Options=表头选项
+Table Row Options=表行选项
+Order=排序
+#
+# Show All HP 全部HP显示模块
+Alpha Start Distance=透明起始距离
+BackgroundColor=背景色
+Enable Alpha (SimpleMode only)=启用透明度（仅简单模式）
+Enable Animal=启用动物
+Enable Boss=启用Boss
+Enable Distance Limit=启用距离限制
+Enable Zako=启用小怪
+Global Simple Mode=全局简单模式
+Hide Dead=隐藏已死亡
+Hide Dead Animal=隐藏已死亡动物
+Hide Dead Boss=隐藏已死亡Boss
+Hide Dead Zako=隐藏已死亡小怪
+Max Distance=最大距离
+Minimal Alpha=最小透明度
+Non-SimpleMode has worse performance than SimpleMode=非简单模式性能低于简单模式
+OutlineColor=轮廓色
+Simple Mode=简单模式
+height=高度
+#
+# Status 状态模块
+Auto Hide=自动隐藏
+Auto Hide Delay=自动隐藏延迟
+Enable Color Transition=启用颜色过渡
+Enable [dev]=启用 [开发者]
+Low Value=低值
+Low Value Color=低值颜色
+Low Value Ratio=低值比例
+Merge All Buffs=合并所有增益
+Offset Player Stamina Circle Center=偏移玩家耐力圈中心
+Player Relative Position=玩家相对位置
+Screen Offset X=屏幕X偏移
+Screen Offset Y=屏幕Y偏移
+Segment Max Value=分段最大值
+Segment Ring Margin=分段环间距
+Segment Ring Width=分段环宽度
+Segmented=分段
+Show Icon=显示图标
+Show Name=显示名称
+Show Time=显示时间
+Show Used Stamina=显示已用耐力
+Transition To Color=过渡目标颜色
+World Offset X=世界X偏移
+World Offset Y=世界Y偏移
+World Offset Z=世界Z偏移
+#
+# Reporter 报告模块
+AutoOpen: After Quest Complete=自动打开: 任务完成后
+AutoOpen: In Training Area=自动打开: 训练场中
+Critical (%)=暴击率 (%)
+Damage (%)=伤害占比 (%)
+Elem Exploits (%)=属性利用 (%)
+Elemental=属性伤害
+Hit Count (%)=命中次数 (%)
+MHWilds Overlay Report=MHWilds 覆盖层报告
+Open Report=打开报告
+Phys Exploits (%)=物理利用 (%)
+Physical=物理伤害
+Total=总计
+Uptime=在线时长
+White Sharp (%)=白斩 (%)
+#
+# Overlay 通用
+Auto Hide Secs=自动隐藏秒数
+Clear Data After Quest (if not, data persist until accept new quest)=任务后清除数据（否则数据保留至接受新任务）
+Pos X=X坐标
+Pos Y=Y坐标
+#
+# 条件样式 (用 tab 分隔，因为 key 中含 '=')
+=== Conditions Global Style ===	=== 全局状态样式 ===
+=== Conditions Style (_Em are caused by creatures like flash bug or other bosses) ===	=== 状态样式（_Em由闪光虫等生物或其他Boss引起）===
+=== Parts Global Style ===	=== 全局部位样式 ===
+=== Parts Style ===	=== 部位样式 ===
+-- Disabled --	-- 已禁用 --
+#
+# --- _CatLib 全局配置 (1010/1040) ---
++0.05##GlobalUIScaleDec=+0.05##GlobalUIScaleDec
+-0.05##GlobalUIScaleInc=-0.05##GlobalUIScaleInc
++0.1=+0.1
+-0.1=-0.1
++0.1##GlobalFontScaleDec=+0.1##GlobalFontScaleDec
+-0.1##GlobalFontScaleInc=-0.1##GlobalFontScaleInc
++1##GlobalFontSizeDec=+1##GlobalFontSizeDec
+-1##GlobalFontSizeInc=-1##GlobalFontSizeInc
+#
+# --- Disable Post Processing Effects 禁用后处理效果 (1033) ---
+Save settings=保存设置
+Load script defaults=恢复脚本默认值
+Load game defaults=恢复游戏默认值
+Load saved settings=加载已保存设置
+NOTE: requires game restart after loading defaults to fully revert brightness changes=注意：加载默认值后需要重启游戏才能完全恢复亮度
+Anti-Aliasing & filters=抗锯齿和滤镜
+TAA=TAA 抗锯齿
+TAA jitter=TAA 抖动
+Color correction=颜色校正
+Local exposure=局部曝光
+Use blurred luminance (sharpens)=使用模糊亮度（锐化效果）
+Enable custom contrast=启用自定义对比度
+Contrast=对比度
+SDR gamma & Brightness=SDR 伽马和亮度
+Enable SDR custom gamma & brightness=启用SDR自定义伽马和亮度
+NOTE: requires game restart after disabling to revert changes=注意：禁用后需重启游戏才能恢复更改
+Use in game brightness options for HDR=HDR请使用游戏内亮度选项
+Reset gamma & brightness=重置伽马和亮度
+Gamma=伽马
+Max brightness=最大亮度
+Min brightness=最小亮度
+UI gamma=UI伽马
+UI max brightness=UI最大亮度
+UI min brightness=UI最小亮度
+Graphics Settings=图形设置
+Apply graphics settings=应用图形设置
+Lens distortion=镜头畸变
+Fog=雾效
+Volumetric fog=体积雾
+Film grain=胶片颗粒
+Lens flare=镜头眩光
+Godray=神光
+WARNING: applying graphics settings will set=警告：应用图形设置会将
+ambient lighting to high due to a bug in the game=环境光照设为高（游戏bug导致）
+until returning to title or restarting the game=直到返回标题画面或重启游戏
+#
+# --- Nightflower Proper Bloom 夜花正确绽放 (1029) ---
+Nightflower Proper Bloom=夜花正确绽放
+#
+# --- Item Box Editor 物品箱编辑器 (1071) ---
+Item Box Editor=物品箱编辑器
+search-group=搜索分组
+#
+# --- Artian Editor 机械武器编辑器 (1040) ---
+Artian Editor=机械武器编辑器
+Weapon=武器
+Element Type=属性类型
+Focus Type=集中类型
+Production Bonus=生产加成
+No skill data=无技能数据
+#
+# --- Custom FOV (1041) ---
+Custom FOV=自定义FOV
+#
+# --- Free Lunch 免费午餐 (1046) ---
+Free Lunch=免费午餐
+#
+# --- Auto Item Buff 自动道具增益 (1016) ---
+Auto Item Buff=自动道具增益
+#
+# --- Better Insurance Meal 更好的保险猫饭 (1065) ---
+Better insurance Meal=更好的保险猫饭
+#
+# --- LongSword 太刀 (1027) ---
+LongSword=太刀
+#
+# --- Killcam Control 击杀镜头控制 (1034/1081) ---
+Killcam Control=击杀镜头控制
+#
+# --- CatLib 通用UI标签 ---
+Fill Options=填充选项
+Outline Options=轮廓选项
+Horizontal (X)=水平 (X)
+Vertical (Y)=垂直 (Y)
+_CatLib Global Config=_CatLib 全局配置
+#
+# ============================================================================
+# 手动审查补充翻译 (漏翻扫描)
+# ============================================================================
+#
+# --- CameraLightRemover (1085) 提示文字 ---
+Disable Camera Light=禁用相机灯光
+Makes shadows slightly more pronounced while keeping highlights (more noticeable at higher intensities/contrast).=使阴影更加明显，同时保持高光（在更高强度/对比度下更明显）。
+Changes the default white light into a light blue color to imitate indirect sky light.=将默认白色灯光改为浅蓝色以模拟间接天空光照。
+Enables the light's effect on the surrounding environment.=启用灯光对周围环境的影响。
+#
+# --- KillcamControl (1081) 按钮/动态字符串 ---
+Listening... Press any key=正在监听... 按下任意键
+Current Key ID: =当前按键ID: 
+D-Pad Up=方向键 上
+D-Pad Right=方向键 右
+D-Pad Down=方向键 下
+D-Pad Left=方向键 左
+Square=□ 方块
+Triangle=△ 三角
+Circle=○ 圆圈
+Cross=× 叉
+L1=L1
+L2=L2
+L3=L3
+R1=R1
+R2=R2
+R3=R3
+Select=Select
+Start=Start
+Touchpad=触摸板
+#
+# --- REFramework D2D (1079) 显示模式 ---
+HDR Output: On=HDR输出: 开
+HDR Output: Off=HDR输出: 关
+SDR=SDR
+HDR10 PQ=HDR10 PQ
+scRGB=scRGB
+Unknown=未知
+#
+# --- MHWilds Overlay Boss模块 (1086) 菜单/树节点标签 ---
+Capture Indicator=捕获指示器
+Only Severable=仅可切断
+Don't Always Show if Breakable/Severable part has been broken=可破坏/可切断部位已损坏时不再始终显示
+Always Display (lower priority than OnlyInBattle/OnlyDamaged)=始终显示（优先级低于仅战斗中/仅受损）
+Font Style=字体样式
+Bar Style=血条样式
+Scar Style=伤痕样式
+Part Name Style=部位名称样式
+Part Bar Style=部位血条样式
+Part Scar Style=部位伤痕样式
+Part Scar Text Style=部位伤痕文字样式
+Condition Font Style=状态字体样式
+Condition Bar Style=状态血条样式
+Scar Text Style=伤痕文字样式
+Scar Bar Style=伤痕血条样式
+#
+# --- MHWilds Overlay DPS图表模块 (1086) ---
+DPS Chart Options=DPS图表选项
+Quest Time Font Config=任务时间字体配置
+HR/MR Font Config=HR/MR字体配置
+Name Font Config=名称字体配置
+DPS Font Config=DPS字体配置
+TotalDamage Font Config=总伤害字体配置
+Percentage Font Config=百分比字体配置
+DPS Meter Label Font Config=DPS计量标签字体配置
+Quest Time Label Font Config=任务时间标签字体配置
+Highest DPS Fill the Line=最高DPS填满折线
+DPS Line Height=DPS折线高度
+Show DPS Line=显示DPS折线
+Show DPS Line Background=显示DPS折线背景
+#
+# --- MHWilds Overlay DPS表格模块 (1086) 列名 ---
+Stats Table Options=数据表格选项
+HR=HR
+DPS=DPS
+fDPS=fDPS
+qDPS=qDPS
+Damage=伤害
+Party%=队伍占比%
+Phys.Party%=物理队伍占比%
+Phys.%=物理占比%
+Ele.Party%=属性队伍占比%
+Ele.%=属性占比%
+Fixed=固定伤害
+Fix.Party%=固定队伍占比%
+Fix.%=固定占比%
+Poison.Dmg=毒伤害
+P.Dmg.Party%=毒伤害队伍占比%
+P.Dmg.%=毒伤害占比%
+Blast.Dmg=爆破伤害
+B.Dmg.Party%=爆破队伍占比%
+B.Dmg%=爆破占比%
+Flayer.Dmg=剥皮者伤害
+F.Dmg%=剥皮者占比%
+CE.Dmg=龙气伤害
+CE.Dmg.Party%=龙气队伍占比%
+CE.Dmg.%=龙气占比%
+Whiteflame=白焰
+Whiteflame%=白焰%
+Time=时间
+HitCount=命中次数
+CritCount=暴击次数
+Crit%=暴击率%
+NegCrit=负暴击
+NegCrit%=负暴击%
+Soft=弱点
+Soft%=弱点%
+Ele.Soft=属性弱点
+Ele.Soft%=属性弱点%
+Status=状态
+Status%=状态%
+Stun=昏厥
+Ride=骑乘
+Block=格挡
+Parry=招架
+Poison=毒
+Paralyse=麻痹
+Sleep=睡眠
+Blast=爆破
+Stamina=耐力
+Flayer=剥皮者
+Conv.E=转换属性
+Stun%=昏厥%
+Ride%=骑乘%
+Block%=格挡%
+Parry%=招架%
+Poison%=毒%
+Paralyse%=麻痹%
+Sleep%=睡眠%
+Blast%=爆破%
+Stamina%=耐力%
+Flayer%=剥皮者%
+Conv.E%=转换属性%
+R.Damage=真实伤害
+#
+# --- MHWilds Overlay Status模块 (1086) 树节点标签 ---
+Player Status=玩家状态
+Stamina Widget (Player and Insect)=耐力组件（玩家和猎虫）
+Position=位置
+Player Stamina=玩家耐力
+Insect Stamina=猎虫耐力
+Used Stamina Color=已用耐力颜色
+Color Transition=颜色过渡
+Buff Widget [alpha]=增益组件 [alpha]
+Skill Configs=技能配置
+Music Skill Configs=狩猎笛技能配置
+Otomo Skill Configs=随从技能配置
+Item Buffs Configs=道具增益配置
+Mantle Configs=装衣配置
+Weapon Configs=武器配置
+Configs=配置
+#
+# --- MHWilds Overlay Show All HP模块 (1086) ---
+Show All HP=显示所有HP
+Colors=颜色组
+#
+# --- MHWilds Overlay Reporter模块 (1086) ---
+Report [alpha]=报告 [alpha]
+#
+# --- MHWilds Overlay HP主题配置 (1086) ---
+HP Widget Options=HP组件选项
+Boss Widget Options=Boss组件选项
+#
+# ============================================================================
+# 全覆盖补充翻译 2026-02-28
+# ============================================================================
+#
+# --- MHWilds Overlay 调试/内部标签 (1076/1086) ---
+MHWilds Overlay=MHWilds 覆盖层
+== Cached History Data ==	== 缓存历史数据 ==
+== Sorted Data ==	== 已排序数据 ==
+DpsHistory:=DPS历史:
+DrawEnemy:=绘制怪物:
+ERR Reason:=错误原因:
+ERROR: nil cache=错误: 缓存为空
+ERROR: nil sorted history=错误: 排序历史为空
+Hunter FightingTime:=猎人战斗时间:
+Hunter IsCombatBoss:=猎人是否在战斗Boss:
+Hunter LastCombatBossStartTime:=猎人上次战斗Boss开始时间:
+Hunter is combat boss:=猎人正在战斗Boss:
+Hunter is player:=猎人是玩家:
+HunterIndex:=猎人索引:
+LastPlayerPos=上次玩家位置
+LostID:=丢失ID:
+MemberCount:=成员数:
+QuestMemberIndex:=任务成员索引:
+RenderArea:=渲染区域:
+TableStatus:=表格状态:
+TotalHistory:=总历史:
+WeaponType:=武器类型:
+data:=数据:
+dpsData:=DPS数据:
+hunterIdx:=猎人索引:
+maxDPS:=最大DPS:
+totalData:=总计数据:
+#
+# --- Nightflower Proper Bloom 调试按钮 (1029) ---
+get_active_moon=获取当前月相
+get_layer_time=获取图层时间
+try_bloom_flower=尝试绽放花朵
+#
+# --- Item Box Editor (1071) ---
+table=表格
+#
+# --- Charm Editor 护石编辑器 (1042) ---
+Charm Editor=护石编辑器
+#
+# --- Artian Element Overrider 中英混合标签 (1096) ---
+Artian Element Overrider 机械武器属性变换 v1.1.2=机械武器属性变换 v1.1.2
+Enable 机械武器使用"砥石"磨刀时按攻击键可变换武器属性（鼠标左/右键、XBOX手柄Y/B键、NS手柄X/A键、PS手柄三角/圆圈键）=启用 机械武器使用"砥石"磨刀时按攻击键可变换武器属性（鼠标左/右键、XBOX手柄Y/B键、NS手柄X/A键、PS手柄三角/圆圈键）
+#
+# --- Auto Element 自动属性变换 (1099) ---
+Auto Element=自动属性变换
+Change Keybind=更改按键绑定
+Change element per part=按部位切换属性
+Change weapon base element=更改武器基础属性
+Only change if weapon has element=仅在武器有属性时切换
+Don't replace status effects=不替换异常状态
+Supports both keyboard and controller.=同时支持键盘和手柄。
+#
+# --- Auto Focus Mode 自动集中模式 (1100) ---
+Auto Focus Mode=自动集中模式
+Weapon Settings=武器设置
+Enable on Great Sword=大剑启用
+Enable on Sword & Shield=片手剑启用
+Enable on Dual Blades=双剑启用
+Enable on Long Sword=太刀启用
+Enable on Hammer=大锤启用
+Enable on Hunting Horn=狩猎笛启用
+Enable on Lance=长枪启用
+Enable on Gunlance=铳枪启用
+Enable on Switch Axe=斩击斧启用
+Enable on Charge Blade=充能斧启用
+Enable on Insect Glaive=操虫棍启用
+Enable on Bow=弓启用
+Enable on Heavy Bowgun=重弩启用
+Enable on Light Bowgun=轻弩启用
+Close on Weapon Sheathe=收刀时关闭
+Close on Calling Seikret=呼叫希克雷特时关闭
+Open on Sneak Attack=偷袭时开启
+Open on Riding Seikret=骑乘希克雷特时开启
+Hotkey Settings=快捷键设置
+Enable for Mouse & Keyboard=鼠标和键盘启用
+Mouse & Keyboard Hotkey: =鼠标和键盘快捷键：
+Enable for Gamepad=手柄启用
+Gamepad Hotkey: =手柄快捷键：
+Hotkey Functions: =快捷键功能：
+Close Focus Mode=关闭集中模式
+Sheathe Weapon=收刀
+Force Dash=强制冲刺
+CLOSE AND DON'T SHOW THIS MESSAGE AGAIN=关闭且不再显示此消息
+In order for the mod to work, please set Aim/Focus Mode Controls to Toggle Mode.=要使此mod正常工作，请将瞄准/集中模式控制设置为切换模式。
+Load your character > go to Options > Controls > page 2 > Set Aim/Focus Mode Controls to Toggle Mode.=加载角色 > 进入选项 > 控制 > 第2页 > 将瞄准/集中模式控制设置为切换模式。
+Set for both Melee and Ranged or just one that you want to use for the mod.=可为近战和远程同时设置，或只设置你想使用的那个。
+This is required for Mouse, Keyboard and Gamepad to work with the mod.=鼠标、键盘和手柄均需要此设置才能使mod正常工作。
+Binding...=绑定中...
+
+# --- Auto Element 补充翻译 (1099) Tooltips & Texts ---
+Enabled   =启用   
+Enabled    Change Keybind=启用    更改按键绑定
+Listening... =正在监听... 
+Not Set=未设置
+Auto Element Enabled=已启用自动属性变换
+Auto Element Disabled=已禁用自动属性变换
+  Supports both keyboard and controller.  =  同时支持键盘和手柄。  
+  Change the weapon's element based on the specific monster part hit, rather than the monster as a whole.  =  根据击中的怪物特定部位来切换武器属性，而不是基于整个怪物。  
+  Having this enabled will change the weapon's base element which means it will show in the equipment and particles.\n  Disabling this will instead change the attack info on hit, which means the new element won't be visible, but will still affect damage.  =  启用此项将改变武器的基础属性，这意味着属性将显示在外观和特效中。\n  禁用此项则仅在击中时添加属性修正，此时武器不显属性特效，但仍会计算属性伤害。  
+  Only change the element of weapons that already have an element.  =  仅对原版自带属性的武器进行属性变换。  
+  If the weapon currently has a status effect (e.g. poison), do not replace it with an element.  =  如果武器带有异常状态（如毒、麻痹），则不将其替换为属性。  
+Change the weapon's element based on the specific monster part hit, rather than the monster as a whole.=根据击中的怪物特定部位来切换武器属性，而不是基于整个怪物。
+Having this enabled will change the weapon's base element which means it will show in the equipment and particles.\n  Disabling this will instead change the attack info on hit, which means the new element won't be visible, but will still affect damage.=启用此项将改变武器的基础属性，这意味着属性将显示在外观和特效中。\n  禁用此项则仅在击中时添加属性修正，此时武器不显属性特效，但仍会计算属性伤害。
+Only change the element of weapons that already have an element.=仅对原版自带属性的武器进行属性变换。
+If the weapon currently has a status effect (e.g. poison), do not replace it with an element.=如果武器带有异常状态（如毒、麻痹），则不将其替换为属性。
+
+# ============================================================================
+# 脚本自动排查遗漏词条 2026-03-01
+# ============================================================================
+#
+# --- Auto Focus Mode (1100) 补充提示 ---
+   In order for the mod to work, please set Aim/Focus Mode Controls to Toggle Mode.  =   要使此mod正常工作，请在选项中将瞄准/集中模式控制设置为“切换”模式。  
+   Load your character > go to Options > Controls > page 2 > Set Aim/Focus Mode Controls to Toggle Mode.  =   载入角色 > 选项 > 控制 > 第2页 > 将瞄准/集中模式控制设置为“切换”。  
+   Set for both Melee and Ranged or just one that you want to use for the mod.  =   可以同时设置近战和远程，或只设置你想使用该功能的一种武器。  
+   This is required for Mouse, Keyboard and Gamepad to work with the mod. =   键盘、鼠标和手柄均需此设置才能使mod正常工作。 
+Is GP dash key pressed: =GP冲刺键是否按下: 
+GP dash key: =GP冲刺键: 
+Is sheathing: =正在收刀: 
+Player's cache: =玩家缓存: 
+Player's controller cache: =玩家手柄缓存: 
+Listen=监听中
+
+# --- Infinite Consumables (1020) 补充提示 ---
+  an SoS flare which can find Players from an Online Single Player hunt.=  发射求救信号（可在在线单人狩猎中被其他玩家发现）时也会视为多人游戏。
+  returning to Base from a non-Survey Quest, or Save & Quitting.=  从非探索任务返回据点，或者保存并退出时，消耗品才会被退还。
+  so don't rely on this alone to keep your Loadout intact.=  因此不要仅仅依赖此功能来保持你的装备配置完整。
+
+# --- MHWilds Overlay / CatLib (1086 / 1076 / 1010) 补充文本 ---
+ -- Disabled --  = -- 已禁用 --  
+== Cached History Data ==	缓存的历史数据
+== Sorted Data ==	已排序数据
+=== Conditions Global Style ===	全局状态样式
+=== Conditions Style (_Em are caused by creatures like flash bug or other bosses) ===	状态样式（_Em 由闪光虫等生物或其他 Boss 引起）
+=== Parts Global Style ===	全局部位样式
+=== Parts Style ===	部位样式
+Cool: =冷却: 
+Count: =计数: 
+DPS: =DPS: 
+DpsHistory: =DPS历史: 
+DrawEnemy: =绘制怪物: 
+HP: =HP: 
+HR: =HR: 
+Hunter FightingTime: =猎人战斗时间: 
+Hunter IsCombatBoss: =猎人是否在战斗(Boss): 
+Hunter LastCombatBossStartTime: =猎人上次战斗开始时间: 
+Hunter is combat boss: =猎人正在与Boss战斗: 
+Hunter is player: =猎人是玩家: 
+HunterIndex: =猎人索引: 
+LostID: =丢失ID: 
+MemberCount: =成员数: 
+Quest Time Meter Height (-1 = full)=任务时间条高度（-1 = 填满）
+QuestMemberIndex: =任务成员索引: 
+RenderArea: =渲染区域: 
+Size: =大小: 
+TableStatus: =表格状态: 
+Target: =目标: 
+Time: =时间: 
+Timer: =计时器: 
+Total: =总计: 
+TotalHistory: =总历史记录: 
+WeaponType: =武器类型: 
+data: =数据: 
+dpsData: =DPS数据: 
+hunterIdx: =猎人索引: 
+maxDPS: =最大DPS: 
+totalData: =总数据: 
+
+# --- 其他未完全匹配字符的遗漏词条 ---
+Rebuff when buff time less than =增益时间剩余不足该值时重新施放 
+Skill 1: =技能 1: 
+Skill 2: =技能 2: 
+Skill 3: =技能 3: 
+Slots: =孔位: 
+Enable 机械武器使用“砥石”磨刀时按攻击键可变换武器属性（鼠标左/右键、XBOX手柄Y/B键、NS手柄X/A键、PS手柄三角/圆圈键）=启用 机械武器使用“砥石”磨刀时按攻击键可变换武器属性（鼠标左/右键、XBOX手柄Y/B键、NS手柄X/A键、PS手柄三角/圆圈键）
+Remove time limit 移除有效时间限制（默认有效时间3分钟，激活技能“道具使用强化”可延长有效时间至4.5分钟）=移除有效时间限制（默认有效时间3分钟，激活技能“道具使用强化”可延长有效时间至4.5分钟）
+· =· 
+こんにちは、世界！(如果可以显示此行文字则显示成功=你好世界！（如果显示这行字则说明汉化成功
+
+# --- 1099 Auto Element ---
+Auto Element=自动属性切换
+Enabled   =启用   
+Change Keybind=更改快捷键
+  Supports both keyboard and controller.  =  支持通过键盘或手柄控制。  
+Change element per part=依据具体击中部位弱点切换
+  Change the weapon's element based on the specific monster part hit, rather than the monster as a whole.  =  基于击中的怪物特定部位弱点切换武器属性，而不是针对怪物全身弱点估算。  
+Change weapon base element=切换武器面板基础属性
+  Having this enabled will change the weapon's base element which means it will show in the equipment and particles.\n  Disabling this will instead change the attack info on hit, which means the new element won't be visible, but will still affect damage.  =  启用此项将改变武器的基础面板属性，在装备及特效中均可见。\n  禁用此项将仅在短时间内临时改变系统攻击判定，不可见特效但仍对伤害有效。  
+Only change if weapon has element=仅当武器自带属性时切换
+  Only change the element of weapons that already have an element.  =  只为原本就附带属性的武器触发自动属性切换。  
+Don't replace status effects=不覆盖异常状态
+  If the weapon currently has a status effect (e.g. poison), do not replace it with an element.  =  如果当前附加的是异常状态（比如中毒等），则不要将其替换为任何属性。  
+Auto Element Enabled=自动属性开启
+Auto Element Disabled=自动属性关闭
+Listening... =监听按键中... 
+Not Set=未设定
+
+# ============================================================================
+# Female Body Sliders 女性身体滑块 (1103)
+# ============================================================================
+#
+# --- 主菜单 / 角色名称 ---
+Alessa Body Sliders=Alessa 身体滑块
+Alma Body Sliders=Alma 身体滑块
+Player Body Sliders=玩家身体滑块
+Female Body Sliders=女性身体滑块
+Olivia Body Sliders=Olivia 身体滑块
+Nightmist Body Sliders=Nightmist 身体滑块
+Nadia Body Sliders=Nadia 身体滑块
+Gemma Body Sliders=Gemma 身体滑块
+Mina Body Sliders=Mina 身体滑块
+Misc NPC Sliders=其他NPC滑块
+Rochelle Body Sliders=Rochelle 身体滑块
+Luciella Body Sliders=Luciella 身体滑块
+Lotta Body Sliders=Lotta 身体滑块
+Kanya Body Sliders=Kanya 身体滑块
+Carla Body Sliders=Carla 身体滑块
+Felicita Body Sliders=Felicita 身体滑块
+Grand Hub Bartendress Body Sliders=集会所女调酒师 身体滑块
+Multiplayer Body Sliders 1##MBS1=多人玩家身体滑块 1##MBS1
+Multiplayer Body Sliders 2##MBS2=多人玩家身体滑块 2##MBS2
+Multiplayer Body Sliders 3##MBS3=多人玩家身体滑块 3##MBS3
+#
+# --- 通用预设管理按钮 ---
+Save Preset=保存预设
+Create Preset=创建预设
+Save FNM Body Preset=保存FNM身体预设
+Save FNM Leg Preset=保存FNM腿部预设
+Save Hair Settings=保存发型设置
+Save FBX Skel Preset=保存FBX骨架预设
+Save Helm-Hair Adjust Preset=保存头盔发型调整预设
+Save Armor Pigmentation Colors=保存护甲着色颜色
+Save Wetness Settings=保存湿润设置
+Save Scale=保存缩放
+Save Delay=保存延迟
+Last saved preset is startup preset=最后保存的预设为启动预设
+Last saved preset is the startup preset=最后保存的预设为启动预设
+#
+# --- 通用复选框/切换 ---
+Autoswitch This Preset?=自动切换此预设？
+Override Wetness?=覆盖湿润度？
+Override Face Wetness?=覆盖面部湿润度？
+Works on males?=对男性角色生效？
+Slinger Visibility Works On Males?=投射器可见性对男性生效？
+Can set hair settings?=可以设置发型？
+Override setting with 'Hide Sheathed Weapons' mod?=用"隐藏收纳武器"mod覆盖设置？
+Raise Hair during combat for Alt Arkveld A?=与Alt Arkveld A战斗时抬高头发？
+#
+# --- 身体部位滑块 ---
+Scale=缩放比例
+Reset Boobs=重置胸部
+Reset Boob Sliders=重置胸部滑块
+Arm Sliders=手臂滑块
+Lower Leg Sliders=小腿滑块
+Additional Face Sliders=附加面部滑块
+Reset AFS=重置附加面部滑块
+Reset Additional Face Sliders=重置附加面部滑块
+Custom Bones=自定义骨骼
+Reset Custom Bones=重置自定义骨骼
+Reset Custom Bone Sliders=重置自定义骨骼滑块
+Reset Body Custom Bones=重置身体自定义骨骼
+Reset Body Custom Bone Sliders=重置身体自定义骨骼滑块
+Reset Leg Custom Bones=重置腿部自定义骨骼
+Reset Leg Custom Bone Sliders=重置腿部自定义骨骼滑块
+Extra Deform Bones - Body=额外变形骨骼 - 身体
+Reset Extra Deform Body Bones=重置身体额外变形骨骼
+Reset Extra Deform Bones Body Sliders=重置身体额外变形骨骼滑块
+Reset Body Extra Deform Bones=重置身体额外变形骨骼
+Reset Body Extra Deform Bones Sliders=重置身体额外变形骨骼滑块
+#
+# --- 臀部/大腿 ---
+Butt/Thighs=臀部/大腿
+Reset Butt/Thighs=重置臀部/大腿
+Reset Butt/Thighs Sliders=重置臀部/大腿滑块
+Thigh Chain Settings=大腿链设置
+Thigh Physics & Bones=大腿物理和骨骼
+Butt Chain Settings=臀部链设置
+Butt Chain Group Settings=臀部链组设置
+Tit Chain Settings=胸部链设置
+Tit Chain Group Settings=胸部链组设置
+Tit Physics=胸部物理
+Thigh 1 Chain Group Settings=大腿1链组设置
+Thigh 2 Chain Group Settings=大腿2链组设置
+Thigh 3 Chain Group Settings=大腿3链组设置
+#
+# --- Nude Mod 部分 ---
+Alessa Nude Mod Specific Settings=Alessa 裸体Mod专用设置
+Alma Nude Mod Specific Settings=Alma 裸体Mod专用设置
+Olivia Nude Mod Specific Settings=Olivia 裸体Mod专用设置
+Nightmist Nude Mod Specific Settings=Nightmist 裸体Mod专用设置
+Nadia Nude Mod Specific Settings=Nadia 裸体Mod专用设置
+Gemma Nude Mod Specific Settings=Gemma 裸体Mod专用设置
+Mina Nude Mod Specific Settings=Mina 裸体Mod专用设置
+Rochelle Nude Mod Specific Settings=Rochelle 裸体Mod专用设置
+Luciella Nude Mod Specific Settings=Luciella 裸体Mod专用设置
+Lotta Nude Mod Specific Settings=Lotta 裸体Mod专用设置
+Kanya Nude Mod Specific Settings=Kanya 裸体Mod专用设置
+Carla Nude Mod Specific Settings=Carla 裸体Mod专用设置
+Felicita Nude Mod Specific Settings=Felicita 裸体Mod专用设置
+Grand Hub Bartendress Nude Mod Specific Settings=集会所女调酒师 裸体Mod专用设置
+#
+# --- 颜色设置 ---
+Nipple Color=乳头颜色
+Nipple Areola Blend=乳晕混合
+Reset Colors=重置颜色
+Reset Hair Color=重置发色
+Update Hair Color=更新发色
+Pick Base Color:=选择基础颜色:
+Pick Skin Base Color:=选择皮肤基础颜色:
+Pick Skin Tone Map Offset:=选择肤色映射偏移:
+Pick a Hair Base Color:=选择发色基础颜色:
+Pick a Hair Color:=选择发色:
+Pubic Hair Color=阴毛颜色
+Pubic Hair Wetness Settings=阴毛湿润设置
+Vag Color Settings=私密部位颜色设置
+Vag Wetness Settings=私密部位湿润设置
+Labia Base Color=唇部基础颜色
+Clit Hood Base Color=阴蒂色基础颜色
+Wetness Settings=湿润设置
+#
+# --- 颜色相关复选框 ---
+Can Set Base Color?=可以设置基础颜色？
+Can Set Areola Blend?=可以设置乳晕混合？
+Can Set Alpha Test Ref?=可以设置Alpha测试参考？
+Can Set Dither Shift?=可以设置抖动偏移？
+Can Set Dissolve?=可以设置溶解度？
+Can Set Clit Hood Base Color?=可以设置阴蒂色基础颜色？
+Can Set Clit Hood Blend?=可以设置阴蒂色混合？
+Can Set Clit Hood Subsurface Scattering?=可以设置阴蒂色次表面散射？
+Can Set Clit Hood Roughness?=可以设置阴蒂色粗糙度？
+Can Set Labia Base Color?=可以设置唇部基础颜色？
+Can Set Labia Subsurface Scattering?=可以设置唇部次表面散射？
+Can Set Labia Roughness?=可以设置唇部粗糙度？
+#
+# --- 物理链设置 ---
+Advanced Settings=高级设置
+Can Set Tit Custom Chain Settings?=可以设置胸部自定义链？
+Can Set Butt Custom Chain Settings?=可以设置臀部自定义链？
+Can Set Thigh Custom Chain Settings?=可以设置大腿自定义链？
+Can set tit chain group settings?=可以设置胸部链组？
+Can set butt/thigh chain group settings?=可以设置臀部/大腿链组？
+Ignore Same Settings Group Collision=忽略相同设置组碰撞
+#
+# --- NM 值重置 ---
+Reset Alessa NM Values=重置 Alessa NM值
+Reset Alma NM Values=重置 Alma NM值
+Reset Olivia NM Values=重置 Olivia NM值
+Reset Nightmist NM Values=重置 Nightmist NM值
+Reset Nadia NM Values=重置 Nadia NM值
+Reset Gemma NM Values=重置 Gemma NM值
+Reset Mina NM Values=重置 Mina NM值
+Reset Rochelle NM Values=重置 Rochelle NM值
+Reset Luciella NM Values=重置 Luciella NM值
+Reset Lotta NM Values=重置 Lotta NM值
+Reset Kanya NM Values=重置 Kanya NM值
+Reset Carla NM Values=重置 Carla NM值
+Reset Felicita NM Values=重置 Felicita NM值
+Reset Grand Hub Bartendress NM Values=重置 集会所女调酒师 NM值
+Reset All FNM Values=重置所有FNM值
+Reset Body FNM Values=重置身体FNM值
+Reset Leg FNM Values=重置腿部FNM值
+Reset Tit FNM Values=重置胸部FNM值
+Reset Values=重置数值
+#
+# --- 缩放 ---
+Reset Total Alessa Scale=重置 Alessa 总缩放
+Reset Total Alma Scale=重置 Alma 总缩放
+Reset Total Olivia Scale=重置 Olivia 总缩放
+Reset Total Nightmist Scale=重置 Nightmist 总缩放
+Reset Total Nadia Scale=重置 Nadia 总缩放
+Reset Total Gemma Scale=重置 Gemma 总缩放
+Reset Total Mina Scale=重置 Mina 总缩放
+Reset Total Rochelle Scale=重置 Rochelle 总缩放
+Reset Total Luciella Scale=重置 Luciella 总缩放
+Reset Total Lotta Scale=重置 Lotta 总缩放
+Reset Total Kanya Scale=重置 Kanya 总缩放
+Reset Total Carla Scale=重置 Carla 总缩放
+Reset Total Felicita Scale=重置 Felicita 总缩放
+Reset Total Grand Hub Bartendress Scale=重置 集会所女调酒师 总缩放
+Reset Total Player Scale=重置玩家总缩放
+Player Scale=玩家缩放
+Make Giant ('Find Me' Test)=变巨大（"找我"测试）
+#
+# --- 发型 ---
+Hair=发型
+#
+# --- 换装系统 ---
+Manually Cycle Alessa Outfit=手动切换 Alessa 套装
+Manually Cycle Alma Outfit=手动切换 Alma 套装
+Manually Cycle Olivia Outfit=手动切换 Olivia 套装
+Manually Cycle Nightmist Outfit=手动切换 Nightmist 套装
+Manually Cycle Nadia Outfit=手动切换 Nadia 套装
+Manually Cycle Gemma Outfit=手动切换 Gemma 套装
+Manually Cycle Mina Outfit=手动切换 Mina 套装
+Manually Cycle Rochelle Outfit=手动切换 Rochelle 套装
+Manually Cycle Luciella Outfit=手动切换 Luciella 套装
+Manually Cycle Lotta Outfit=手动切换 Lotta 套装
+Manually Cycle Kanya Outfit=手动切换 Kanya 套装
+Manually Cycle Carla Outfit=手动切换 Carla 套装
+Manually Cycle Felicita Outfit=手动切换 Felicita 套装
+Manually Cycle Grand Hub Bartendress Outfit=手动切换 集会所女调酒师 套装
+Manually Cycle Body Armor=手动切换身体护甲
+Manually Cycle Arm Armor=手动切换手臂护甲
+Manually Cycle Helm Armor=手动切换头盔护甲
+Manually Cycle Leg Armor=手动切换腿部护甲
+Manually Cycle Waist Armor=手动切换腰部护甲
+Manually Cycle Weapon=手动切换武器
+Manually Cycle Sub Parent Weapon=手动切换副武器
+Manually Cycle Slinger=手动切换投射器
+Swap Body:=切换身体:
+#
+# --- 护甲相关 ---
+Supported Arm Armor List=支持的手臂护甲列表
+Supported Body Armor List=支持的身体护甲列表
+Supported Helm Armor List=支持的头盔护甲列表
+Supported Leg Armor List=支持的腿部护甲列表
+Supported Waist Armor List=支持的腰部护甲列表
+Supported Weapon List=支持的武器列表
+Supported Sub Parent Weapon List=支持的副武器列表
+Supported Slinger Slinger List=支持的投射器列表
+Supported Actors for Swap Bodies and Custom IDs (if applicable)=支持换装的角色和自定义ID（如适用）
+Unique Armor Sliders/Bones=独特护甲滑块/骨骼
+Ridog8 Specific Custom Armor Settings=Ridog8 专用自定义护甲设置
+#
+# --- Parts Enable 部件启用 ---
+Parts Enable - Body=部件启用 - 身体
+Parts Enable - Leg=部件启用 - 腿部
+Parts Enabled by Material=按材质启用部件
+Parts Enabled by Mesh Parts=按网格部件启用部件
+Slinger Parts Enable=投射器部件启用
+Waist Parts Enable=腰部部件启用
+Prevent Game From Setting Mesh Part 3 & 4?=阻止游戏设置网格部件3和4？
+Prevent Game From Setting Mesh Part 8?=阻止游戏设置网格部件8？
+#
+# --- 护甲路径标签 ---
+Outfit Mesh Path:=服装Mesh路径:
+Outfit MDF Path:=服装MDF路径:
+Outfit Chain Path:=服装链路径:
+Outfit Alt Chain Path:=服装备用链路径:
+Outfit Alt Chain Path 2:=服装备用链路径2:
+Outfit Alt Chain Path 3:=服装备用链路径3:
+Outfit Jcns Path(s):=服装Jcns路径:
+Outfit Slot Number:=服装槽位编号:
+#
+# --- 护甲部位路径标签 ---
+Helm Armor Mesh Path:=头盔Mesh路径:
+Helm Armor MDF Path:=头盔MDF路径:
+Helm Armor Chain Path:=头盔链路径:
+Body Armor Mesh Path:=身体护甲Mesh路径:
+Body Armor MDF Path:=身体护甲MDF路径:
+Body Armor Chain Path:=身体护甲链路径:
+Arm Armor Mesh Path:=手臂护甲Mesh路径:
+Arm Armor MDF Path:=手臂护甲MDF路径:
+Arm Armor Chain Path:=手臂护甲链路径:
+Leg Armor Mesh Path:=腿部护甲Mesh路径:
+Leg Armor MDF Path:=腿部护甲MDF路径:
+Leg Armor Chain Path:=腿部护甲链路径:
+Leg Armor Alt Chain Path:=腿部护甲备用链路径:
+Leg Armor Alt MDF Path:=腿部护甲备用MDF路径:
+Waist Armor Mesh Path:=腰部护甲Mesh路径:
+Waist Armor MDF Path:=腰部护甲MDF路径:
+Waist Armor Chain Path:=腰部护甲链路径:
+Waist Armor Alt MDF Path:=腰部护甲备用MDF路径:
+Weapon Mesh Path:=武器Mesh路径:
+Weapon MDF Path:=武器MDF路径:
+Weapon Chain Path:=武器链路径:
+Weapon Alt MDF Path:=武器备用MDF路径:
+Sub Parent Weapon Mesh Path:=副武器Mesh路径:
+Sub Parent Weapon MDF Path:=副武器MDF路径:
+Sub Parent Weapon Chain Path:=副武器链路径:
+Sub Parent Weapon Alt MDF Path:=副武器备用MDF路径:
+Slinger Mesh Path:=投射器Mesh路径:
+Slinger MDF Path:=投射器MDF路径:
+Slinger Chain Path:=投射器链路径:
+Slinger Alt MDF Path:=投射器备用MDF路径:
+Slinger CLSP Path:=投射器CLSP路径:
+Slinger GPUC Path:=投射器GPUC路径:
+Slinger Custom Labels Identifier:=投射器自定义标签标识:
+Slinger Armor JCNS Path(s):=投射器JCNS路径:
+Leg Armor CLSP Path:=腿部护甲CLSP路径:
+Leg Armor GPUC Path:=腿部护甲GPUC路径:
+Leg Armor JCNS Path(s):=腿部护甲JCNS路径:
+Leg Armor Custom Labels Identifier:=腿部护甲自定义标签标识:
+Waist Armor CLSP Path:=腰部护甲CLSP路径:
+Waist Armor GPUC Path:=腰部护甲GPUC路径:
+Waist Armor JCNS Path(s):=腰部护甲JCNS路径:
+Waist Armor Custom Labels Identifier:=腰部护甲自定义标签标识:
+#
+# --- 可见性设置 ---
+Weapon Visibility Settings=武器可见性设置
+Waist Armor Visibility Settings=腰部护甲可见性设置
+Slinger Visibility Settings=投射器可见性设置
+Toggle Weapon Visibility=切换武器可见性
+Reset All Slinger Visibility=重置所有投射器可见性
+Slinger Visible For:=投射器可见对象:
+Waist Armor Player Light Mute?:=腰部护甲隐藏玩家灯光？:
+Waist Armor Waist Light Mute?:=腰部护甲隐藏腰灯？:
+#
+# --- ELA/ELW 系统 ---
+Use Alt Material?=使用备用材质？
+Layer Onto Game Animations=叠加到游戏动画
+#
+# --- FBXSkel ---
+Motlist Path:=动作列表路径:
+Refresh Motion List Files=刷新动作列表文件
+#
+# --- 动画系统 ---
+Open Sequence Builder=打开序列构建器
+Save Animation Sequence=保存动画序列
+Play Animation Sequence=播放动画序列
+Preview Sequence=预览序列
+Preview Sound File Only=仅预览音效文件
+Remove Last Sequence Object=移除最后一个序列对象
+Use Euler Angle Offset=使用欧拉角偏移
+Use Universal Position Offset=使用通用位置偏移
+Set Back Euler Angle On Finish=完成后恢复欧拉角
+Set Back Universal Position On Finish=完成后恢复通用位置
+#
+# --- 角色扫描/调试 ---
+Scan for available actors=扫描可用角色
+List Current Character Scales=列出当前角色缩放
+List Current Character fbxskels=列出当前角色fbxskel
+Refresh Skin Tone Match=刷新肤色匹配
+Misc VFX Settings=其他VFX设置
+#
+# --- 延迟设置 ---
+Reset Delay To Default=重置延迟为默认值
+#
+# --- 提示类文本 ---
+Tips=提示
+Doesn't affect chain settings values=不影响链设置值
+Doesn't affect nipple color values and doesn't affect wether areola blend can be set=不影响乳头颜色值，也不影响是否可以设置乳晕混合
+Nipple color saves with the FNM body preset.=乳头颜色随FNM身体预设保存。
+The group numbers used for the chain groups can be changed and saved to a preset here to accommodate the chain file.=链组使用的组编号可以在此更改并保存到预设中，以适配链文件。
+group number is an int for the order it is in the chain file, ex. 0 for the first group.=组编号是链文件中的顺序整数，例如0代表第一组。
+| Category Filter:=| 分类筛选:
+#
+# --- 热键提示 ---
+L3 + LB is the hotkey for gamepad. Numpad 0 is the hotkey for keyboard.=手柄热键: L3 + LB，键盘热键: 小键盘0
+LB + A is the hotkey for gamepad. Numpad 2 is the hotkey for keyboard.=手柄热键: LB + A，键盘热键: 小键盘2
+LB + L3 is the hotkey for gamepad. Numpad 4 is the hotkey for keyboard.=手柄热键: LB + L3，键盘热键: 小键盘4
+LB + LT is the hotkey for gamepad. Numpad 7 is the hotkey for keyboard.=手柄热键: LB + LT，键盘热键: 小键盘7
+LB + R3 is the hotkey for gamepad. Numpad 6 is the hotkey for keyboard.=手柄热键: LB + R3，键盘热键: 小键盘6
+LB + RB is the hotkey for gamepad. Numpad 8 is the hotkey for keyboard.=手柄热键: LB + RB，键盘热键: 小键盘8
+LB + Y is the hotkey for gamepad. Numpad 5 is the hotkey for keyboard.=手柄热键: LB + Y，键盘热键: 小键盘5
+LT + LB is the hotkey for gamepad. Numpad 9 is the hotkey for keyboard.=手柄热键: LT + LB，键盘热键: 小键盘9
+No hotkeys for Kanya, button required to cycle outfit.=Kanya无热键，需点击按钮切换套装。
+No hotkeys for Luciella, button required to cycle outfit.=Luciella无热键，需点击按钮切换套装。
+No hotkeys for Rochelle, button required to cycle outfit.=Rochelle无热键，需点击按钮切换套装。
+No keybinds for Alessa EO, the UI button for cycle will have to be clicked.=Alessa EO无快捷键，需点击UI按钮切换。
+No keybinds for Mina EO, the UI button for cycle will have to be clicked.=Mina EO无快捷键，需点击UI按钮切换。
+No keybinds for Nadia EO, the UI button for cycle will have to be clicked.=Nadia EO无快捷键，需点击UI按钮切换。
+Keep in mind, you may need to 'scan for actors' again in certain siutations.=请注意，在某些情况下你可能需要再次"扫描角色"。
+Vanilla parts for autoswitch go by their same name for what is 'currently equipped'=自动切换的原版部件以当前装备的名称为准
+Specific armors take precendence over autoswitches for all armors.=特定护甲的设置优先于所有护甲的自动切换。
+To use ELA for autoswitch, specify the armor name by slot number name.=要使用ELA自动切换，请按槽位编号名称指定护甲名。
+Selected armors to autoswitch fbx skel for are only switched to if all parts specified are equipped.=选定的自动切换fbx骨架的护甲，只有在所有指定部件都已装备时才会切换。
+The purpose of the 'make giant' button is to tell who/where an actor is. Does not affect 'current scale'.="变巨大"按钮用于确认角色的位置，不影响"当前缩放"。
+Scoutfly and/or player light removal depends on how it is set inside 'Waist Armor Visibility Settings'=导虫和/或玩家灯光移除取决于"腰部护甲可见性设置"中的配置
+Last saved preset is the startup preset, or preset marked for autoswitch if the correct armor is equipped.\nOther settings that don't have a dedicated 'Save Preset' button are automatically saved.=最后保存的预设为启动预设，或在装备正确护甲时标记为自动切换的预设。\n没有专用"保存预设"按钮的其他设置会自动保存。
+#
+# --- 物理链参数 (链/弹簧/风/碰撞) ---
+Blend Rate=混合率
+Butt Blend Rate=臀部混合率
+Butt Damping Rate=臀部阻尼率
+Butt Elastic Rate=臀部弹性率
+Butt Gravity Rate=臀部重力率
+Butt Motion Force Coef=臀部运动力系数
+Butt Sub Reduce Distance=臀部辅助缩减距离
+ENV Wind Effect Coef=环境风力效果系数
+Reduce Distance=缩减距离
+Second Damping=二级阻尼
+Second Damping Speed=二级阻尼速度
+Second Reduce Distance=二级缩减距离
+Second Reduce Distance Speed=二级缩减距离速度
+Shock Absorbtion Rate=减震率
+Spring Calc Type=弹簧计算类型
+Spring Force=弹簧力
+Spring Limit Rate=弹簧限制率
+Spring Max Velocity=弹簧最大速度
+Velocity Limit=速度限制
+Virtual Ground Type=虚拟地面类型
+Wind Delay Speed=风力延迟速度
+Wind Delay Type=风力延迟类型
+Wind Effect Coef=风力效果系数
+Thigh 1 Blend Rate=大腿1混合率
+Thigh 1 Damping Rate=大腿1阻尼率
+Thigh 1 Elastic Rate=大腿1弹性率
+Thigh 1 Gravity Rate=大腿1重力率
+Thigh 1 Motion Force Coef=大腿1运动力系数
+Thigh 1 Sub Reduce Distance=大腿1辅助缩减距离
+Thigh 2 Blend Rate=大腿2混合率
+Thigh 2 Damping Rate=大腿2阻尼率
+Thigh 2 Elastic Rate=大腿2弹性率
+Thigh 2 Gravity Rate=大腿2重力率
+Thigh 2 Motion Force Coef=大腿2运动力系数
+Thigh 2 Sub Reduce Distance=大腿2辅助缩减距离
+Thigh 3 Blend Rate=大腿3混合率
+Thigh 3 Damping Rate=大腿3阻尼率
+Thigh 3 Elastic Rate=大腿3弹性率
+Thigh 3 Gravity Rate=大腿3重力率
+Thigh 3 Motion Force Coef=大腿3运动力系数
+Thigh 3 Sub Reduce Distance=大腿3辅助缩减距离
+Tits Blend Rate=胸部混合率
+Tits Damping Rate=胸部阻尼率
+Tits Elastic Rate=胸部弹性率
+Tits Gravity Rate=胸部重力率
+Tits Motion Force Coef=胸部运动力系数
+Tits Sub Reduce Distance=胸部辅助缩减距离
+Damping=阻尼
+Elastic Coef=弹性系数
+Friction=摩擦力
+Gravity=重力
+Hardness=硬度
+Min Damping=最小阻尼
+Second Min Damping=二级最小阻尼
+Motion Force=运动力
+Motion Force Calculation Type=运动力计算类型
+Collide Max Velocity=碰撞最大速度
+Chain Params=链参数
+Chain All Off=全部关闭链
+#
+# --- 护甲套装名称 (怪物猎人荒野官方简中) ---
+# 注: A/B 代表套装 alpha/beta, Coil 代表腰甲
+Arkveld A=冥渊龙A
+Arkveld B=冥渊龙B
+Arkveld Coil A=冥渊龙腰甲A
+Arkveld Coil B=冥渊龙腰甲B
+Arkvulcan Coil Gamma 1=冥渊火山龙腰甲γ1
+Arkvulcan Coil Gamma 2=冥渊火山龙腰甲γ2
+Arkvulcan Gamma 1=冥渊火山龙γ1
+Arkvulcan Gamma 2=冥渊火山龙γ2
+Balahara A=砂岩龙A
+Balahara B=砂岩龙B
+Balahara Coil A=砂岩龙腰甲A
+Balahara Coil B=砂岩龙腰甲B
+Chatacabra A=岩贼龙A
+Chatacabra B=岩贼龙B
+Chatacabra Coil A=岩贼龙腰甲A
+Chatacabra Coil B=岩贼龙腰甲B
+Doshaguma A & Guardian Doshaguma A=斗兽A & 守护斗兽A
+Doshaguma B=斗兽B
+Doshaguma Coil A=斗兽腰甲A
+Doshaguma Coil B=斗兽腰甲B
+Gore Magala A=黑蚀龙A
+Gore Magala B=黑蚀龙B
+Gore Magala Coil A=黑蚀龙腰甲A
+Gore Magala Coil B=黑蚀龙腰甲B
+Gravios A=铠龙A
+Gravios B=铠龙B
+Gravios Coil A=铠龙腰甲A
+Gravios Coil B=铠龙腰甲B
+Guardian Arkveld A=守护冥渊龙A
+Guardian Arkveld B=守护冥渊龙B
+Guardian Arkveld Coil A=守护冥渊龙腰甲A
+Guardian Arkveld Coil B=守护冥渊龙腰甲B
+Guardian Doshaguma A=守护斗兽A
+Guardian Doshaguma B=守护斗兽B
+Guardian Doshaguma Coil A=守护斗兽腰甲A
+Guardian Doshaguma Coil B=守护斗兽腰甲B
+Guardian Ebony Odogaron A=守护黑蚀惨爪龙A
+Guardian Ebony Odogaron B=守护黑蚀惨爪龙B
+Guardian Ebony Odogaron Coil A=守护黑蚀惨爪龙腰甲A
+Guardian Ebony Odogaron Coil B=守护黑蚀惨爪龙腰甲B
+Guardian Fulgur A=守护雷极龙A
+Guardian Fulgur B=守护雷极龙B
+Guardian Fulgur Coil A=守护雷极龙腰甲A
+Guardian Fulgur Coil B=守护雷极龙腰甲B
+Guardian Rathalos A=守护雄火龙A
+Guardian Rathalos B=守护雄火龙B
+Guardian Rathalos Coil A=守护雄火龙腰甲A
+Guardian Rathalos Coil B=守护雄火龙腰甲B
+Guardian Seikret Coil A=守护辅猎蜥腰甲A
+Guardian Seikret Coil B=守护辅猎蜥腰甲B
+Gypceros A=毒怪龙A
+Gypceros B=毒怪龙B
+Gypceros Coil A=毒怪龙腰甲A
+Gypceros Coil B=毒怪龙腰甲B
+Hirabami A=镰鼬龙王A
+Hirabami B=镰鼬龙王B
+Hirabami Coil A=镰鼬龙王腰甲A
+Hirabami Coil B=镰鼬龙王腰甲B
+Lagiacrus A=海龙A
+Lagiacrus B=海龙B
+Lagiacrus Coil A=海龙腰甲A
+Lagiacrus Coil B=海龙腰甲B
+Mizutsune A=泡狐龙A
+Mizutsune B=泡狐龙B
+Mizutsune Coil A=泡狐龙腰甲A
+Mizutsune Coil B=泡狐龙腰甲B
+Nerscylla A=影蜘蛛A
+Nerscylla B=影蜘蛛B
+Nerscylla Coil A=影蜘蛛腰甲A
+Nerscylla Coil B=影蜘蛛腰甲B
+Nu Udra A=沼渊龙A
+Nu Udra B=沼渊龙B
+Nu Udra Coil A=沼渊龙腰甲A
+Nu Udra Coil B=沼渊龙腰甲B
+Nu Udra Gamma 1=沼渊龙γ1
+Nu Udra Gamma 2=沼渊龙γ2
+Quematrice A=焰妃蜥A
+Quematrice B=焰妃蜥B
+Quematrice Coil A=焰妃蜥腰甲A
+Quematrice Coil B=焰妃蜥腰甲B
+Rathalos A=雄火龙A
+Rathalos B=雄火龙B
+Rathalos Coil A=雄火龙腰甲A
+Rathalos Coil B=雄火龙腰甲B
+Rathian A=雌火龙A
+Rathian B=雌火龙B
+Rathian Coil A=雌火龙腰甲A
+Rathian Coil B=雌火龙腰甲B
+Rey Dau A=雷电龙A
+Rey Dau B=雷电龙B
+Rey Dau Coil A=雷电龙腰甲A
+Rey Dau Coil B=雷电龙腰甲B
+Rey Dau Gamma 1=雷电龙γ1
+Rey Dau Gamma 2=雷电龙γ2
+Rompopolo A=爆锤龙A
+Rompopolo B=爆锤龙B
+Rompopolo Coil A=爆锤龙腰甲A
+Rompopolo Coil B=爆锤龙腰甲B
+Seregios A=千刃龙A
+Seregios B=千刃龙B
+Uth Duna A=海渊龙A
+Uth Duna B=海渊龙B
+Uth Duna Coil A=海渊龙腰甲A
+Uth Duna Coil B=海渊龙腰甲B
+Uth Duna Gamma 1=海渊龙γ1
+Uth Duna Gamma 2=海渊龙γ2
+Vespoid A=飞甲虫A
+Vespoid B=飞甲虫B
+Vespoid Coil A=飞甲虫腰甲A
+Vespoid Coil B=飞甲虫腰甲B
+Xu Wu A=虚雾龙A
+Xu Wu B=虚雾龙B
+Xu Wu Coil A=虚雾龙腰甲A
+Xu Wu Coil B=虚雾龙腰甲B
+Dahaad Gamma 1=大咆哮γ1
+Dahaad Gamma 2=大咆哮γ2
+Dahaad Shardcoil Gamma 1=大咆哮碎片腰甲γ1
+Dahaad Shardcoil Gamma 2=大咆哮碎片腰甲γ2
+Duna Wildcoil Gamma 1=渊龙狂腰甲γ1
+Duna Wildcoil Gamma 2=渊龙狂腰甲γ2
+Regios Coil A=千刃龙腰甲A
+Regios Coil B=千刃龙腰甲B
+Jin Dahaad A=金大咆哮A
+Jin Dahaad B=金大咆哮B
+Jin Dahaad Coil A=金大咆哮腰甲A
+Jin Dahaad Coil B=金大咆哮腰甲B
+Gogmazios A=巨戟龙A
+Gogmazios B=巨戟龙B
+Gogmazios Coil A=巨戟龙腰甲A
+Gogmazios Coil B=巨戟龙腰甲B
+Numinous A=灵光A
+Numinous B=灵光B
+Numinous Overlay A=灵光覆层A
+Numinous Overlay B=灵光覆层B
+Omega Accessory A=欧米茄配件A
+Omega Accessory B=欧米茄配件B
+Orion A=猎户座A
+Orion B=猎户座B
+Orion Coat A=猎户座外套A
+Orion Coat B=猎户座外套B
+Sororal A=姐妹情A
+Sororal Coil A=姐妹情腰甲A
+Sakuratide A=樱潮A
+Sakuratide B=樱潮B
+Sakuratide Obi A=樱潮腰带A
+Sakuratide Obi B=樱潮腰带B
+Talitoh A=踏足A
+Talitoh B=踏足B
+Udra Mirecoil A=渊龙沼腰甲A
+Udra Mirecoil B=渊龙沼腰甲B
+Sild=银翼
+#
+# --- 通用护甲类型 ---
+Ajarakan A=异爪龙A
+Ajarakan B=异爪龙B
+Ajarakan Coil A=异爪龙腰甲A
+Ajarakan Coil B=异爪龙腰甲B
+Afi A=阿菲A
+Afi B=阿菲B
+Afi Wrap A=阿菲护腕A
+Afi Wrap B=阿菲护腕B
+Alloy A=合金A
+Alloy B=合金B
+Alloy Coil A=合金腰甲A
+Alloy Coil B=合金腰甲B
+Artian A=技巧A
+Artian B=技巧B
+Artian Coil A=技巧腰甲A
+Artian Coil B=技巧腰甲B
+Azuz A=苍蓝A
+Bale Flanchard A=束缚护裙A
+Balango A=白猿狐A
+Balango B=白猿狐B
+Balango Coil A=白猿狐腰甲A
+Balango Coil B=白猿狐腰甲B
+Barina A=芭莉娜A
+Barina B=芭莉娜B
+Barina Coil A=芭莉娜腰甲A
+Barina Coil B=芭莉娜腰甲B
+Battle A=战斗A
+Battle B=战斗B
+Battle Coil A=战斗腰甲A
+Battle Coil B=战斗腰甲B
+Blessed Waistchain A=祝福腰链A
+Blessed Waistchain B=祝福腰链B
+Blossom A=花开A
+Blossom B=花开B
+Blossom Coat A=花开外套A
+Blossom Coat B=花开外套B
+Bone A=骨A
+Bone B=骨B
+Bone Coil A=骨腰甲A
+Bone Coil B=骨腰甲B
+Butterfly A=蝴蝶A
+Butterfly B=蝴蝶B
+Butterfly Coil A=蝴蝶腰甲A
+Butterfly Coil B=蝴蝶腰甲B
+Ceremonial A=仪典A
+Ceremonial B=仪典B
+Ceremonial Coil A=仪典腰甲A
+Ceremonial Coil B=仪典腰甲B
+Chainmail A=锁链A
+Chainmail B=锁链B
+Chainmail Coil A=锁链腰甲A
+Chainmail Coil B=锁链腰甲B
+Clerk A=文官A
+Clerk B=文官B
+Clerk Coil A=文官腰甲A
+Clerk Coil B=文官腰甲B
+Commision A=调查团A
+Commision B=调查团B
+Commision Coil A=调查团腰甲A
+Commision Coil B=调查团腰甲B
+Conga A=桃毛兽A
+Conga B=桃毛兽B
+Conga Coil A=桃毛兽腰甲A
+Conga Coil B=桃毛兽腰甲B
+Cyberpunk A=赛博朋克A
+Damascus A=大马士革A
+Damascus B=大马士革B
+Damascus Coil A=大马士革腰甲A
+Damascus Coil B=大马士革腰甲B
+Death Stench A=死臭A
+Death Stench B=死臭B
+Death Stench Coil A=死臭腰甲A
+Death Stench Coil B=死臭腰甲B
+Diver=潜水员
+Diver A=潜水员A
+Diver B=潜水员B
+Dober A=铠骑A
+Dober B=铠骑B
+Dober Coil A=铠骑腰甲A
+Dober Coil B=铠骑腰甲B
+Dreamwalker A=梦行者A
+Dreamwalker B=梦行者B
+Dreamwalker Coil A=梦行者腰甲A
+Dreamwalker Coil B=梦行者腰甲B
+Guild Ace=公会王牌
+Guild Ace Coil A=公会王牌腰甲A
+Guild Cross A=公会十字A
+Guild Cross Coil A=公会十字腰甲A
+Guild Knight Suit=公会骑士套装
+Guild Knight Coil A=公会骑士腰甲A
+Harvest A=丰收A
+Harvest B=丰收B
+Harvest Hoja A=丰收叶A
+Harvest Hoja B=丰收叶B
+High Metal A=高金属A
+High Metal B=高金属B
+High Metal Coil A=高金属腰甲A
+High Metal Coil B=高金属腰甲B
+Hope A & B=希望A & B
+Hope Coil A=希望腰甲A
+Hope Coil B=希望腰甲B
+Ingot A=铸铁A
+Ingot B=铸铁B
+Ingot Coil A=铸铁腰甲A
+Ingot Coil B=铸铁腰甲B
+Innerwear A=内衣A
+Innerwear A2=内衣A2
+Innerwear B=内衣B
+Innerwear B2=内衣B2
+King Beetle A=王甲虫A
+King Beetle B=王甲虫B
+King Beetle Coil A=王甲虫腰甲A
+King Beetle Coil B=王甲虫腰甲B
+Kunafa=库纳法
+Kunafa Coil A=库纳法腰甲A
+Kut-Ku A=盾蟹A
+Kut-Ku B=盾蟹B
+Kut-Ku Coil A=盾蟹腰甲A
+Kut-Ku Coil B=盾蟹腰甲B
+Leather A=皮革A
+Leather B=皮革B
+Leather Coil A=皮革腰甲A
+Leather Coil B=皮革腰甲B
+Melahoa A=密拉荷A
+Melahoa B=密拉荷B
+Melahoa Coil A=密拉荷腰甲A
+Melahoa Coil B=密拉荷腰甲B
+Noblesse=贵族
+Akuma=豪鬼
+Fluffy Tail=毛茸尾巴
+Lala Barina A=拉拉芭莉娜A
+Lala Barina B=拉拉芭莉娜B
+Congalala A=桃毛兽王A
+#
+# --- UI 标签 / 按钮 / 复选框 ---
+(Actor)=(角色)
+(When the selected Leg armor to affect is equipped)=(当选定的腿部护甲装备时)
+(When the selected body armor to affect is equipped)=(当选定的身体护甲装备时)
+(When the selected leg armor to affect is equipped)=(当选定的腿部护甲装备时)
+Accessories Enabled=配件已启用
+Accessory 1 - Book=配件1 - 书
+Accessory 1 - Leg Armor=配件1 - 腿部护甲
+Accessory 1 - Slinger=配件1 - 投射器
+Accessory 1 - Waist Cloth=配件1 - 腰布
+Accessory 1 - Workshop Unfinished Blade=配件1 - 工坊未完成之刃
+Accessory 2 - Glasses=配件2 - 眼镜
+Accessory 2 - Gloves=配件2 - 手套
+Accessory 2 - Goggles=配件2 - 护目镜
+Accessory 2 - Leg Armor=配件2 - 腿部护甲
+Accessory 2 - Leg Cloth=配件2 - 腿布
+Accessory 3 - Arm Armor=配件3 - 手臂护甲
+Accessory 3 - Arm Cloth=配件3 - 臂布
+Accessory 3 - Backpack=配件3 - 背包
+Accessory 3 - Goggles=配件3 - 护目镜
+Accessory 3 - Smithy Glove=配件3 - 铁匠手套
+Accessory 4 - Coat (Worn in Iceshard Cliffs)=配件4 - 外套（冰碎悬崖穿戴）
+Accessory 4 - Quest Book=配件4 - 任务簿
+Accessory 4 - Waist Armor=配件4 - 腰部护甲
+Accessory 5 - Scarf (Worn in Iceshard Cliffs)=配件5 - 围巾（冰碎悬崖穿戴）
+Accessory 5 - Workshop Hammer=配件5 - 工坊锤
+Accessory 6 - Summer Poncho Outfit Glasses=配件6 - 夏日披风套装眼镜
+Accessory 7 - Autumn Witch Outfit Ghost=配件7 - 秋日女巫套装幽灵
+Accessory 8 - Autumn Witch Outfit Glasses=配件8 - 秋日女巫套装眼镜
+Accessory 9 - Sculpture=配件9 - 雕塑
+Actor Name:=角色名称:
+Advanced Settings (Body)=高级设置（身体）
+Advanced Settings (Leg)=高级设置（腿部）
+Alessa Scale=Alessa 缩放
+Alma Scale=Alma 缩放
+Alma Outfit Resource Set Delay=Alma 套装资源加载延迟
+Alma go to player before animation start=Alma 动画开始前移向玩家
+Alpha Test Ref=Alpha测试参考
+Animation Player=动画播放器
+Animation Sequence Name=动画序列名称
+Animation Sequences=动画序列
+Animations=动画
+Areola Blend=乳晕混合度
+Arm Armor=手臂护甲
+Arm Armor Alt MDF Path:=手臂护甲备用MDF路径:
+Arm Armor CLSP Path:=手臂护甲CLSP路径:
+Arm Armor Custom Labels Identifier:=手臂护甲自定义标签标识:
+Arm Armor Disable Slinger?=手臂护甲禁用投射器？
+Arm Armor GPUC Path:=手臂护甲GPUC路径:
+Arm Armor JCNS Path(s):=手臂护甲JCNS路径:
+Arm Armor Resource Set Delay=手臂护甲资源加载延迟
+Arm Armor Slots=手臂护甲槽位
+Arm Parts Enable=手臂部件启用
+Autoswitch Behavior=自动切换行为
+Autoswitch Outfit=自动切换套装
+Autoswitch this Preset?=自动切换此预设？
+Available Actors=可用角色
+Available Motion Lists=可用动作列表
+Backpack Straps for Nude Alma Modular Outfit 1=Nude Alma模块化套装1的背包肩带
+Backpack Straps for Vanilla Default Outfit=原版默认服装的背包肩带
+Base Skin Color=基础肤色
+Body Armor=身体护甲
+Body Armor Alt Chain Path:=身体护甲备用链路径:
+Body Armor Alt MDF Path:=身体护甲备用MDF路径:
+Body Armor CLSP Path:=身体护甲CLSP路径:
+Body Armor Custom Labels Identifier:=身体护甲自定义标签标识:
+Body Armor GPUC Path:=身体护甲GPUC路径:
+Body Armor JCNS Path(s):=身体护甲JCNS路径:
+Body Armor Resource Set Delay=身体护甲资源加载延迟
+Body Armor Slots=身体护甲槽位
+Body Armor for AS=AS用身体护甲
+Body Fbxskel=身体Fbxskel
+Body Settings=身体设置
+Bone Slider Delay=骨骼滑块延迟
+Bone Sliders Affect ELA Slot 1 Body Armors?=骨骼滑块影响ELA槽位1身体护甲？
+Bone Sliders Affect ELA Slot 1 Leg Armors?=骨骼滑块影响ELA槽位1腿部护甲？
+Bone Sliders Affect ELA Slot 2 Body Armors?=骨骼滑块影响ELA槽位2身体护甲？
+Bone Sliders Affect ELA Slot 2 Leg Armors?=骨骼滑块影响ELA槽位2腿部护甲？
+Bone Sliders Affect ELA Slot 3 Body Armors?=骨骼滑块影响ELA槽位3身体护甲？
+Bone Sliders Affect ELA Slot 3 Leg Armors?=骨骼滑块影响ELA槽位3腿部护甲？
+Bone Sliders Affect ELA Slot 4 Body Armors?=骨骼滑块影响ELA槽位4身体护甲？
+Bone Sliders Affect ELA Slot 4 Leg Armors?=骨骼滑块影响ELA槽位4腿部护甲？
+Bone Sliders Affect ELA Slot 5 Body Armors?=骨骼滑块影响ELA槽位5身体护甲？
+Bone Sliders Affect ELA Slot 5 Leg Armors?=骨骼滑块影响ELA槽位5腿部护甲？
+Bone Sliders Affect Vanilla Armor Selected?=骨骼滑块影响选定的原版护甲？
+Boobs=胸部
+Booby Slider Preset Name=胸部滑块预设名称
+Butt Physics & Bones=臀部物理和骨骼
+By Material=按材质
+By Mesh Parts=按网格部件
+Can Set Base Skin Color?=可以设置基础肤色？
+Can Set Mesh Parts Enabled?=可以设置网格部件启用？
+Can Show Play Animation for GUI(s)?=可以在GUI中显示播放动画？
+Can use keybind?=可以使用快捷键？
+Carla Scale=Carla 缩放
+Category to Randomize From=随机来源分类
+Choose a Body FNM preset=选择身体FNM预设
+Choose a Booby Slider Preset=选择胸部滑块预设
+Choose a FNM preset=选择FNM预设
+Choose a Face Slider Preset=选择面部滑块预设
+Choose a Helm-Hair Preset=选择头盔发型预设
+Choose a Leg FNM preset=选择腿部FNM预设
+Choose a preset=选择预设
+Clit Hood Blend=阴蒂罩混合度
+Clit Hood Roughness=阴蒂罩粗糙度
+Clit Hood Skin Tone Map Offset=阴蒂罩肤色映射偏移
+Clit Hood Subsurface Scattering=阴蒂罩次表面散射
+Clit Hood Wetness=阴蒂罩湿润度
+Collar Fur for Vanilla Default Outfit=原版默认服装的衣领毛皮
+Color Picker=拾色器
+Combine Fem-Nude Presets=合并Fem-Nude预设
+Combine Regular Presets=合并常规预设
+Const Node No.=常量节点编号
+Constantly Update Character with Helm-Hair Adjust Values=持续用头盔发型调整值更新角色
+Create FNM Body Preset=创建FNM身体预设
+Create FNM Leg Preset=创建FNM腿部预设
+Create New Animation Sequence=创建新动画序列
+Create New Preset=创建新预设
+Create Sequence Object From Selected=从选中项创建序列对象
+Current Hair Style:=当前发型:
+Current Makeup A:=当前妆容A:
+Current Makeup B:=当前妆容B:
+Current Makeup C:=当前妆容C:
+Current Slinger Equipped:=当前装备投射器:
+Currently Equipped Arm:=当前装备手臂:
+Currently Equipped Body:=当前装备身体:
+Currently Equipped Hair:=当前装备发型:
+Currently Equipped Helm:=当前装备头盔:
+Currently Equipped Leg:=当前装备腿部:
+Currently Equipped Slinger:=当前装备投射器:
+Currently Equipped Waist:=当前装备腰部:
+Custom Bones - Body=自定义骨骼 - 身体
+Custom Bones - Leg=自定义骨骼 - 腿部
+Custom Bones can be added to Alessa=可以为Alessa添加自定义骨骼
+Custom Bones can be added to Alma=可以为Alma添加自定义骨骼
+Custom Bones can be added to Carla=可以为Carla添加自定义骨骼
+Custom Bones can be added to Felicita=可以为Felicita添加自定义骨骼
+Custom Bones can be added to Gemma=可以为Gemma添加自定义骨骼
+Custom Bones can be added to GrandHubBartendress=可以为集会所女调酒师添加自定义骨骼
+Custom Bones can be added to Kanya=可以为Kanya添加自定义骨骼
+Custom Bones can be added to Lotta=可以为Lotta添加自定义骨骼
+Custom Bones can be added to Luciella=可以为Luciella添加自定义骨骼
+Custom Bones can be added to Mina=可以为Mina添加自定义骨骼
+Custom Bones can be added to Nadia=可以为Nadia添加自定义骨骼
+Custom Bones can be added to Nightmist=可以为Nightmist添加自定义骨骼
+Custom Bones can be added to Olivia=可以为Olivia添加自定义骨骼
+Custom Bones can be added to Rochelle=可以为Rochelle添加自定义骨骼
+Debug manual call autoswitch function=调试手动调用自动切换函数
+Debug print seq JSONTbl=调试打印序列JSON表
+Decrement Total Alessa Scale=减小Alessa总缩放
+Decrement Total Alma Scale=减小Alma总缩放
+Decrement Total Carla Scale=减小Carla总缩放
+Decrement Total Felicita Scale=减小Felicita总缩放
+Decrement Total Gemma Scale=减小Gemma总缩放
+Decrement Total Grand Hub Bartendress Scale=减小集会所女调酒师总缩放
+Decrement Total Kanya Scale=减小Kanya总缩放
+Decrement Total Lotta Scale=减小Lotta总缩放
+Decrement Total Luciella Scale=减小Luciella总缩放
+Decrement Total Mina Scale=减小Mina总缩放
+Decrement Total Nadia Scale=减小Nadia总缩放
+Decrement Total Nightmist Scale=减小Nightmist总缩放
+Decrement Total Olivia Scale=减小Olivia总缩放
+Decrement Total Player Scale=减小玩家总缩放
+Decrement Total Rochelle Scale=减小Rochelle总缩放
+Default Outfit Info:=默认服装信息:
+Description=描述
+Disable Actor Collision=禁用角色碰撞
+Disable Actor Joint Constraints=禁用角色关节约束
+Disable Disable Retarget Rig=禁用重定向骨架
+Disable Full Body IK Rig=禁用全身IK骨架
+Disable IK Multi Bone=禁用IK多骨骼
+Disable IKLeg2 Controller=禁用IKLeg2控制器
+Disable Mesh Part 50 & 51 for third alt chain usage=禁用网格部件50和51用于第三备用链
+Display Label Setting for ELA Currently Equipped=当前装备ELA的显示标签设置
+Dissolve=溶解度
+Dither Shift=抖动偏移
+ELA Arm=ELA手臂
+ELA Body=ELA身体
+ELA Body Slots to Affect=ELA身体槽位影响
+ELA Body Slots to Affect with FNM Bone Sliders=FNM骨骼滑块影响的ELA身体槽位
+ELA Helm=ELA头盔
+ELA Leg=ELA腿部
+ELA Leg Slots to Affect=ELA腿部槽位影响
+ELA Leg Slots to Affect with FNM Bone Sliders=FNM骨骼滑块影响的ELA腿部槽位
+ELA Settings=ELA设置
+ELA Slinger=ELA投射器
+ELA Waist=ELA腰部
+Early Exit Frames=提前退出帧数
+Enable Arm Change Gamepad Hotkey?=启用手臂切换手柄热键？
+Enable Arm Change Keyboard Hotkey?=启用手臂切换键盘热键？
+Enable Body Change Gamepad Hotkey?=启用身体切换手柄热键？
+Enable Body Change Keyboard Hotkey?=启用身体切换键盘热键？
+Enable Extra Layered Armor System?=启用额外幻化护甲系统？
+Enable Extra Layered Weapon System?=启用额外幻化武器系统？
+Enable Extra Outfit System?=启用额外套装系统？
+Enable Gamepad Hotkey=启用手柄热键
+Enable Helm Change Gamepad Hotkey?=启用头盔切换手柄热键？
+Enable Helm Change Keyboard Hotkey?=启用头盔切换键盘热键？
+Enable Keyboard Hotkey=启用键盘热键
+Enable Leg Change Gamepad Hotkey?=启用腿部切换手柄热键？
+Enable Leg Change Keyboard Hotkey?=启用腿部切换键盘热键？
+Enable Mesh Parts on Preset Switch?=切换预设时启用网格部件？
+Enable Slinger Change Gamepad Hotkey?=启用投射器切换手柄热键？
+Enable Slinger Change Keyboard Hotkey?=启用投射器切换键盘热键？
+Enable Waist Change Gamepad Hotkey?=启用腰部切换手柄热键？
+Enable Waist Change Keyboard Hotkey?=启用腰部切换键盘热键？
+Enable Weapon Change Gamepad Hotkey?=启用武器切换手柄热键？
+Enable Weapon Change Keyboard Hotkey?=启用武器切换键盘热键？
+Enable this FNM Body Preset for Autoswitching?=启用此FNM身体预设用于自动切换？
+Enable this FNM Leg Preset for Autoswitching?=启用此FNM腿部预设用于自动切换？
+Enable this Preset for Autoswitching?=启用此预设用于自动切换？
+End Animation=结束动画
+End Sound File Only=仅结束音效文件
+Enter Butt Jiggle Chain Group Number 1=输入臀部晃动链组编号1
+Enter Butt Jiggle Chain Group Number 2=输入臀部晃动链组编号2
+Enter Thigh Jiggle Chain Group Number 1=输入大腿晃动链组编号1
+Enter Thigh Jiggle Chain Group Number 2=输入大腿晃动链组编号2
+Enter Thigh Jiggle Chain Group Number 3=输入大腿晃动链组编号3
+Enter Thigh Jiggle Chain Group Number 4=输入大腿晃动链组编号4
+Enter Thigh Jiggle Chain Group Number 5=输入大腿晃动链组编号5
+Enter Thigh Jiggle Chain Group Number 6=输入大腿晃动链组编号6
+Enter Tit Jiggle Chain Group Number 1=输入胸部晃动链组编号1
+Enter Tit Jiggle Chain Group Number 2=输入胸部晃动链组编号2
+Extra Layered Armor Info=额外幻化护甲信息
+Extra Layered Weapon Info=额外幻化武器信息
+Extra Makeup=额外妆容
+Extra Outfit Information=额外套装信息
+Extra Settings=额外设置
+FBS Warning=FBS 警告
+FBXSkel Preset=FBX骨架预设
+FBXSkel files go in=FBX骨架文件放入
+FBXSkels=FBX骨架
+FNM Body Preset Name=FNM身体预设名称
+FNM Custom Butt Bones Euler Angle=FNM自定义臀部骨骼欧拉角
+FNM Custom Butt Bones Position=FNM自定义臀部骨骼位置
+FNM Custom Butt Bones Scale=FNM自定义臀部骨骼缩放
+FNM Custom Thigh Bones 1 Euler Angle=FNM自定义大腿骨骼1欧拉角
+FNM Custom Thigh Bones 1 Position=FNM自定义大腿骨骼1位置
+FNM Custom Thigh Bones 1 Scale=FNM自定义大腿骨骼1缩放
+FNM Custom Thigh Bones 2 Euler Angle=FNM自定义大腿骨骼2欧拉角
+FNM Custom Thigh Bones 2 Position=FNM自定义大腿骨骼2位置
+FNM Custom Thigh Bones 2 Scale=FNM自定义大腿骨骼2缩放
+FNM Custom Thigh Bones 3 Euler Angle=FNM自定义大腿骨骼3欧拉角
+FNM Custom Thigh Bones 3 Position=FNM自定义大腿骨骼3位置
+FNM Custom Thigh Bones 3 Scale=FNM自定义大腿骨骼3缩放
+FNM Leg Preset Name=FNM腿部预设名称
+FNM Nipple Scale=FNM乳头缩放
+FNM Preset Name=FNM预设名称
+Face Fbxskel=面部Fbxskel
+Face Slider Preset Name=面部滑块预设名称
+Face Wet Roughness=面部湿润粗糙度
+Face Wetness Value=面部湿润度
+Fake AO for Vanilla Default Outfit=原版默认服装的假AO
+Felicita Scale=Felicita 缩放
+Female Nude Mod Settings=女性裸体Mod设置
+Filter Body Armor List=筛选身体护甲列表
+Follow Body Skin Color Param=跟随身体肤色参数
+Follow Leg Skin Color Param=跟随腿部肤色参数
+Foot Euler Angle=脚部欧拉角
+Foot Position=脚部位置
+Foot Scale=脚部缩放
+Gemma Scale=Gemma 缩放
+Get Current Adjust List=获取当前调整列表
+Grand Hub Bartendress Scale=集会所女调酒师缩放
+Hair Joint=头发关节
+Hair Over A Color:=头发覆层A颜色:
+Hair Over B Color:=头发覆层B颜色:
+Hand Scale=手部缩放
+Head Position=头部位置
+Head Scale=头部缩放
+Helm Armor=头盔护甲
+Helm Armor Alt MDF Path:=头盔备用MDF路径:
+Helm Armor Back Head Obj Scale:=头盔后脑对象缩放:
+Helm Armor CLSP Path:=头盔CLSP路径:
+Helm Armor Custom Labels Identifier:=头盔自定义标签标识:
+Helm Armor Disable Eyebrows:=头盔禁用眉毛:
+Helm Armor Disable Eyelashes:=头盔禁用睫毛:
+Helm Armor Disable Hair:=头盔禁用头发:
+Helm Armor Ear Obj Scale:=头盔耳朵对象缩放:
+Helm Armor GPUC Path:=头盔GPUC路径:
+Helm Armor Hair Adjust Controller Enabled:=头盔发型调整控制器启用:
+Helm Armor Hair Adjust List:=头盔发型调整列表:
+Helm Armor Hair Joints Adjust Enabled:=头盔发型关节调整启用:
+Helm Armor Head Obj Scale:=头盔头部对象缩放:
+Helm Armor JCNS Path(s):=头盔JCNS路径:
+Helm Armor Resource Set Delay=头盔资源加载延迟
+Helm Armor Slots=头盔槽位
+Helm Parts Enabled=头盔部件已启用
+Helm-Hair Adjust Editor - Dev Tool=头盔发型调整编辑器 - 开发工具
+Hide Talisman Visual Effect on Wrist?=隐藏手腕上的护石视觉效果？
+High Heels Offset=高跟鞋偏移
+Increment Total Alessa Scale=增大Alessa总缩放
+Increment Total Alma Scale=增大Alma总缩放
+Increment Total Carla Scale=增大Carla总缩放
+Increment Total Felicita Scale=增大Felicita总缩放
+Increment Total Gemma Scale=增大Gemma总缩放
+Increment Total Grand Hub Bartendress Scale=增大集会所女调酒师总缩放
+Increment Total Kanya Scale=增大Kanya总缩放
+Increment Total Lotta Scale=增大Lotta总缩放
+Increment Total Luciella Scale=增大Luciella总缩放
+Increment Total Mina Scale=增大Mina总缩放
+Increment Total Nadia Scale=增大Nadia总缩放
+Increment Total Nightmist Scale=增大Nightmist总缩放
+Increment Total Olivia Scale=增大Olivia总缩放
+Increment Total Player Scale=增大玩家总缩放
+Increment Total Rochelle Scale=增大Rochelle总缩放
+Interpolation Curve=插值曲线
+Interpolation Frames=插值帧数
+Interpolation Mode=插值模式
+Invalid! Use an integer=无效！请使用整数
+Inverse Child Bone Transforms=反转子骨骼变换
+Kanya Scale=Kanya 缩放
+Labia Roughness=阴唇粗糙度
+Labia Skin Tone Map Offset=阴唇肤色映射偏移
+Labia Subsurface Scattering=阴唇次表面散射
+Labia Wetness=阴唇湿润度
+Leg Armor=腿部护甲
+Leg Armor Resource Set Delay=腿部护甲资源加载延迟
+Leg Armor Slots=腿部护甲槽位
+Leg Armor for AS=AS用腿部护甲
+Leg Settings=腿部设置
+Loaded Outfits=已加载套装
+Lotta Scale=Lotta 缩放
+Luciella Scale=Luciella 缩放
+Main Cloth for Vanilla Default Outfit=原版默认服装的主布料
+Make Giant=变巨大
+Mina Scale=Mina 缩放
+Motion Bank ID (Int)=动作库ID（整数）
+Motion ID (Int)=动作ID（整数）
+MotionBankID=动作库ID
+MotionID=动作ID
+Nadia Scale=Nadia 缩放
+Nightmist Scale=Nightmist 缩放
+Olivia Scale=Olivia 缩放
+Outfit Chain Path: None=服装链路径: 无
+Outfit Chain Path: nil=服装链路径: 空
+Outfit Jcns Paths: None=服装Jcns路径: 无
+Outfit Jcns Paths: none=服装Jcns路径: 无
+Override setting with=覆盖设置用
+Parts Enable=部件启用
+Player To Affect=影响的玩家
+Preset Name=预设名称
+Pubic Hair Wetness=阴毛湿润度
+Rochelle Scale=Rochelle 缩放
+Rotation=旋转
+Scoutfly Removal Behavior=导虫移除行为
+Select Body Slot Armor to Affect=选择要影响的身体槽位护甲
+Select Female Nude Mod Replacer Body In Use (Or for use of other custom setup)=选择正在使用的女性裸体Mod替换身体（或其他自定义设置）
+Select Female Nude Mod Replacer Leg In Use (Or for use of other custom setup)=选择正在使用的女性裸体Mod替换腿部（或其他自定义设置）
+Select Leg Slot Armor to Affect=选择要影响的腿部槽位护甲
+Selected Outfit to Affect=选择要影响的套装
+Sequence Builder=序列构建器
+Sequence Category=序列分类
+Sequence Order=序列顺序
+Sequences=序列
+Skin Portion for Vanilla Default Outfit=原版默认服装的皮肤部分
+Sleeve Part for Vanilla Default Outfit=原版默认服装的袖子部分
+Slinger=投射器
+Slinger Slots=投射器槽位
+Sort By Category=按分类排序
+Sound File Path=音效文件路径
+Start Frame=起始帧
+Sub Parent Weapon=副武器
+Sub Parent Weapon Slots=副武器槽位
+Swap Body=切换身体
+Target Joint=目标关节
+Text to Show in GUI(s) for Animation=动画在GUI中显示的文本
+Update Character With Helm-Hair Adjust Values=用头盔发型调整值更新角色
+Use alt mat does not save on a per Slinger basis as of right now.=使用备用材质暂时不按投射器保存。
+Use alt mat does not save on a per armor basis as of right now.=使用备用材质暂时不按护甲保存。
+Use alt mat does not save on a per weapon basis as of right now.=使用备用材质暂时不按武器保存。
+Useful to click this to set scale and then reset to test jiggle physics=点击此处设置缩放然后重置以测试晃动物理效果
+Waist Armor=腰部护甲
+Waist Armor Resource Set Delay=腰部护甲资源加载延迟
+Waist Armor Slots=腰部护甲槽位
+Warning: Enabling this *could* cause game instability.=警告：启用此功能*可能*导致游戏不稳定。
+Weapon Resource Set Delay=武器资源加载延迟
+Weapon Slots=武器槽位
+Wet Roughness Value=湿润粗糙度
+Wetness Value=湿润度
+Layer Onto Game Animations=叠加到游戏动画上
+1.15x Alessa Scale (Physics Test)=1.15倍 Alessa 缩放（物理测试）
+1.15x Alma Scale (Physics Test)=1.15倍 Alma 缩放（物理测试）
+1.15x Carla Scale (Physics Test)=1.15倍 Carla 缩放（物理测试）
+1.15x Felicita Scale (Physics Test)=1.15倍 Felicita 缩放（物理测试）
+1.15x Gemma Scale (Physics Test)=1.15倍 Gemma 缩放（物理测试）
+1.15x Grand Hub Bartendress Scale (Physics Test)=1.15倍 集会所女调酒师 缩放（物理测试）
+1.15x Kanya Scale (Physics Test)=1.15倍 Kanya 缩放（物理测试）
+1.15x Lotta Scale (Physics Test)=1.15倍 Lotta 缩放（物理测试）
+1.15x Luciella Scale (Physics Test)=1.15倍 Luciella 缩放（物理测试）
+1.15x Mina Scale (Physics Test)=1.15倍 Mina 缩放（物理测试）
+1.15x Nadia Scale (Physics Test)=1.15倍 Nadia 缩放（物理测试）
+1.15x Nightmist Scale (Physics Test)=1.15倍 Nightmist 缩放（物理测试）
+1.15x Olivia Scale (Physics Test)=1.15倍 Olivia 缩放（物理测试）
+1.15x Player Scale (Physics Test)=1.15倍 玩家缩放（物理测试）
+1.15x Rochelle Scale (Physics Test)=1.15倍 Rochelle 缩放（物理测试）
+Reset Total Player Scale=重置玩家总缩放
+Position=位置
+Scale=缩放比例
+#
+# --- 骨骼名称标签 ---
+Thigh Euler Angle=大腿欧拉角
+Thigh Position=大腿位置
+Thigh Scale=大腿缩放
+BustJGL_CH_00=胸部抖动_CH_00
+BustJGL_CH_00 Euler Angle=胸部抖动_CH_00欧拉角
+BustJGL_CH_00 Position=胸部抖动_CH_00位置
+Bust_Jiggle Euler Angle=胸部晃动欧拉角
+Bust_Jiggle Position=胸部晃动位置
+Bust_Jiggle Scale=胸部晃动缩放
+C_Mouth_Master Position=嘴部主控位置
+C_Mouth_Master Scale=嘴部主控缩放
+C_Nose_Master Position=鼻子主控位置
+C_Nose_Master Scale=鼻子主控缩放
+Innar01_CH_00 Euler Angle=内衣01_CH_00欧拉角
+Innar01_CH_00 Position=内衣01_CH_00位置
+Innar01_CH_00 Scale=内衣01_CH_00缩放
+Jacket01_CH_00 Euler Angle=夹克01_CH_00欧拉角
+Jacket01_CH_00 Position=夹克01_CH_00位置
+Jacket01_CH_00 Scale=夹克01_CH_00缩放
+Jacket01_CH_01 Euler Angle=夹克01_CH_01欧拉角
+Jacket01_CH_01 Position=夹克01_CH_01位置
+Jacket01_CH_01 Scale=夹克01_CH_01缩放
+Jacket02_CH_00 Euler Angle=夹克02_CH_00欧拉角
+Jacket02_CH_00 Position=夹克02_CH_00位置
+Jacket02_CH_00 Scale=夹克02_CH_00缩放
+Jacket_lapel_l Euler Angle=夹克翻领_左欧拉角
+Jacket_lapel_l Position=夹克翻领_左位置
+Jacket_lapel_l Scale=夹克翻领_左缩放
+Pec_HJ_00 Euler Angle=胸肌_HJ_00欧拉角
+Pec_HJ_00 Position=胸肌_HJ_00位置
+Pec_HJ_00 Scale=胸肌_HJ_00缩放
+Pec_HJ_01 Euler Angle=胸肌_HJ_01欧拉角
+Pec_HJ_01 Position=胸肌_HJ_01位置
+Pec_HJ_01 Scale=胸肌_HJ_01缩放
+Spine_0_HJ_00 Euler Angle=脊椎0_HJ_00欧拉角
+Spine_0_HJ_00 Position=脊椎0_HJ_00位置
+Spine_0_HJ_00 Scale=脊椎0_HJ_00缩放
+Spine_1_HJ_00 Euler Angle=脊椎1_HJ_00欧拉角
+Spine_1_HJ_00 Position=脊椎1_HJ_00位置
+Spine_1_HJ_00 Scale=脊椎1_HJ_00缩放
+Spine_2_HJ_00 Euler Angle=脊椎2_HJ_00欧拉角
+Spine_2_HJ_00 Position=脊椎2_HJ_00位置
+Spine_2_HJ_00 Scale=脊椎2_HJ_00缩放
+Shin_HJ_00 Euler Angle=小腿_HJ_00欧拉角
+Shin_HJ_00 Position=小腿_HJ_00位置
+Shin_HJ_00 Scale=小腿_HJ_00缩放
+Shin_HJ_01 Euler Angle=小腿_HJ_01欧拉角
+Shin_HJ_01 Position=小腿_HJ_01位置
+Shin_HJ_01 Scale=小腿_HJ_01缩放
+ThighRX_HJ_00 Euler Angle=大腿RX_HJ_00欧拉角
+ThighRX_HJ_00 Position=大腿RX_HJ_00位置
+ThighRX_HJ_00 Scale=大腿RX_HJ_00缩放
+ThighRX_HJ_01 Euler Angle=大腿RX_HJ_01欧拉角
+ThighRX_HJ_01 Position=大腿RX_HJ_01位置
+ThighRX_HJ_01 Scale=大腿RX_HJ_01缩放
+ThighRZ_HJ_00 Euler Angle=大腿RZ_HJ_00欧拉角
+ThighRZ_HJ_00 Position=大腿RZ_HJ_00位置
+ThighRZ_HJ_00 Scale=大腿RZ_HJ_00缩放
+ThighRZ_HJ_01 Euler Angle=大腿RZ_HJ_01欧拉角
+ThighRZ_HJ_01 Position=大腿RZ_HJ_01位置
+ThighRZ_HJ_01 Scale=大腿RZ_HJ_01缩放
+ThighTwist_HJ_00 Euler Angle=大腿扭转_HJ_00欧拉角
+ThighTwist_HJ_00 Position=大腿扭转_HJ_00位置
+ThighTwist_HJ_00 Scale=大腿扭转_HJ_00缩放
+ThighTwist_HJ_01 Euler Angle=大腿扭转_HJ_01欧拉角
+ThighTwist_HJ_01 Position=大腿扭转_HJ_01位置
+ThighTwist_HJ_01 Scale=大腿扭转_HJ_01缩放
+ThighTwist_HJ_02 Euler Angle=大腿扭转_HJ_02欧拉角
+ThighTwist_HJ_02 Position=大腿扭转_HJ_02位置
+ThighTwist_HJ_02 Scale=大腿扭转_HJ_02缩放
+Triceps_HJ_00 Euler Angle=三头肌_HJ_00欧拉角
+Triceps_HJ_00 Position=三头肌_HJ_00位置
+Triceps_HJ_00 Scale=三头肌_HJ_00缩放
+UpperArmTwist_HJ_01 Euler Angle=上臂扭转_HJ_01欧拉角
+UpperArmTwist_HJ_01 Position=上臂扭转_HJ_01位置
+UpperArmTwist_HJ_01 Scale=上臂扭转_HJ_01缩放
+UpperArmTwist_HJ_02 Euler Angle=上臂扭转_HJ_02欧拉角
+UpperArmTwist_HJ_02 Position=上臂扭转_HJ_02位置
+UpperArmTwist_HJ_02 Scale=上臂扭转_HJ_02缩放
+UnderJaw_LOD02 Euler Angle=下颌_LOD02欧拉角
+UnderJaw_LOD02 Position=下颌_LOD02位置
+UnderJaw_LOD02 Scale=下颌_LOD02缩放
+cornerLip_LOD02 Euler Angle=嘴角_LOD02欧拉角
+cornerLip_LOD02 Position=嘴角_LOD02位置
+cornerLip_LOD02 Scale=嘴角_LOD02缩放
++ (Actor) Euler Angle=+ (角色) 欧拉角
++ (Actor) UniPosition=+ (角色) 通用位置
+#
+# --- 武器/投射器/可见性 ---
+Waist Armor Player Light Mute?=腰部护甲隐藏玩家灯光？
+Waist Armor Waist Light Mute?=腰部护甲隐藏腰灯？
+Outer Jacket for Vanilla Default Outfit=原版默认服装的外夹克
+Player Scale=玩家缩放
+Save Preset =保存预设 
+Save Hair Settings=保存发型设置
+Refresh Skin Tone Match=刷新肤色匹配
+Reset Hair Color=重置发色
+Reset Total Player Scale=重置玩家总缩放
+Reset Colors=重置颜色
+Reset Delay To Default=重置延迟为默认值
+Reset Boob Sliders=重置胸部滑块
+Reset Extra Deform Body Bones=重置身体额外变形骨骼
+Reset Extra Deform Bones Body Sliders=重置身体额外变形骨骼滑块
+#
+# --- 长文本/提示/描述 ---
+group number is an int for the order it is in the chain file, ex. 1 for the first group.=组编号是链文件中的顺序整数，例如1代表第一组。
+This the identifier for use with custom labels for body parts enabled and custom bones.=这是用于身体部件启用和自定义骨骼的自定义标签标识符。
+This the identifier for use with custom labels for leg parts enabled and custom bones.=这是用于腿部部件启用和自定义骨骼的自定义标签标识符。
+Note that this is different than the skin color parameter normally used by the game\nSo they can be mixed for different color variations.=注意这与游戏通常使用的肤色参数不同\n因此可以混合产生不同的颜色变化。
+Note that this might help animations from being stuck.\nNegative values can also be used.=注意这可能有助于防止动画卡住。\n也可以使用负值。
+This setting can be good to play with for when not using upscaling\nand when using AA without upscaling.=当不使用超采样且使用无超采样的AA时，\n调整此设置可能效果不错。
+This is the delay in seconds for the sliders to kick in\nwhen equipment refreshes.\nThis is done to prevent physics issues\nwhen physics bone scales are uneven.\n(Default = 0.01 cpu seconds)\nWithout physics bones with unevenly scaled slider\nvalues for them, you can get away with\nsetting this to zero.=这是装备刷新时滑块生效的延迟秒数。\n用于防止物理骨骼缩放不均匀时的物理问题。\n（默认 = 0.01 CPU秒）\n如果没有缩放不均匀的物理骨骼滑块值，\n可以将此值设为零。
+Some things dynamically enable/disable normally in the game.\nOverriding parts enabled will set them how you have it.=游戏中某些内容会正常动态启用/禁用。\n覆盖部件启用将按你的设置固定。
+Things like goggles and the smithy glove are used as separate objects\nthat dynamically enable/disable normally in the game.\nOverriding parts enabled will set them how you have it.=护目镜和铁匠手套等作为独立对象\n在游戏中正常动态启用/禁用。\n覆盖部件启用将按你的设置固定。
+Things like the book are used as separate objects\nthat dynamically enable/disable normally in the game.\nOverriding parts enabled will set them how you have it.=书等作为独立对象在游戏中正常动态启用/禁用。\n覆盖部件启用将按你的设置固定。
+Some of them like Custom Bone 1 & 2 are linked together in the sliders. They are intended to be\nset up for a pair of breasts for example.\nThe sliders will modify both CustomBone 1 & 2 at the same time for symmetry purposes.=其中如自定义骨骼1和2在滑块中是关联的。\n它们设计用于例如一对胸部。\n滑块会同时修改自定义骨骼1和2以保持对称。
+Some of them like Custom Bone 9 & 10 are linked together in the sliders. They are intended to be\nset up for L and R butt cheeks for example.\nThe sliders will modify both CustomBone 9 & 10 at the same time for symmetry purposes.=其中如自定义骨骼9和10在滑块中是关联的。\n它们设计用于例如左右臀瓣。\n滑块会同时修改自定义骨骼9和10以保持对称。
+You will need to click the refresh the button\nif you change character skin tone\ncolor mid-game and want it to set to that color.=如果在游戏中更改了角色肤色\n并希望设置为该颜色，\n你需要点击刷新按钮。
+Rey Dau is set to work a bit differently.\nInstead, the waist knife will be de-\nconstructed for both waist light\nand waist knife removal.=雷电龙的设置有所不同。\n腰刀将被拆解，\n同时移除腰灯和腰刀。
+\nIMPORTANT=\n重要提示
+Modifying the physics values works differently than the bones.\nSo, when switching physics to no longer use the custom chain settings,\nthe chain will need to be refreshed for the original values to be used.=修改物理值与修改骨骼的工作方式不同。\n因此，当切换回不使用自定义链设置时，\n需要刷新链才能使用原始值。
+If the game sets its own parts enabled, it will override these settings.\nYou may want to try a different method of hiding/showing the part.=如果游戏设置了自己的部件启用，它将覆盖这些设置。\n你可能需要尝试其他方法来隐藏/显示该部件。
+Note that this does not affect\nautoswitch if there is no ELA\nassociated with the selected\narmor to affect.=注意如果没有与选定\n护甲关联的ELA，\n则不影响自动切换。
+Note that this does not apply to multiple occurances of buff glow effects such as using demon powder\nand other items at the same time.=注意这不适用于同时使用鬼人粉尘\n等多个增益发光效果的情况。
+Enabling or disabling autoswitch, as well as setting autoswitch behavior will need to have the preset saved to take effect.=启用或禁用自动切换，以及设置自动切换行为，需要保存预设才能生效。
+After changing the autoswitch value and saving it,\nscripts will need to be reset and any armor change to take effect.=更改自动切换值并保存后，\n需要重置脚本并更换护甲才能生效。
+May need to requip equipment for the original chain file settings to be used if you disable this.=如果禁用此功能，可能需要重新装备才能使用原始链文件设置。
+Setting the chain group in the advanced settings and selecting the body/leg\nparts for the sliders to affect will be saved only when using the=在高级设置中设置链组并选择滑块影响的身体/腿部\n部件，仅在使用
+You can still add chain, clsp, or jcns, to\nan armor that wouldn=你仍然可以为不需要的护甲\n添加链、clsp或jcns
+LT + A (Keyboard U) Animation=LT + A（键盘U）动画
+LT + B (Keyboard T) Animation=LT + B（键盘T）动画
+L_FNMNipple and R_FNMNipple for the nipples.=L_FNMNipple和R_FNMNipple用于乳头。
+Hotkey for gamepad is LT only while talking to Carla (Quests menu).=手柄热键仅在与Carla对话时（任务菜单）为LT。
+Hotkey for gamepad is LT only while talking to Felicita (Manage squads menu).=手柄热键仅在与Felicita对话时（管理小队菜单）为LT。
+Hotkey for gamepad is LT only while talking to GrandHubBartendress (Quests menu).=手柄热键仅在与集会所女调酒师对话时（任务菜单）为LT。
+Hotkey for gamepad is LT only while talking to Lotta (Quests menu).=手柄热键仅在与Lotta对话时（任务菜单）为LT。
+#
+# --- 补充骨骼标签 ---
+Biceps_HJ_00 Euler Angle=二头肌_HJ_00欧拉角
+Biceps_HJ_00 Position=二头肌_HJ_00位置
+Biceps_HJ_00 Scale=二头肌_HJ_00缩放
+Bust_HJ_00 Euler Angle=胸部_HJ_00欧拉角
+Bust_HJ_00 Position=胸部_HJ_00位置
+Bust_HJ_00 Scale=胸部_HJ_00缩放
+Bust_HJ_01 Euler Angle=胸部_HJ_01欧拉角
+Bust_HJ_01 Position=胸部_HJ_01位置
+Bust_HJ_01 Scale=胸部_HJ_01缩放
+Bust_JGL_HJ_02=胸部晃动_HJ_02
+Bust_JGL_HJ_02 Euler Angle=胸部晃动_HJ_02欧拉角
+Bust_JGL_HJ_02 Position=胸部晃动_HJ_02位置
+C Hip_HJ_00 Euler Angle=中臀_HJ_00欧拉角
+C Hip_HJ_00 Position=中臀_HJ_00位置
+C Hip_HJ_00 Scale=中臀_HJ_00缩放
+C_Chin_LOD00 Position=下巴_LOD00位置
+C_Chin_LOD00 Scale=下巴_LOD00缩放
+C_Chin_LOD01 Position=下巴_LOD01位置
+C_Chin_LOD01 Scale=下巴_LOD01缩放
+C_ForeHead_LOD02 Position=前额_LOD02位置
+C_ForeHead_LOD02 Scale=前额_LOD02缩放
+C_Jaw_LOD02 Position=下颌_LOD02位置
+C_Jaw_LOD02 Scale=下颌_LOD02缩放
+C_Nose_LOD01 Position=鼻子_LOD01位置
+C_Nose_LOD01 Scale=鼻子_LOD01缩放
+C_Nose_LOD02 Position=鼻子_LOD02位置
+C_Nose_LOD02 Scale=鼻子_LOD02缩放
+C_Nose_Master_LOD02 Position=鼻子主控_LOD02位置
+C_Nose_Master_LOD02 Scale=鼻子主控_LOD02缩放
+C_UnderJaw_LOD02 Position=下颌下_LOD02位置
+C_UnderJaw_LOD02 Scale=下颌下_LOD02缩放
+Calf_HJ_00 Euler Angle=小腿_HJ_00欧拉角
+Calf_HJ_00 Position=小腿_HJ_00位置
+Calf_HJ_00 Scale=小腿_HJ_00缩放
+CheekBone_LOD02 Euler Angle=颧骨_LOD02欧拉角
+CheekBone_LOD02 Position=颧骨_LOD02位置
+CheekBone_LOD02 Scale=颧骨_LOD02缩放
+Cheek_LOD01 Euler Angle=脸颊_LOD01欧拉角
+Cheek_LOD01 Position=脸颊_LOD01位置
+Cheek_LOD01 Scale=脸颊_LOD01缩放
+Cheek_LOD02 Euler Angle=脸颊_LOD02欧拉角
+Cheek_LOD02 Position=脸颊_LOD02位置
+Cheek_LOD02 Scale=脸颊_LOD02缩放
+Deltoid_HJ_00 Euler Angle=三角肌_HJ_00欧拉角
+Deltoid_HJ_00 Position=三角肌_HJ_00位置
+Deltoid_HJ_00 Scale=三角肌_HJ_00缩放
+Elbow_HJ_00 Euler Angle=肘部_HJ_00欧拉角
+Elbow_HJ_00 Position=肘部_HJ_00位置
+Elbow_HJ_00 Scale=肘部_HJ_00缩放
+EyeBrow_LOD02 Euler Angle=眉毛_LOD02欧拉角
+EyeBrow_LOD02 Position=眉毛_LOD02位置
+EyeBrow_LOD02 Scale=眉毛_LOD02缩放
+Foot_HJ_00 Euler Angle=脚部_HJ_00欧拉角
+Foot_HJ_00 Position=脚部_HJ_00位置
+Foot_HJ_00 Scale=脚部_HJ_00缩放
+ForeHead_LOD01 Euler Angle=前额_LOD01欧拉角
+ForeHead_LOD01 Position=前额_LOD01位置
+ForeHead_LOD01 Scale=前额_LOD01缩放
+ForearmRY_HJ_01 Euler Angle=前臂RY_HJ_01欧拉角
+ForearmRY_HJ_01 Position=前臂RY_HJ_01位置
+ForearmRY_HJ_01 Scale=前臂RY_HJ_01缩放
+ForearmTwist_HJ_00 Euler Angle=前臂扭转_HJ_00欧拉角
+ForearmTwist_HJ_00 Position=前臂扭转_HJ_00位置
+ForearmTwist_HJ_00 Scale=前臂扭转_HJ_00缩放
+ForearmTwist_HJ_01 Euler Angle=前臂扭转_HJ_01欧拉角
+ForearmTwist_HJ_01 Position=前臂扭转_HJ_01位置
+ForearmTwist_HJ_01 Scale=前臂扭转_HJ_01缩放
+ForearmTwist_HJ_02 Euler Angle=前臂扭转_HJ_02欧拉角
+ForearmTwist_HJ_02 Position=前臂扭转_HJ_02位置
+ForearmTwist_HJ_02 Scale=前臂扭转_HJ_02缩放
+Hip_HJ_00 Euler Angle=臀部_HJ_00欧拉角
+Hip_HJ_00 Position=臀部_HJ_00位置
+Hip_HJ_00 Scale=臀部_HJ_00缩放
+Hip_HJ_01 Euler Angle=臀部_HJ_01欧拉角
+Hip_HJ_01 Position=臀部_HJ_01位置
+Hip_HJ_01 Scale=臀部_HJ_01缩放
+JawLine_LOD00 Euler Angle=颌线_LOD00欧拉角
+JawLine_LOD00 Position=颌线_LOD00位置
+JawLine_LOD00 Scale=颌线_LOD00缩放
+JawLine_LOD01 Euler Angle=颌线_LOD01欧拉角
+JawLine_LOD01 Position=颌线_LOD01位置
+JawLine_LOD01 Scale=颌线_LOD01缩放
+KneeRX_HJ_00 Euler Angle=膝盖RX_HJ_00欧拉角
+KneeRX_HJ_00 Position=膝盖RX_HJ_00位置
+KneeRX_HJ_00 Scale=膝盖RX_HJ_00缩放
+Knee_HJ_00 Euler Angle=膝盖_HJ_00欧拉角
+Knee_HJ_00 Position=膝盖_HJ_00位置
+Knee_HJ_00 Scale=膝盖_HJ_00缩放
+Neck_1_HJ_00 Position=颈部1_HJ_00位置
+Neck_1_HJ_00 Scale=颈部1_HJ_00缩放
+#
+# --- 含撇号的UI标签/护甲名 ---
+'Player To Affect' is by player name. Type in any player name for the character you want to apply the mod to.="影响的玩家"按玩家名称指定。输入要应用mod的角色的玩家名。
+Diver's Belt A=潜水员腰带A
+Diver's Belt B=潜水员腰带B
+Can set Custom 'Alt Arkveld A' lightning effect?=可以设置自定义"替代冥渊龙A"闪电效果？
+Doesn't affect chain setting values=不影响链设置值
+Doesn't affect nipple color values=不影响乳头颜色值
+Doesn't affect nipple color values or if areola blend can be set=不影响乳头颜色值或乳晕混合度是否可设置
+The FNM-named custom bones aren't necessarily needed for the chain groups (jiggle settings to work).=FNM命名的自定义骨骼不一定需要用于链组（晃动设置）。
+These bones can be setup in armatures for different items, (ex. Hope Greaves with Custom Bone 5 & 6).=这些骨骼可以在不同装备的骨架中设置（例如希望护腿配合自定义骨骼5和6）。
+These bones can be setup in armatures for different items, (ex. Hope Greaves with Custom Bone 9 & 10.=这些骨骼可以在不同装备的骨架中设置（例如希望护腿配合自定义骨骼9和10）。
+If you would like to add a sound, you can do so by specifying a path to a .wav file, relative to the game's exe.=如果要添加音效，可以指定相对于游戏exe的.wav文件路径。
+If your modded outfit is specified in JSON as 'Default Outfit' for 'OutfitName' then it may not show up here. Not likely, but worth noting.=如果你的mod套装在JSON中的'OutfitName'指定为'Default Outfit'，则可能不会显示在这里。不太可能，但值得注意。
+Enabling or disabling autoswitch, as well as setting autoswitch behavior will need to have the preset saved in order to apply.=启用或禁用自动切换以及设置自动切换行为，需要保存预设才能生效。
+Hotkey for gamepad is RT only while talking to Alma. Hotkey for keyboard is Numpad 1 at any time Alma is around.=手柄热键仅在与Alma对话时为RT。键盘热键为小键盘1（Alma在附近时随时可用）。
+Hotkey for gamepad is RT only while talking to Gemma. Hotkey for keyboard is Numpad 3 at any time Gemma is around.=手柄热键仅在与Gemma对话时为RT。键盘热键为小键盘3（Gemma在附近时随时可用）。
+#
+# --- 角色专属"当前滑块值"文本 ---
+For current slider values, doesn't save to the preset file. Doesn't affect Alessa Nude Mod specific settings.=当前滑块值不保存到预设文件。不影响Alessa裸体Mod专属设置。
+For current slider values, doesn't save to the preset file. Doesn't affect Alma Nude Mod specific settings.=当前滑块值不保存到预设文件。不影响Alma裸体Mod专属设置。
+For current slider values, doesn't save to the preset file. Doesn't affect Gemma Nude Mod specific settings.=当前滑块值不保存到预设文件。不影响Gemma裸体Mod专属设置。
+For current slider values, doesn't save to the preset file. Doesn't affect Mina Nude Mod specific settings.=当前滑块值不保存到预设文件。不影响Mina裸体Mod专属设置。
+For current slider values, doesn't save to the preset file. Doesn't affect Nadia Nude Mod specific settings.=当前滑块值不保存到预设文件。不影响Nadia裸体Mod专属设置。
+For current slider values, doesn't save to the preset file. Doesn't affect Nightmist Nude Mod specific settings.=当前滑块值不保存到预设文件。不影响Nightmist裸体Mod专属设置。
+For current slider values, doesn't save to the preset file. Doesn't affect Olivia Nude Mod specific settings.=当前滑块值不保存到预设文件。不影响Olivia裸体Mod专属设置。
+#
+# --- 角色专属裸体自定义骨骼名称说明 ---
+The Nude Alessa specific custom bone names are L_FNMCustomButtBone1, R_FNMCustomButtBone1, L_FNMCustomThighBone1, L_FNMCustomThighBone1, etc.=Nude Alessa专属自定义骨骼名称为L_FNMCustomButtBone1、R_FNMCustomButtBone1、L_FNMCustomThighBone1等。
+The Nude Alessa-named custom bones aren't necessarily needed for the chain groups (jiggle settings to work).=以Nude Alessa命名的自定义骨骼不一定需要用于链组（晃动设置）。
+The Nude Alma specific custom bone names are L_FNMCustomButtBone1, R_FNMCustomButtBone1, L_FNMCustomThighBone1, L_FNMCustomThighBone1, etc.=Nude Alma专属自定义骨骼名称为L_FNMCustomButtBone1、R_FNMCustomButtBone1、L_FNMCustomThighBone1等。
+The Nude Alma-named custom bones aren't necessarily needed for the chain groups (jiggle settings to work).=以Nude Alma命名的自定义骨骼不一定需要用于链组（晃动设置）。
+The Nude Gemma specific custom bone names are L_FNMCustomButtBone1, R_FNMCustomButtBone1, L_FNMCustomThighBone1, L_FNMCustomThighBone1, etc.=Nude Gemma专属自定义骨骼名称为L_FNMCustomButtBone1、R_FNMCustomButtBone1、L_FNMCustomThighBone1等。
+The Nude Gemma-named custom bones aren't necessarily needed for the chain groups (jiggle settings to work).=以Nude Gemma命名的自定义骨骼不一定需要用于链组（晃动设置）。
+The Nude Mina specific custom bone names are L_FNMCustomButtBone1, R_FNMCustomButtBone1, L_FNMCustomThighBone1, L_FNMCustomThighBone1, etc.=Nude Mina专属自定义骨骼名称为L_FNMCustomButtBone1、R_FNMCustomButtBone1、L_FNMCustomThighBone1等。
+The Nude Mina-named custom bones aren't necessarily needed for the chain groups (jiggle settings to work).=以Nude Mina命名的自定义骨骼不一定需要用于链组（晃动设置）。
+The Nude Nadia specific custom bone names are L_FNMCustomButtBone1, R_FNMCustomButtBone1, L_FNMCustomThighBone1, L_FNMCustomThighBone1, etc.=Nude Nadia专属自定义骨骼名称为L_FNMCustomButtBone1、R_FNMCustomButtBone1、L_FNMCustomThighBone1等。
+The Nude Nadia-named custom bones aren't necessarily needed for the chain groups (jiggle settings to work).=以Nude Nadia命名的自定义骨骼不一定需要用于链组（晃动设置）。
+The Nude Nightmist specific custom bone names are L_FNMCustomButtBone1, R_FNMCustomButtBone1, L_FNMCustomThighBone1, L_FNMCustomThighBone1, etc.=Nude Nightmist专属自定义骨骼名称为L_FNMCustomButtBone1、R_FNMCustomButtBone1、L_FNMCustomThighBone1等。
+The Nude Nightmist-named custom bones aren't necessarily needed for the chain groups (jiggle settings to work).=以Nude Nightmist命名的自定义骨骼不一定需要用于链组（晃动设置）。
+The Nude Olivia specific custom bone names are L_FNMCustomButtBone1, R_FNMCustomButtBone1, L_FNMCustomThighBone1, L_FNMCustomThighBone1, etc.=Nude Olivia专属自定义骨骼名称为L_FNMCustomButtBone1、R_FNMCustomButtBone1、L_FNMCustomThighBone1等。
+The Nude Olivia-named custom bones aren't necessarily needed for the chain groups (jiggle settings to work).=以Nude Olivia命名的自定义骨骼不一定需要用于链组（晃动设置）。
+
+# === 新增界面文案（GitHub 最新版补充 2026-03-12） ===
+Faulty files detected!=检测到异常文件！
+No faulty files detected!=未检测到异常文件！
+Total faulty files encountered: %zu=累计检测到异常文件：%zu
+Show recent##ShowRecentFaultyFiles=显示近期记录##ShowRecentFaultyFiles
+FaultyFileDetector=异常文件检测器
+Enable Faulty File Detector=启用异常文件检测器
+Max Recent Files to Display=最近记录显示上限
+See reframework_faulty_files.txt for full list and details. Use external tool to find out what mod/patch is causing the issue.=完整列表与详情见 reframework_faulty_files.txt。请使用外部工具排查是哪个 mod/补丁引发了问题。
+Missing File=缺失文件
+Invalid File=无效文件
+Should Be Encrypted=应为加密文件
+Unknown reason=未知原因
+Missing file=缺失文件
+Invalid file=无效文件
+PAK should be encrypted=PAK 应为加密文件
+Can't find load resource function!=找不到资源加载函数！
+Failed to hook load resource function!=挂钩资源加载函数失败！
+Failed to hook parse resource function (anchor to search not found)!=挂钩资源解析函数失败（未找到搜索锚点）！
+Failed to hook parse resource function (no references to constructor found)!=挂钩资源解析函数失败（未找到构造函数引用）！
+Failed to hook parse resource function (no valid parse function hooks created)!=挂钩资源解析函数失败（未创建有效的解析函数钩子）！
+Allow loading PAKs inside %s directory. PAKs can be of any filename and ends with .pak (case-sensitive)=允许加载 %s 目录中的 PAK。PAK 文件名可任意，但必须以 .pak 结尾（区分大小写）。
+Scale Debug=缩放调试
+Scale Debug 2=缩放调试 2
+Offset Debug=偏移调试
+Interception Shader {}=拦截着色器 {}
+Shader {}=着色器 {}
+Collision %d=碰撞体 %d
+Collision %d %d=碰撞体 %d %d
+ID: %u=ID：%u
+Ref Target: 0x%p=引用目标：0x%p
+DUPLICATE=重复
+STUB=桩函数
+APIProxy=API 代理
+Hooks=钩子
+IntegrityCheckBypass=完整性校验绕过
+MethodDatabase=方法数据库
+VR=VR设置
+Light power on zones: %i\n=灯光启用区域数：%i\n
+Error: %s=错误：%s
+... and %zu more=……以及另外 %zu 个
+Please drop the %s file into the game's directory if you want to use %s=请将 %s 文件放入游戏目录，然后即可使用 %s
+%s not loaded: %s not found=%s 未加载：未找到 %s
+%s not loaded: %s=%s 未加载：%s
+%s not loaded: Unknown error=%s 未加载：未知错误
+Go into your Windows Graphics settings and disable "Hardware-accelerated GPU scheduling"=请进入 Windows 图形设置并关闭“硬件加速 GPU 计划”
+WARNING: Hardware-accelerated GPU scheduling is enabled. This will cause the game to run slower.=警告：已启用硬件加速 GPU 计划，这会导致游戏运行更慢。
+Light power on zones: %i=灯光启用区域数：%i
+Custom Shader {}=自定义着色器 {}
+Address: 0x%p=地址：0x%p
+Function: 0x%p=函数：0x%p
+Name: %s=名称：%s
+Type: %s=类型：%s
+Size: 0x%X=大小：0x%X
+Variable: 0x%p=变量：0x%p
+Module Name: %s=模块名：%s
+Location: %s=位置：%s
+Root layer: 0x%p=根层：0x%p
+Scene layer: 0x%p=场景层：0x%p
+Time (ms): Delta %f, Total %f=时间（毫秒）：增量 %f，总计 %f
+Call count: %i=调用次数：%i
+TypeKind: %i (%s)=类型种类：%i（%s）
+Attributes: %i=属性：%i
+GlobalIndex: %i=全局索引：%i
+ManagedStr: %i=托管字符串：%i
+TDB Fields: %i=TDB 字段数：%i
+TDB Methods: %i=TDB 方法数：%i
+Qualifiers: %i=限定符：%i
+Size: %i=大小：%i
+Status1: %i=状态1：%i
+Status2: %i=状态2：%i
+VarType: %i=变量类型：%i
+0x%X: ChildComponents=0x%X：子组件
+
+# === EMV 插件汉化补充（2026-03-15） ===
+
+# --- Console / 控制台 ---
+History:=历史：
+Output:=输出：
+Run Again=再次运行
+Keep Running=持续运行
+Assign to Console Var: tmp=赋值到控制台变量：tmp
+Find all=查找全部
+Mini Console=迷你控制台
+Show History=显示历史
+Console Settings=控制台设置
+Hide Console=隐藏控制台
+Spawn Console=弹出控制台
+Elements Per Grouping=每组显示元素数
+Use Child Window=使用子窗口
+Transparent background=透明背景
+Always Update Lists=始终更新列表
+Editable Tables=可编辑表格
+Add Character Names=添加角色名称
+Deferred Console=延迟控制台
+Clear History=清空历史
+All History=全部历史
+Global Variables=全局变量
+
+# --- EMV Engine / 核心面板 ---
+EMV Engine=EMV 引擎
+EMV Engine Settings=EMV 引擎设置
+Managed Object Control Panel=托管对象控制面板
+Managed Object Control Panel Settings=托管对象控制面板设置
+[Object Explorer]=[对象浏览器]
+[Lua]=[Lua]
+[Deleted]=[已删除]
+Table _data=_data 表
+Sort By Distance=按距离排序
+Show Closest=显示最近对象
+Draw Self=绘制自身
+Update Self=更新自身
+Stop Rec=停止录制
+Move:=移动：
+Move: =移动：
+GUI Children=GUI 子对象
+Adjusted for Gamma: [=伽马校正后：[ 
+Right click for more options=右键查看更多选项
+Chain Groups (=链组（
+Show All Joints=显示全部骨骼
+Save Chain=保存链数据
+Modify Chain File=修改链文件
+Set CustomSettings=设置 CustomSettings
+Reset CustomSettings=重置 CustomSettings
+Show Names=显示名称
+Note: Only blends original settings to original settings=注意：仅支持将原始设置混合到原始设置
+Blend Ratio=混合比例
+Advanced Field Options=高级字段选项
+Before imgui:=imgui 之前：
+Before imgui: =imgui 之前：
+Cannot set=无法设置
+Draw Gizmo=绘制 Gizmo
+Reset Value=重置数值
+Increment:=增量：
+Increment: =增量：
+Assign this object to a global variable=将此对象赋值给全局变量
+Set as 'nil' to delete=设为“nil”即可删除
+Change Prefab=更换 Prefab
+Spawn Prefab=生成 Prefab
+Spawned Prefabs=已生成的 Prefab
+Enum Constructor=枚举构造器
+Cancel New=取消新增
+Set New Value=设置新值
+New Value=新值
+Select GameObject=选择 GameObject
+Update:=更新：
+Update: =更新：
+Update the fields and properties of this class=更新此类的字段与属性
+Keep updating all control panels of this class every frame=每帧持续更新此类的所有控制面板
+Sort Alphabetically=按字母排序
+Clear Lua Data=清空 Lua 数据
+Rebuild the lua tables comprising this control panel, refreshing everything=重建此控制面板对应的 Lua 表并刷新全部内容
+Undo Changes=撤销更改
+Save Children=保存子对象
+Generic Count Method=通用计数方法
+Simple Methods=简单方法
+Scene Path:=场景路径：
+Scene Path: =场景路径：
+FIELDS:=字段：
+Clear Fields Cache=清空字段缓存
+Clear Props Cache=清空属性缓存
+As Flag:=作为标记：
+As Flag: =作为标记：
+Change Multiple=批量修改
+Search Terms=搜索词
+Save New Defaults=保存为新的默认值
+Save Materials to REECE JSON=将材质保存到 REECE JSON
+Load Swapped Mesh=加载替换后的 Mesh
+Mesh Swap=Mesh 替换
+Select File=选择文件
+Change Mesh:=更换 Mesh：
+Change Mesh: =更换 Mesh：
+Change Materials:=更换材质：
+Change Materials: =更换材质：
+Save MDF=保存 MDF
+Modify MDF File=修改 MDF 文件
+Save CMD=保存 CMD
+Modify CMD File=修改 CMD 文件
+[MDF File]=[MDF 文件]
+[CMD File]=[CMD 文件]
+Clear Saved Materials=清除已保存材质
+Action Monitor=动作监视器
+Empty Collection=清空集合
+Remove Unfound Objects=移除未找到对象
+Re-Scan All=重新扫描全部
+Search Settings...=搜索设置...
+Reset to Default Terms=重置为默认搜索词
+Must have this Component:=必须包含此组件：
+Must have this Component: =必须包含此组件：
+Must have one of these Components:=必须包含以下任一组件：
+Must have one of these Components: =必须包含以下任一组件：
+Exclude these names from results:=从结果中排除这些名称：
+Exclude these names from results: =从结果中排除这些名称：
+Search for objects with any of these keywords:=搜索含任意这些关键词的对象：
+Search for objects with any of these keywords: =搜索含任意这些关键词的对象：
+Find 'emXXXX' or 'plXXXX' names=查找“emXXXX”或“plXXXX”名称
+Case-sensitive names search=区分大小写搜索名称
+Exclude Children=排除子对象
+Gizmo options:=Gizmo 选项：
+Gizmo options: =Gizmo 选项：
+Move to Camera=移动到相机位置
+Reset rotation=重置旋转
+Grab Last=抓取上一个
+Gizmo moves selected=Gizmo 操作当前选中对象
+Center On=居中到
+Collected GameObjects:=已收集的 GameObject：
+Collected GameObjects: =已收集的 GameObject：
+Selected:=已选中：
+Selected: =已选中：
+Remove Offset=移除偏移
+Create!=创建！
+Load Only Resources=仅加载资源
+Load Children=加载子对象
+Spawn Settings:=生成设置：
+Spawn Settings: =生成设置：
+Clear Spawned GameObjects=清除已生成的 GameObject
+Add to Animation Viewer=加入动画查看器
+Parent Name=父对象名称
+Same Joints Constraint=相同骨骼约束
+Attach to Parent Joint=附加到父骨骼
+Parent Joint Rotation=父骨骼旋转
+Components:=组件：
+Components: =组件：
+Select Mesh=选择 Mesh
+Load Component Fields from JSON:=从 JSON 加载组件字段：
+Load Component Fields from JSON: =从 JSON 加载组件字段：
+NO NAME=无名称
+Assign to 'node'=赋值给“node”
+Insert New=插入新项
+*Failed to load Nodes=*节点加载失败
+Action ID:=动作 ID：
+Action ID: =动作 ID：
+Set Node=设置节点
+Input Node=输入节点
+Add Node to List=添加节点到列表
+Puppet Mode=木偶模式
+Show Merge Lists=显示合并列表
+Restart Tree=重启树
+User Variables=用户变量
+Sequencer:=序列器：
+Sequencer: =序列器：
+Json File=Json 文件
+New Json Name=新的 Json 名称
+Delete the selected pose=删除选中的姿势
+New Pose Name=新的姿势名称
+Pose Type=姿势类型
+Pose joints by their rotations or positions=按旋转或位置摆放骨骼
+Use Gizmos=使用 Gizmo
+Use gizmos on the screen to rotate and move bones=使用屏幕上的 Gizmo 来旋转和移动骨骼
+Sort bones alphabetically=按字母顺序排序骨骼
+Only this object=仅此对象
+Load to Selected=加载到已选骨骼
+Load json bones only to bones that are selected=仅将 JSON 骨骼数据加载到已选骨骼
+Save/Load Position and Rotation Together=同时保存/加载位置与旋转
+Import Postions and Rotations at the same time=同时导入位置和旋转
+Load Scales=加载缩放
+Save and Load LocalScale values=保存并加载 LocalScale 数值
+Save Pose=保存姿势
+Save frozen joints to a json file as a named pose=将已冻结骨骼保存为命名姿势到 JSON 文件
+Load Pose=加载姿势
+Load frozen joints from a json file to this skeleton=将 JSON 中冻结的骨骼加载到当前骨架
+Freeze All=全部冻结
+Freeze all joints, depending on the checkboxes above=根据上方勾选项冻结全部骨骼
+Unfreeze All=全部解冻
+Unfreeze all joints and clear undo history, depending on the checkboxes above=根据上方勾选项解冻全部骨骼并清空撤销历史
+Undo [=撤销 [
+Show Help=显示帮助
+Filter bones by name\nSeparate multiple terms with spaces=按名称筛选骨骼\n多个关键词请用空格分隔
+- Right click a joint in the list below to have it look at the camera=- 右键下方列表中的骨骼，可让其朝向相机
+- Freeze joints by moving them in the list or with gizmos, then click 'Save Pose' to save to a json file=- 通过列表或 Gizmo 冻结骨骼后，点击“保存姿势”即可保存到 JSON 文件
+- Load only specific joints of a pose by checking the boxes next to them and importing with 'Load to Selected' checked=- 勾选骨骼旁的复选框并启用“加载到已选骨骼”，即可只导入姿势中的指定骨骼
+- Search through long lists of joints by typing keywords into the 'Filters' text box. Separate keywords with spaces=- 在“筛选”文本框中输入关键词可搜索长骨骼列表，多个关键词请用空格分隔
+- Poses are saved to 'reframework\\data\\EMV Engine\\Poses' in your game folder=- 姿势文件会保存到游戏目录下的“reframework\\data\\EMV Engine\\Poses”
+- Hotkeys:\n\t[Z] - Undo\n\t[Ctrl] - Freeze hovered joint, or select gizmo/joint from on-screen\n\t[Alt] - Unfreeze hovered joint=- 热键：\n\t[Z] - 撤销\n\t[Ctrl] - 冻结当前悬停骨骼，或从屏幕上选中 Gizmo/骨骼\n\t[Alt] - 解冻当前悬停骨骼
+Import poses to this bone with 'Load to Selected' checked=启用“加载到已选骨骼”时，将姿势导入到该骨骼
+Look at camera=看向相机
+Undo one action for this joint=撤销该骨骼的一次操作
+Unfreeze this joint and clear its undo history=解冻该骨骼并清空其撤销历史
+Collapse All=全部折叠
+Expand All=全部展开
+Affected Layers=受影响的层
+Add a new motlist file to this character=为该角色添加新的 motlist 文件
+New Motlist + BankID=新的 Motlist + BankID
+New BankID=新的 BankID
+Animation seek bar=动画进度条
+Change animation speed=调整动画速度
+Enable Animation Viewer=启用动画查看器
+[No Parent]=[无父对象]
+Show Transform=显示变换
+Print Transform to Log=输出变换到日志
+Add to Collection=添加到集合
+Show Joints=显示骨骼
+Show Joint Names=显示骨骼名称
+Print Bones Enum=输出骨骼枚举
+Print ChainBones Enum=输出链骨骼枚举
+Set Source Bone=设置源骨骼
+Set Target=设置目标
+*Object may only move via Parent=*该对象可能只能通过父对象移动
+Sound Player=声音播放器
+Stop All=全部停止
+Children:=子对象：
+Children: =子对象：
+RE7 Cutscene Skipper=RE7 过场跳过器
+Skip Cutscene=跳过过场
+RE Engine Resource Editor=RE 引擎资源编辑器
+Call Count:=调用次数：
+Call Count: =调用次数：
+Remember Settings=记住设置
+Load Resources=加载资源
+Affect Children=影响子对象
+Cache Ordered Dictionaries=缓存有序字典
+Remember Material Settings=记住材质设置
+Max Fields/Properties Per-Grouping=每组最大字段/属性数
+Show Extra Fields=显示额外字段
+Exception Handling=异常处理
+Update During=更新时机
+Display Colors as Bytes=以字节显示颜色
+Object Expiration Time=对象过期时间
+Saved Material Settings=已保存材质设置
+Clear Hotkeys=清除热键
+Deferred Method Calls=延迟方法调用
+ImguiTable Settings=ImguiTable 设置
+Enable/Disable Checkboxes=启用/禁用复选框
+Shows Enable/Disable checkboxes for GameObjects, Components and some Managed Objects=为 GameObject、组件以及部分托管对象显示启用/禁用复选框
+Resource Editor=资源编辑器
+Detach Window=分离窗口
+
+# --- Enhanced Model Viewer / 增强模型查看器 ---
+Enhanced Model Viewer=增强模型查看器
+Enhanced Model Viewer Settings=增强模型查看器设置
+Persistent Settings=持久化设置
+Restart EMV=重启 EMV
+Sync Animations=同步动画
+Transparent Background=透明背景
+Cutscene Viewer=过场查看器
+Detach Cutscene Seek Bar=分离过场进度条
+Detach Animation Seek Bar=分离动画进度条
+Remove mismatched motlists=移除不匹配的 motlist
+Allow Performance Mode=允许性能模式
+Cache Figure Data=缓存模型数据
+Enable Hotkeys=启用热键
+Specific Cutscene Anims=特定过场动画
+All Non-cutscene Animations=全部非过场动画
+Unlock All Figures=解锁全部模型
+Re-Cache Animations=重新缓存动画
+Clear Motbank Resource Cache=清除 Motbank 资源缓存
+Clear Figure Saved Data=清除模型保存数据
+Enhanced Model Viewer: No resources found!=增强模型查看器：未找到资源！
+Animation Controls=动画控制
+: Cutscene Viewer=：过场查看器
+FIGURE SETTINGS=模型设置
+CUTSCENE VIEWER=过场查看器
+Caching motions, please wait...=正在缓存动作，请稍候...
+Camera Settings=相机设置
+Figure Behavior=模型行为
+Unlock All Lights=解锁全部灯光
+Rotate All=旋转全部
+Show Positions=显示位置
+Follow Figure=跟随模型
+Center Dummy=居中 Dummy
+Light Sets=灯光组
+Reset All=全部重置
+OTHER OBJECTS=其他对象
+Seek Bar (=进度条（
+Cutscene Speed=过场速度
+Stop Audio=停止音频
+Seek Type 2=定位方式 2
+Alt Sound Seek=备用音频定位
+Cinematic Cam=电影镜头
+Free Cam=自由相机
+Zoom Control=缩放控制
+End Scene=结束场景
+Seek by Seconds=按秒定位
+Allow Cutscene Physics=允许过场物理
+Clear Loop=清除循环
+A:=A：
+A: =A：
+FOV Zoom=FOV 缩放
+Check once to select this object, check while selected to enable/disable it=勾选一次以选中该对象，选中后再次勾选可启用/禁用它
+NOT STARTED=未开始
+Playback Speed=播放速度
++0.25x=+0.25倍
+Seek All=全部定位
+Reset Physics=重置物理
+A: [=A：[ 
+<-->  B: [=<-->  B：[ 
+Player LookAt=玩家 LookAt
+[F] - Enable/Disable Free Cam=[F] - 启用/禁用自由相机
+closing window!=关闭窗口！
+Script By alphaZomega=脚本作者：alphaZomega
+
+# --- Gravity Gun / 引力枪 ---
+Gravity Gun=引力枪
+Gravity Gun Settings=引力枪设置
+Forced functions=强制函数
+Forced Functions=强制函数
+Block input when UI=界面开启时阻止输入
+Show transform=显示变换
+Prefer Physics Objects=优先使用物理对象
+Ray Layers=射线层
+Wanted layer:=目标层：
+Wanted layer: =目标层：
+Wanted mask bits=目标掩码位
+Auto Mode Layers:=自动模式层：
+Auto Mode Layers: =自动模式层：
+Reset All Objects=重置全部对象
+Save Transforms=保存变换
+Load Transforms=加载变换
+Hotkeys:=热键：
+Hotkeys: =热键：
+[F] - Scale Objects with Mouse Wheel=[F] - 用鼠标滚轮缩放对象
+[R] - Force Move Physics Objects without Physics=[R] - 无视物理强制移动物理对象
+[Z] - Reset Object to Original=[Z] - 将对象重置到原始状态
+[Alt] - Unlock Rotation=[Alt] - 解锁旋转
+[V] - Toggle between Physics/Normal mode=[V] - 在物理/普通模式间切换
+Gravity Gun Objects=引力枪对象
+Grab by COG=按重心抓取
+Other Grabbed GameObjects=其他被抓取的 GameObject
+Touched GameObjects=已接触的 GameObject
+Save/Load Props=保存/加载属性
+Action Monitor -=动作监视器 -
+
+# --- Enemy Spawner / 敌人生成器 ---
+Enemy Spawner=敌人生成器
+Light Spawner=灯光生成器
+clear lights=清除灯光
+Mount to Camera=附着到相机
+Save Lights=保存灯光
+Load Lights=加载灯光
+Player Body Part=玩家身体部件
+Child Prefab=子 Prefab
+Spawn Player=生成人物
+Spawn Enemy=生成敌人
+Spawn Random Zombie=随机生成僵尸
+Spawn Random Enemy=随机生成敌人
+All Prefabs=全部 Prefab
+Add PFB File=添加 PFB 文件
+*Enemy/Prefab will spawn at the red 'X'=*敌人/Prefab 将在红色“X”处生成
+Clear Spawns=清除生成物
+Existing Spawns (=现有生成物（
+
+# --- RE Engine Resource Editor / 资源编辑器 ---
+Copy Instance=复制实例
+Paste Instance=粘贴实例
+Paste Instance with children after=在后方连同子对象一起粘贴实例
+Paste data from RE Managed Object=从 RE 托管对象粘贴数据
+List [=列表 [
+Insertion Point=插入点
+Add To ObjectTable=添加到 ObjectTable
+Reload JSON=重新加载 JSON
+with Children=包含子对象
+Save Json=保存 Json
+to this=到这里
+Hold shift to paste after=按住 Shift 可粘贴到后方
+Select Parent=选择父对象
+Child GameObjects=子 GameObject
+Child Folders=子文件夹
+Access files in the 'REFramework\\data\\' folder.\nStart with '$natives\\' to access files in the natives folder=访问“REFramework\\data\\”文件夹中的文件。\n如需访问 natives 文件夹，请以“$natives\\”开头
+Save to the same filepath, overwriting=保存到相同路径并覆盖
+Save Copy=保存副本
+Save to a new filepath=保存到新的文件路径
+Make a backup copy of this file=为该文件创建备份副本
+Restore this file from an existing backup=从已有备份恢复此文件
+Reload this file from disk=从磁盘重新加载此文件
+Refresh Buffer=刷新缓冲区
+Update the file's internal buffer and refresh Lua data=更新文件内部缓冲区并刷新 Lua 数据
+Revert the file to its previous state=将文件恢复到上一个状态
+Spawn PFB=生成 PFB
+Save as PFB=另存为 PFB
+Save as SCN=另存为 SCN
+Save as=另存为
+View debug information=查看调试信息
+Update CMD MDF=更新 CMD MDF
+Select a current-version MDF file from which to import CMD gap sizes to this file=选择一个当前版本的 MDF 文件，将其 CMD 间隙尺寸导入到此文件
+Use to fix old MDFs and make them work in updated versions of Street Fighter 6=用于修复旧 MDF，使其能在新版《街头霸王6》中工作
+Recent MDFs=最近使用的 MDF
+Copy data=复制数据
+Paste data=粘贴数据
+[Unformatted]=[未格式化]
+RSZ Data=RSZ 数据
+Userdata Instance=Userdata 实例
+Folder Instance=文件夹实例
+Object Instance=对象实例
+Parent Instance=父实例
+Target Instance=目标实例
+Chain Link Nodes=链路节点
+First Property=首个属性
+Property Type=属性类型
+First Key=首个键
+Use String=使用字符串
+Select String=选择字符串
+Failed to locate reframework\\data\\plugins\\rsz_parser_REF.dll!=未找到 reframework\\data\\plugins\\rsz_parser_REF.dll！
+Failed to locate reframework\\data\\rsz\\rsz=未找到 reframework\\data\\rsz\\rsz
+Recent Files=最近文件
+Edit "reframework\\data\\rsz\\resource_list.json" to make this list have files from your natives folder=编辑“reframework\\data\\rsz\\resource_list.json”即可让该列表显示 natives 文件夹中的文件
+Pick File=选择文件
+Supported filetypes: SCN, PFB, USER, MDF, Chain=支持的文件类型：SCN、PFB、USER、MDF、Chain
+Opened Files=已打开文件
+Selected Item:=已选项目：
+Selected Item: =已选项目：
+File Picker=文件选择器
+Max tmpfiles:=临时文件上限：
+Max tmpfiles: =临时文件上限：
+
+# --- Hooked Method Inspector / 方法钩子检查器 ---
+Hooked Method Inspector=方法钩子检查器
+Call Again=再次调用
+Calls during this module:=此模块期间的调用：
+ERROR: args[=错误：args[
+] is a broken Managed Object!=] 是一个损坏的托管对象！
+Pause updating to most recent=暂停更新到最新记录
+Keep updating args=持续更新参数
+Returns:=返回值：
+Hook Method=挂钩方法
+Clear Method=清除方法
+Previous Methods=历史方法
+[STATIC]=[静态]
+Method Info=方法信息
+Update Timing=更新时间点
+Collect Arguments=收集参数
+Hook Editor=钩子编辑器
+Use pre-function hook=使用前置函数钩子
+Use post-function hook=使用后置函数钩子
+Calls:=调用次数：
+Last called:=最后调用：
+Most recent:=最近一次：
+Calls during modules:=各模块中的调用：
+Not called yet!=尚未调用！
+| By alphaZomega=| 作者：alphaZomega
