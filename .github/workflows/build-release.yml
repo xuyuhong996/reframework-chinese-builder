@@ -70,7 +70,10 @@ jobs:
           if ($null -eq $package) { throw '未找到构建生成的 ZIP。' }
 
           $hash = (Get-FileHash -LiteralPath $package.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
-          $nightlyNumber = $env:UPSTREAM_RELEASE_TAG -replace '^nightly-', ''
+          if ($env:UPSTREAM_RELEASE_TAG -notmatch '^nightly-(\d+)') {
+            throw "无法识别 Nightly 编号: $env:UPSTREAM_RELEASE_TAG"
+          }
+          $nightlyNumber = $Matches[1]
           $releaseTitle = "REFramework-汉化-$nightlyNumber"
           $releaseAssetBase = "REFramework-$nightlyNumber"
           $releasePackage = Join-Path $package.DirectoryName "$releaseAssetBase.zip"
