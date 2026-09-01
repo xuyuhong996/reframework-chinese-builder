@@ -24,7 +24,7 @@ REFramework 也会被其他游戏使用，但作者没有在其他游戏中安�
 
 ## 自动构建
 
-GitHub Actions 每 15 分钟检查一次 [praydog/REFramework](https://github.com/praydog/REFramework) 的官方 Release list。仅当原作者发布新的 Release 版本时，才使用 Windows Server 2022 上的 Visual Studio 2022 构建环境拉取源码、注入汉化并创建新的 ZIP Release；包名严格使用该 Release 标签，例如 `REF v1.5.9.1 -前置汉化版.zip`。
+GitHub Actions 每 15 分钟检查一次 [praydog/REFramework-nightly](https://github.com/praydog/REFramework-nightly) 的发布列表。仅当原作者发布新的 Nightly 版本时，才使用 Windows Server 2022 上的 Visual Studio 2022 构建环境拉取 [REFramework](https://github.com/praydog/REFramework) 源码、注入汉化并创建新的 ZIP Release；包名严格使用 Nightly 编号，例如 `REF Nightly 01398 -前置汉化版.zip`。
 
 ## 打赏支持
 
