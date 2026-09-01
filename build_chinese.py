@@ -2000,7 +2000,8 @@ def create_github_release(package_path: Path, checksum_path: Path, package_hash:
     if nightly_match is None:
         fail(f"无法从包名识别 Nightly 编号: {package_path.name}")
 
-    release_asset_name = f"REF-Nightly-{nightly_match.group(1)}.zip"
+    nightly_number = nightly_match.group(1)
+    release_asset_name = f"REFramework-{nightly_number}.zip"
     release_package_path = package_path.with_name(release_asset_name)
     release_checksum_path = release_package_path.with_name(f"{release_asset_name}.sha256")
     shutil.copy2(package_path, release_package_path)
@@ -2013,7 +2014,7 @@ def create_github_release(package_path: Path, checksum_path: Path, package_hash:
         str(release_package_path),
         str(release_checksum_path),
         "--repo", GITHUB_RELEASE_REPOSITORY,
-        "--title", package_path.stem,
+        "--title", f"REFramework-汉化-{nightly_number}",
         "--notes", "由本机 Visual Studio 构建并自动发布。",
     ])
     log(f"已创建 GitHub 历史版本: https://github.com/{GITHUB_RELEASE_REPOSITORY}/releases")

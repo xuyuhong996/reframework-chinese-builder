@@ -67,7 +67,8 @@ jobs:
 
           $hash = (Get-FileHash -LiteralPath $package.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
           $nightlyNumber = $env:UPSTREAM_RELEASE_TAG -replace '^nightly-', ''
-          $releaseAssetBase = "REF-Nightly-$nightlyNumber"
+          $releaseTitle = "REFramework-汉化-$nightlyNumber"
+          $releaseAssetBase = "REFramework-$nightlyNumber"
           $releasePackage = Join-Path $package.DirectoryName "$releaseAssetBase.zip"
           $checksum = "$releasePackage.sha256"
           Copy-Item -LiteralPath $package.FullName -Destination $releasePackage
@@ -83,5 +84,5 @@ jobs:
 
           gh release create $tag $releasePackage $checksum `
             --repo $env:GITHUB_REPOSITORY `
-            --title $package.BaseName `
+            --title $releaseTitle `
             --notes "由 GitHub Actions 的 Windows Visual Studio 2022 环境自动构建。`n`nNightly 发布: $env:UPSTREAM_RELEASE_TAG"
