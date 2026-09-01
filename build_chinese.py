@@ -1996,10 +1996,22 @@ def create_github_release(package_path: Path, checksum_path: Path, package_hash:
         log("这个 ZIP 已存在对应的 GitHub 历史发布版本。")
         return
 
+    nightly_match = re.match(r"REF Nightly (\d+)", package_path.stem)
+    if nightly_match is None:
+        fail(f"无法从包名识别 Nightly 编号: {package_path.name}")
+
+    release_asset_name = f"REF-Nightly-{nightly_match.group(1)}-Chinese-Edition.zip"
+    release_package_path = package_path.with_name(release_asset_name)
+    release_checksum_path = release_package_path.with_name(f"{release_asset_name}.sha256")
+    shutil.copy2(package_path, release_package_path)
+    release_checksum_path.write_text(
+        f"{package_hash}  {release_asset_name}\n", encoding="ascii"
+    )
+
     run_publish_command([
         "gh", "release", "create", release_tag,
-        f"{package_path}#{package_path.name}",
-        f"{checksum_path}#{checksum_path.name}",
+        str(release_package_path),
+        str(release_checksum_path),
         "--repo", GITHUB_RELEASE_REPOSITORY,
         "--title", package_path.stem,
         "--notes", "由本机 Visual Studio 构建并自动发布。",

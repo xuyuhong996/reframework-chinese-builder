@@ -66,12 +66,14 @@ jobs:
           if ($null -eq $package) { throw '未找到构建生成的 ZIP。' }
 
           $hash = (Get-FileHash -LiteralPath $package.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
-          $checksum = "$($package.FullName).sha256"
-          Set-Content -LiteralPath $checksum -Value "$hash  $($package.Name)" -Encoding ascii
+          $nightlyNumber = $env:UPSTREAM_RELEASE_TAG -replace '^nightly-', ''
+          $releaseAssetBase = "REF-Nightly-$nightlyNumber-Chinese-Edition"
+          $releasePackage = Join-Path $package.DirectoryName "$releaseAssetBase.zip"
+          $checksum = "$releasePackage.sha256"
+          Copy-Item -LiteralPath $package.FullName -Destination $releasePackage
+          Set-Content -LiteralPath $checksum -Value "$hash  $releaseAssetBase.zip" -Encoding ascii
           $tag = "build-$($hash.Substring(0, 12))"
-          # 显式指定 GitHub Release 资产显示名，保留 Nightly 编号、空格与中文名称。
-          $packageAsset = "$($package.FullName)#$($package.Name)"
-          $checksumAsset = "$checksum#$($package.Name).sha256"
+          # GitHub 会过滤中文附件名；使用稳定的 ASCII 名称，中文名称保留在 Release 标题。
 
           gh release view $tag --repo $env:GITHUB_REPOSITORY 2>$null
           if ($LASTEXITCODE -eq 0) {
@@ -79,7 +81,7 @@ jobs:
             exit 0
           }
 
-          gh release create $tag $packageAsset $checksumAsset `
+          gh release create $tag $releasePackage $checksum `
             --repo $env:GITHUB_REPOSITORY `
             --title $package.BaseName `
             --notes "由 GitHub Actions 的 Windows Visual Studio 2022 环境自动构建。`n`nNightly 发布: $env:UPSTREAM_RELEASE_TAG"
