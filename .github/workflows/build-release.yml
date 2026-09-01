@@ -69,6 +69,9 @@ jobs:
           $checksum = "$($package.FullName).sha256"
           Set-Content -LiteralPath $checksum -Value "$hash  $($package.Name)" -Encoding ascii
           $tag = "build-$($hash.Substring(0, 12))"
+          # 显式指定 GitHub Release 资产显示名，保留 Nightly 编号、空格与中文名称。
+          $packageAsset = "$($package.FullName)#$($package.Name)"
+          $checksumAsset = "$checksum#$($package.Name).sha256"
 
           gh release view $tag --repo $env:GITHUB_REPOSITORY 2>$null
           if ($LASTEXITCODE -eq 0) {
@@ -76,7 +79,7 @@ jobs:
             exit 0
           }
 
-          gh release create $tag $package.FullName $checksum `
+          gh release create $tag $packageAsset $checksumAsset `
             --repo $env:GITHUB_REPOSITORY `
             --title $package.BaseName `
             --notes "由 GitHub Actions 的 Windows Visual Studio 2022 环境自动构建。`n`nNightly 发布: $env:UPSTREAM_RELEASE_TAG"
