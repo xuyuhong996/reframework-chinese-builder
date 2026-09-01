@@ -253,11 +253,10 @@ REWARD_QR_FILE = SCRIPT_DIR / "assets" / "wechat-reward-qr.jpg"
 OUTPUT_DIR = Path(os.environ.get("REF_OUTPUT_DIR", str(SCRIPT_DIR)))
 TOOLCHAIN_FILE = os.environ.get("REF_TOOLCHAIN_FILE", "")
 
-NIGHTLY_API  = "https://api.github.com/repos/praydog/REFramework-nightly/releases/latest"
-NIGHTLY_GIT_REPO = "https://github.com/praydog/REFramework-nightly.git"
 GIT_REPO     = "https://github.com/praydog/REFramework.git"
-nightly_cache_path = os.environ.get("REF_NIGHTLY_CACHE_FILE", "").strip()
-NIGHTLY_CACHE_FILE = Path(nightly_cache_path) if nightly_cache_path else None
+UPSTREAM_RELEASE_API = "https://api.github.com/repos/praydog/REFramework/releases/latest"
+release_cache_path = os.environ.get("REF_RELEASE_CACHE_FILE", "").strip()
+UPSTREAM_RELEASE_CACHE_FILE = Path(release_cache_path) if release_cache_path else None
 GITHUB_RELEASE_REPOSITORY = "xuyuhong996/reframework-chinese-builder"
 GITHUB_RELEASE_REPOSITORY_URL = f"https://github.com/{GITHUB_RELEASE_REPOSITORY}.git"
 PUBLISH_CACHE_DIR = Path(os.environ.get("LOCALAPPDATA", str(SCRIPT_DIR))) / "REFrameworkChineseBuilder"
@@ -270,102 +269,63 @@ CMAKE_BIN = (
 # ============================================================================
 # 工具函数
 # ============================================================================
-def get_nightly_number() -> str:
-    """获取最新 Nightly 编号 (如 '01240')。
+def get_upstream_release_version() -> str:
+    """获取 REFramework 官方最新 Release 标签，例如 ``v1.5.9.1``。"""
+    def normalize_tag(raw: str) -> str:
+        match = re.fullmatch(r"v?(\d+(?:\.\d+)+)", (raw or "").strip())
+        return f"v{match.group(1)}" if match else ""
 
-    优先级:
-      1) GitHub API releases/latest
-      2) git ls-remote 读取 REFramework-nightly tags
-    """
-    def normalize_num(raw: str) -> str:
-        s = (raw or "").strip()
-        if not s:
-            return ""
-        m = re.search(r"(\d+)", s)
-        if not m:
-            return ""
-        return m.group(1).zfill(5)
+    def cache_tag(tag: str) -> str:
+        if UPSTREAM_RELEASE_CACHE_FILE is None:
+            return tag
+        UPSTREAM_RELEASE_CACHE_FILE.parent.mkdir(parents=True, exist_ok=True)
+        temporary_file = UPSTREAM_RELEASE_CACHE_FILE.with_suffix(".tmp")
+        temporary_file.write_text(f"{tag}\n", encoding="utf-8")
+        temporary_file.replace(UPSTREAM_RELEASE_CACHE_FILE)
+        return tag
 
-    def cache_number(number: str) -> str:
-        if NIGHTLY_CACHE_FILE is None:
-            return number
-        NIGHTLY_CACHE_FILE.parent.mkdir(parents=True, exist_ok=True)
-        temporary_file = NIGHTLY_CACHE_FILE.with_suffix(".tmp")
-        temporary_file.write_text(f"{number}\n", encoding="utf-8")
-        temporary_file.replace(NIGHTLY_CACHE_FILE)
-        return number
-
-    # 1) API
     if HAS_REQUESTS:
         try:
-            resp = requests.get(
-                NIGHTLY_API,
+            response = requests.get(
+                UPSTREAM_RELEASE_API,
                 headers={"User-Agent": "REF-Chinese-Build"},
                 timeout=15,
             )
-            if resp.status_code == 200:
-                data = resp.json()
-                tag = data.get("tag_name", "")  # nightly-01293-xxxx
-                m = re.match(r"nightly-(\d+)", tag)
-                if m:
-                    num = normalize_num(m.group(1))
-                    if num:
-                        log(f"从 GitHub 获取到 Nightly 编号: {num}")
-                        return cache_number(num)
-
-                name = data.get("name", "")  # REF Nightly 01293 (...)
-                m = re.search(r"Nightly\s+(\d+)", name)
-                if m:
-                    num = normalize_num(m.group(1))
-                    if num:
-                        log(f"从 GitHub 获取到 Nightly 编号: {num}")
-                        return cache_number(num)
+            if response.status_code == 200:
+                tag = normalize_tag(response.json().get("tag_name", ""))
+                if tag:
+                    log(f"从 REFramework Release list 获取到版本: {tag}")
+                    return cache_tag(tag)
             else:
-                log(f"GitHub API 返回状态码: {resp.status_code}")
-        except Exception as e:
-            log(f"无法从 GitHub API 获取 Nightly 编号: {e}")
-    else:
-        log("requests 库未安装，无法访问 GitHub API")
+                log(f"REFramework Release API 返回状态码: {response.status_code}")
+        except Exception as error:
+            log(f"无法从 REFramework Release list 获取版本: {error}")
 
-    # 2) 通过 git tags 获取 nightly 编号
     try:
-        ret = subprocess.run(
-            ["git", "ls-remote", "--tags", "--refs", NIGHTLY_GIT_REPO],
+        result = subprocess.run(
+            ["git", "ls-remote", "--tags", "--refs", GIT_REPO],
             capture_output=True,
             timeout=30,
         )
-        if ret.returncode == 0 and ret.stdout:
-            text = decode_cmd_bytes(ret.stdout)
-            nums = []
-            for line in text.splitlines():
-                m = re.search(r"refs/tags/nightly-(\d+)-", line)
-                if m:
-                    try:
-                        nums.append(int(m.group(1)))
-                    except Exception:
-                        pass
+        tags = [
+            normalize_tag(line.rsplit("/", 1)[-1])
+            for line in decode_cmd_bytes(result.stdout).splitlines()
+        ]
+        tags = [tag for tag in tags if tag]
+        if tags:
+            tag = max(tags, key=lambda item: tuple(map(int, item[1:].split("."))))
+            log(f"Release API 不可用，已通过远程 tags 获取版本: {tag}")
+            return cache_tag(tag)
+    except Exception as error:
+        log(f"通过 REFramework 远程 tags 获取版本异常: {error}")
 
-            if nums:
-                num = f"{max(nums):05d}"
-                log(f"GitHub API 不可用，已通过远程 tags 获取 Nightly 编号: {num}")
-                return cache_number(num)
-        else:
-            err = decode_cmd_bytes(ret.stdout or b"")
-            if not err:
-                err = decode_cmd_bytes(ret.stderr or b"")
-            if err:
-                log(f"通过远程 tags 获取 Nightly 编号失败: {err[:160]}")
-    except Exception as e:
-        log(f"通过远程 tags 获取 Nightly 编号异常: {e}")
+    if UPSTREAM_RELEASE_CACHE_FILE is not None and UPSTREAM_RELEASE_CACHE_FILE.is_file():
+        tag = normalize_tag(UPSTREAM_RELEASE_CACHE_FILE.read_text(encoding="utf-8"))
+        if tag:
+            log(f"GitHub 暂时不可用，沿用已缓存的 Release 版本: {tag}")
+            return tag
 
-    if NIGHTLY_CACHE_FILE is not None and NIGHTLY_CACHE_FILE.is_file():
-        cached_number = normalize_num(NIGHTLY_CACHE_FILE.read_text(encoding="utf-8"))
-        if cached_number:
-            log(f"GitHub 暂时不可用，沿用已缓存的 Nightly 编号: {cached_number}")
-            return cached_number
-
-    log("GitHub 暂时不可用，未获得 Nightly 编号；使用 00000 作为版本占位。")
-    return "00000"
+    fail("无法获取 REFramework 官方 Release 版本，已停止以避免生成错误包名。")
 
 def log(msg):
     global SILENT_LOG
@@ -2115,9 +2075,9 @@ def main():
     BUILD_TARGET = resolve_build_target(BUILD_ROOT)
     log(f"已识别上游构建目标: {BUILD_TARGET}")
 
-    # 拿到代码后再读取最新的 Nightly 分支编号
-    nightly_num = get_nightly_number()
-    zip_label = f"REF Nightly {nightly_num} -前置汉化版"
+    # 包名严格使用 REFramework 官方 Release list 的版本标签。
+    release_version = get_upstream_release_version()
+    zip_label = f"REF {release_version} -前置汉化版"
 
     translations = load_translations()
     hash_translations = load_hash_dict()

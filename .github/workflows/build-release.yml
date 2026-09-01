@@ -21,7 +21,7 @@ jobs:
           FORCE_BUILD: ${{ github.event_name == 'workflow_dispatch' }}
         shell: bash
         run: |
-          upstream_release_tag=$(gh api 'repos/praydog/REFramework-nightly/releases/latest' --jq '.tag_name')
+          upstream_release_tag=$(gh api 'repos/praydog/REFramework/releases/latest' --jq '.tag_name')
           echo "upstream_release_tag=$upstream_release_tag" >> "$GITHUB_OUTPUT"
 
           if [ "$FORCE_BUILD" = "true" ]; then
@@ -30,7 +30,7 @@ jobs:
           fi
 
           latest_notes=$(gh api "repos/${GITHUB_REPOSITORY}/releases/latest" --jq '.body' 2>/dev/null || true)
-          if printf '%s' "$latest_notes" | grep -Fq "Nightly 发布: $upstream_release_tag"; then
+          if printf '%s' "$latest_notes" | grep -Fq "原作者 Release: $upstream_release_tag"; then
             echo "should_build=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
@@ -82,4 +82,4 @@ jobs:
           gh release create $tag $packageAsset $checksumAsset `
             --repo $env:GITHUB_REPOSITORY `
             --title $package.BaseName `
-            --notes "由 GitHub Actions 的 Windows Visual Studio 2022 环境自动构建。`n`nNightly 发布: $env:UPSTREAM_RELEASE_TAG"
+            --notes "由 GitHub Actions 的 Windows Visual Studio 2022 环境自动构建。`n`n原作者 Release: $env:UPSTREAM_RELEASE_TAG"
