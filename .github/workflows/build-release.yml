@@ -8,6 +8,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: reframework-chinese-build
+  cancel-in-progress: false
+
 jobs:
   decide:
     runs-on: ubuntu-latest
