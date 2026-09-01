@@ -2000,7 +2000,7 @@ def create_github_release(package_path: Path, checksum_path: Path, package_hash:
     if nightly_match is None:
         fail(f"无法从包名识别 Nightly 编号: {package_path.name}")
 
-    release_asset_name = f"REF-Nightly-{nightly_match.group(1)}-Chinese-Edition.zip"
+    release_asset_name = f"REF-Nightly-{nightly_match.group(1)}.zip"
     release_package_path = package_path.with_name(release_asset_name)
     release_checksum_path = release_package_path.with_name(f"{release_asset_name}.sha256")
     shutil.copy2(package_path, release_package_path)

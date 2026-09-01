@@ -67,7 +67,7 @@ jobs:
 
           $hash = (Get-FileHash -LiteralPath $package.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
           $nightlyNumber = $env:UPSTREAM_RELEASE_TAG -replace '^nightly-', ''
-          $releaseAssetBase = "REF-Nightly-$nightlyNumber-Chinese-Edition"
+          $releaseAssetBase = "REF-Nightly-$nightlyNumber"
           $releasePackage = Join-Path $package.DirectoryName "$releaseAssetBase.zip"
           $checksum = "$releasePackage.sha256"
           Copy-Item -LiteralPath $package.FullName -Destination $releasePackage
