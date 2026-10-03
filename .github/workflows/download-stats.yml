@@ -1,0 +1,65 @@
+name: 更新汉化包下载趋势
+
+on:
+  schedule:
+    - cron: "37 1 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: download-stats-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      - name: 验证下载统计逻辑
+        run: python -m unittest discover -s tests -v
+
+      - name: 采样并保存真实下载趋势
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          MAX_PUSH_ATTEMPTS: "3"
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for attempt in $(seq 1 "$MAX_PUSH_ATTEMPTS"); do
+            git fetch origin "$DEFAULT_BRANCH"
+            base_head=$(git rev-parse "origin/$DEFAULT_BRANCH")
+            git switch -C download-stats-update "origin/$DEFAULT_BRANCH"
+            python scripts/update_download_stats.py --repository "$GITHUB_REPOSITORY"
+            git add -- assets/download-history.json assets/downloads.svg
+            if git diff --cached --quiet; then
+              echo '统计文件没有变化。'
+              exit 0
+            fi
+            git commit -m 'docs: 更新汉化包下载量统计'
+            if git push origin "HEAD:refs/heads/$DEFAULT_BRANCH"; then
+              exit 0
+            fi
+
+            git fetch origin "$DEFAULT_BRANCH"
+            latest_head=$(git rev-parse "origin/$DEFAULT_BRANCH")
+            if [ "$latest_head" = "$base_head" ]; then
+              echo '推送失败且远端未更新，请检查仓库写入权限或网络。' >&2
+              exit 1
+            fi
+            echo "远端有新提交，基于最新历史重新生成（第 $attempt 次尝试）。"
+          done
+          echo '连续遇到远端更新，本次停止；原有远端历史保持完整。' >&2
+          exit 1

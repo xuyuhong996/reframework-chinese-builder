@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="412" viewBox="0 0 720 412" role="img" aria-labelledby="chart-title chart-desc">
+<title id="chart-title">REFramework 汉化包下载趋势</title>
+<desc id="chart-desc">每天记录 GitHub 发布中 ZIP 附件的累计下载次数。包含已观测后删除的历史包，不含校验文件、网盘和自动源码下载，不代表独立用户数。历史趋势从首次采样日起记录，缺少采样的日期没有补造下载数据。</desc>
+<rect width="720" height="412" rx="20" fill="#f8fafc" stroke="#e2e8f0" />
+<g font-family="system-ui, -apple-system, Segoe UI, Microsoft YaHei, sans-serif" fill="#0f172a">
+<text x="32" y="48" font-size="28" font-weight="700">汉化包下载趋势</text>
+<text x="32" y="78" font-size="18" fill="#64748b">最近 90 天的真实累计记录</text>
+<text x="674" y="48" font-size="42" text-anchor="end" font-weight="700" fill="#0891b2">88</text>
+<text x="674" y="78" font-size="18" text-anchor="end" fill="#64748b">累计下载次数</text>
+<text x="78" y="119" font-size="18" fill="#0891b2">累计汉化包下载</text>
+<line x1="78" y1="292.0" x2="674" y2="292.0" stroke="#e2e8f0" stroke-width="1" />
+<text x="66" y="298.0" font-size="18" text-anchor="end" fill="#64748b">0</text>
+<line x1="78" y1="257.0" x2="674" y2="257.0" stroke="#e2e8f0" stroke-width="1" />
+<text x="66" y="263.0" font-size="18" text-anchor="end" fill="#64748b">25</text>
+<line x1="78" y1="222.0" x2="674" y2="222.0" stroke="#e2e8f0" stroke-width="1" />
+<text x="66" y="228.0" font-size="18" text-anchor="end" fill="#64748b">50</text>
+<line x1="78" y1="187.0" x2="674" y2="187.0" stroke="#e2e8f0" stroke-width="1" />
+<text x="66" y="193.0" font-size="18" text-anchor="end" fill="#64748b">75</text>
+<line x1="78" y1="152.0" x2="674" y2="152.0" stroke="#e2e8f0" stroke-width="1" />
+<text x="66" y="158.0" font-size="18" text-anchor="end" fill="#64748b">100</text>
+<text x="376.0" y="324" font-size="18" text-anchor="middle">2026-10-03</text>
+<circle cx="376.0" cy="168.8" r="5" fill="#0891b2" />
+<text x="376.0" y="274" font-size="18" text-anchor="middle" fill="#64748b">首日真实采样，后续每天更新</text>
+<text x="32" y="359" font-size="18" fill="#64748b">仅统计 GitHub 汉化 ZIP，含已记录历史包的下载。</text>
+<text x="32" y="386" font-size="18" fill="#64748b">记录起点：2026-10-03 · 更新：2026-10-03（北京时间）</text>
+</g></svg>
