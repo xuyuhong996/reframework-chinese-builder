@@ -8,7 +8,7 @@
 
 ## 原项目与作者
 
-REFramework 的原作者项目为 [praydog/REFramework](https://github.com/praydog/REFramework)。本仓库在每次构建时拉取其 `master` 分支源码，并在此基础上注入中文文本后生成发布包。
+REFramework 的原作者项目为 [praydog/REFramework](https://github.com/praydog/REFramework)。本仓库的自动构建会获取对应官方 Nightly 的源码提交，注入中文文本后生成发布包。
 
 本仓库是独立的汉化构建与发布项目，**不是 REFramework 原作者的官方仓库，也不代表原作者提供支持或兼容性保证**。REFramework 本体的源码、更新与技术问题请以原作者仓库为准。
 
