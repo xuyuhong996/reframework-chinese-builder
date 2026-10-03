@@ -270,6 +270,13 @@ CMAKE_BIN = (
 # ============================================================================
 def get_nightly_number() -> str:
     """获取 REFramework-nightly 发布列表中的最新 Nightly 编号。"""
+    suppliedTag = os.environ.get("UPSTREAM_RELEASE_TAG")
+    if suppliedTag is not None:
+        matchedTag = re.fullmatch(r"nightly-([0-9]{5})-[0-9a-f]{40}", suppliedTag)
+        if not matchedTag:
+            fail("UPSTREAM_RELEASE_TAG 格式无效，已停止构建以避免生成错误包名。")
+        return matchedTag.group(1)
+
     try:
         response = requests.get(NIGHTLY_API, headers={"User-Agent": "REF-Chinese-Build"}, timeout=15)
         tag = response.json().get("tag_name", "") if response.status_code == 200 else ""
