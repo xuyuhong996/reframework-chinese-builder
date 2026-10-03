@@ -1,0 +1,58 @@
+{
+  "repository": "xuyuhong996/reframework-chinese-builder",
+  "timezone": "Asia/Shanghai",
+  "metric": "GitHub 汉化 ZIP 累计下载，含已记录历史包",
+  "assets": {
+    "542299883": {
+      "name": "REFramework-01414.zip",
+      "downloadCount": 23
+    },
+    "540984589": {
+      "name": "REFramework-01409.zip",
+      "downloadCount": 0
+    },
+    "559243286": {
+      "name": "REFramework-01422.zip",
+      "downloadCount": 18
+    },
+    "568554899": {
+      "name": "REFramework-01424.zip",
+      "downloadCount": 29
+    },
+    "544150059": {
+      "name": "REFramework-01415.zip",
+      "downloadCount": 3
+    },
+    "555754091": {
+      "name": "REFramework-01421.zip",
+      "downloadCount": 8
+    },
+    "542018731": {
+      "name": "REFramework-01411.zip",
+      "downloadCount": 0
+    },
+    "545593616": {
+      "name": "REFramework-01417.zip",
+      "downloadCount": 5
+    },
+    "541299669": {
+      "name": "REFramework-01410.zip",
+      "downloadCount": 0
+    },
+    "538765050": {
+      "name": "REFramework-01398.zip",
+      "downloadCount": 1
+    },
+    "538765563": {
+      "name": "REFramework-01398.zip",
+      "downloadCount": 1
+    }
+  },
+  "history": [
+    {
+      "date": "2026-10-03",
+      "total": 88
+    }
+  ],
+  "updatedAt": "2026-10-03T08:49:58+08:00"
+}

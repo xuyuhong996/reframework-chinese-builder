@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "7,22,37,52 * * * *"
   workflow_dispatch:
+    inputs:
+      check_only:
+        description: "仅检查版本，不重新打包"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -18,28 +23,59 @@ jobs:
     outputs:
       should_build: ${{ steps.interval.outputs.should_build }}
       upstream_release_tag: ${{ steps.interval.outputs.upstream_release_tag }}
+      upstream_sha: ${{ steps.interval.outputs.upstream_sha }}
     steps:
       - id: interval
         env:
           GH_TOKEN: ${{ github.token }}
           FORCE_BUILD: ${{ github.event_name == 'workflow_dispatch' }}
+          CHECK_ONLY: ${{ github.event_name == 'workflow_dispatch' && inputs.check_only }}
         shell: bash
         run: |
           upstream_release_tag=$(gh api 'repos/praydog/REFramework-nightly/releases/latest' --jq '.tag_name')
+          if [[ ! "$upstream_release_tag" =~ ^nightly-([0-9]{5})-([0-9a-f]{40})$ ]]; then
+            echo "官方 Nightly 标签格式无法识别，已停止构建，避免生成错误版本。" >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          upstream_sha=${BASH_REMATCH[2]}
           echo "upstream_release_tag=$upstream_release_tag" >> "$GITHUB_OUTPUT"
+          echo "upstream_sha=$upstream_sha" >> "$GITHUB_OUTPUT"
 
-          if [ "$FORCE_BUILD" = "true" ]; then
-            echo "should_build=true" >> "$GITHUB_OUTPUT"
+          latest_release=$(gh api "repos/${GITHUB_REPOSITORY}/releases/latest" 2>/dev/null || true)
+          latest_title=$(printf '%s' "$latest_release" | jq -r '.name // "尚未发布"')
+          latest_notes=$(printf '%s' "$latest_release" | jq -r '.body // ""')
+          {
+            echo "## 汉化版本检查"
+            printf '官方 Nightly 标签：`%s`\n\n' "$upstream_release_tag"
+            printf '官方源码提交：`%s`\n\n' "$upstream_sha"
+            printf '本仓库最新发布：%s\n\n' "${latest_title:-尚未发布}"
+            printf '[下载最新汉化包](https://github.com/%s/releases/latest)\n\n' "$GITHUB_REPOSITORY"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          if [ "$CHECK_ONLY" = "true" ]; then
+            echo "should_build=false" >> "$GITHUB_OUTPUT"
+            if printf '%s' "$latest_notes" | grep -Fq "Nightly 发布: $upstream_release_tag"; then
+              echo "本次结果：仅检查版本；汉化已与官方 Nightly 同步。" >> "$GITHUB_STEP_SUMMARY"
+            else
+              echo "本次结果：仅检查版本；尚未发布对应的官方 Nightly。" >> "$GITHUB_STEP_SUMMARY"
+            fi
             exit 0
           fi
 
-          latest_notes=$(gh api "repos/${GITHUB_REPOSITORY}/releases/latest" --jq '.body' 2>/dev/null || true)
+          if [ "$FORCE_BUILD" = "true" ]; then
+            echo "should_build=true" >> "$GITHUB_OUTPUT"
+            echo "本次结果：手动触发，继续重新构建。" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
           if printf '%s' "$latest_notes" | grep -Fq "Nightly 发布: $upstream_release_tag"; then
             echo "should_build=false" >> "$GITHUB_OUTPUT"
+            echo "本次结果：版本已同步，官方没有新 Nightly，正常跳过打包。" >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
 
           echo "should_build=true" >> "$GITHUB_OUTPUT"
+          echo "本次结果：尚未发布对应的官方 Nightly，继续汉化打包。" >> "$GITHUB_STEP_SUMMARY"
 
   build:
     needs: decide
@@ -48,6 +84,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Checkout matching official source
+        uses: actions/checkout@v4
+        with:
+          repository: praydog/REFramework
+          ref: ${{ needs.decide.outputs.upstream_sha }}
+          path: REFramework-src
+          submodules: recursive
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.13"
@@ -55,6 +99,8 @@ jobs:
       - name: Build localized ZIP
         env:
           SKIP_GITHUB_PUBLISH: "1"
+          UPSTREAM_SHA: ${{ needs.decide.outputs.upstream_sha }}
+          UPSTREAM_RELEASE_TAG: ${{ needs.decide.outputs.upstream_release_tag }}
         shell: pwsh
         run: python build_chinese.py
 
