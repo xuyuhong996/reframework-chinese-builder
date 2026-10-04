@@ -5,7 +5,7 @@
 <g font-family="system-ui, -apple-system, Segoe UI, Microsoft YaHei, sans-serif" fill="#0f172a">
 <text x="32" y="48" font-size="28" font-weight="700">汉化包下载趋势</text>
 <text x="32" y="78" font-size="18" fill="#64748b">最近 90 天的真实累计记录</text>
-<text x="674" y="48" font-size="42" text-anchor="end" font-weight="700" fill="#0891b2">90</text>
+<text x="674" y="48" font-size="42" text-anchor="end" font-weight="700" fill="#0891b2">98</text>
 <text x="674" y="78" font-size="18" text-anchor="end" fill="#64748b">累计下载次数</text>
 <text x="78" y="119" font-size="18" fill="#0891b2">累计汉化包下载</text>
 <line x1="78" y1="292.0" x2="674" y2="292.0" stroke="#e2e8f0" stroke-width="1" />
@@ -18,9 +18,10 @@
 <text x="66" y="193.0" font-size="18" text-anchor="end" fill="#64748b">75</text>
 <line x1="78" y1="152.0" x2="674" y2="152.0" stroke="#e2e8f0" stroke-width="1" />
 <text x="66" y="158.0" font-size="18" text-anchor="end" fill="#64748b">100</text>
-<text x="376.0" y="324" font-size="18" text-anchor="middle">2026-10-03</text>
-<circle cx="376.0" cy="166.0" r="5" fill="#0891b2" />
-<text x="376.0" y="274" font-size="18" text-anchor="middle" fill="#64748b">首日真实采样，后续每天更新</text>
+<text x="78" y="324" font-size="18" >2026-10-03</text>
+<text x="674" y="324" font-size="18" text-anchor="end">2026-10-04</text>
+<path d="M 78.0,166.0 L 674.0,154.8" fill="none" stroke="#0891b2" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
+<circle cx="674.0" cy="154.8" r="5" fill="#0891b2" />
 <text x="32" y="359" font-size="18" fill="#64748b">仅统计 GitHub 汉化 ZIP，含已记录历史包的下载。</text>
-<text x="32" y="386" font-size="18" fill="#64748b">记录起点：2026-10-03 · 更新：2026-10-03（北京时间）</text>
+<text x="32" y="386" font-size="18" fill="#64748b">记录起点：2026-10-03 · 更新：2026-10-04（北京时间）</text>
 </g></svg>
