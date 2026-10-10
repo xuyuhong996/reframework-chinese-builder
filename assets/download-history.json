@@ -5,19 +5,19 @@
   "assets": {
     "542299883": {
       "name": "REFramework-01414.zip",
-      "downloadCount": 26
+      "downloadCount": 28
     },
     "540984589": {
       "name": "REFramework-01409.zip",
-      "downloadCount": 0
+      "downloadCount": 1
     },
     "559243286": {
       "name": "REFramework-01422.zip",
-      "downloadCount": 18
+      "downloadCount": 19
     },
     "568554899": {
       "name": "REFramework-01424.zip",
-      "downloadCount": 131
+      "downloadCount": 145
     },
     "544150059": {
       "name": "REFramework-01415.zip",
@@ -45,7 +45,7 @@
     },
     "538765563": {
       "name": "REFramework-01398.zip",
-      "downloadCount": 4
+      "downloadCount": 5
     }
   },
   "history": [
@@ -76,7 +76,11 @@
     {
       "date": "2026-10-09",
       "total": 197
+    },
+    {
+      "date": "2026-10-10",
+      "total": 216
     }
   ],
-  "updatedAt": "2026-10-09T15:59:05+08:00"
+  "updatedAt": "2026-10-10T15:43:33+08:00"
 }
