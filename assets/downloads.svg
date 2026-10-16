@@ -5,7 +5,7 @@
 <g font-family="system-ui, -apple-system, Segoe UI, Microsoft YaHei, sans-serif" fill="#0f172a">
 <text x="32" y="48" font-size="28" font-weight="700">汉化包下载趋势</text>
 <text x="32" y="78" font-size="18" fill="#64748b">最近 90 天的真实累计记录</text>
-<text x="674" y="48" font-size="42" text-anchor="end" font-weight="700" fill="#0891b2">285</text>
+<text x="674" y="48" font-size="42" text-anchor="end" font-weight="700" fill="#0891b2">297</text>
 <text x="674" y="78" font-size="18" text-anchor="end" fill="#64748b">累计下载次数</text>
 <text x="78" y="119" font-size="18" fill="#0891b2">累计汉化包下载</text>
 <line x1="78" y1="292.0" x2="674" y2="292.0" stroke="#e2e8f0" stroke-width="1" />
@@ -19,9 +19,9 @@
 <line x1="78" y1="152.0" x2="674" y2="152.0" stroke="#e2e8f0" stroke-width="1" />
 <text x="66" y="158.0" font-size="18" text-anchor="end" fill="#64748b">400</text>
 <text x="78" y="324" font-size="18" >2026-10-03</text>
-<text x="674" y="324" font-size="18" text-anchor="end">2026-10-15</text>
-<path d="M 78.0,260.5 L 127.67,257.7 L 177.33,254.2 L 227.0,246.5 L 276.67,240.9 L 326.33,227.95 L 376.0,223.05 L 425.67,216.4 L 475.33,210.45 L 525.0,204.85 L 574.67,202.05 L 624.33,196.8 L 674.0,192.25" fill="none" stroke="#0891b2" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
-<circle cx="674.0" cy="192.25" r="5" fill="#0891b2" />
+<text x="674" y="324" font-size="18" text-anchor="end">2026-10-16</text>
+<path d="M 78.0,260.5 L 123.85,257.7 L 169.69,254.2 L 215.54,246.5 L 261.38,240.9 L 307.23,227.95 L 353.08,223.05 L 398.92,216.4 L 444.77,210.45 L 490.62,204.85 L 536.46,202.05 L 582.31,196.8 L 628.15,192.25 L 674.0,188.05" fill="none" stroke="#0891b2" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
+<circle cx="674.0" cy="188.05" r="5" fill="#0891b2" />
 <text x="32" y="359" font-size="18" fill="#64748b">仅统计 GitHub 汉化 ZIP，含已记录历史包的下载。</text>
-<text x="32" y="386" font-size="18" fill="#64748b">记录起点：2026-10-03 · 更新：2026-10-15（北京时间）</text>
+<text x="32" y="386" font-size="18" fill="#64748b">记录起点：2026-10-03 · 更新：2026-10-16（北京时间）</text>
 </g></svg>
