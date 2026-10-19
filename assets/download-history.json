@@ -5,7 +5,7 @@
   "assets": {
     "542299883": {
       "name": "REFramework-01414.zip",
-      "downloadCount": 28
+      "downloadCount": 29
     },
     "540984589": {
       "name": "REFramework-01409.zip",
@@ -53,7 +53,7 @@
     },
     "629995624": {
       "name": "REFramework-01432.zip",
-      "downloadCount": 88
+      "downloadCount": 108
     }
   },
   "history": [
@@ -120,7 +120,11 @@
     {
       "date": "2026-10-18",
       "total": 328
+    },
+    {
+      "date": "2026-10-19",
+      "total": 349
     }
   ],
-  "updatedAt": "2026-10-18T14:34:20+08:00"
+  "updatedAt": "2026-10-19T14:46:37+08:00"
 }
