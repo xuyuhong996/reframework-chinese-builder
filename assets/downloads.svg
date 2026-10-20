@@ -5,7 +5,7 @@
 <g font-family="system-ui, -apple-system, Segoe UI, Microsoft YaHei, sans-serif" fill="#0f172a">
 <text x="32" y="48" font-size="28" font-weight="700">汉化包下载趋势</text>
 <text x="32" y="78" font-size="18" fill="#64748b">最近 90 天的真实累计记录</text>
-<text x="674" y="48" font-size="42" text-anchor="end" font-weight="700" fill="#0891b2">349</text>
+<text x="674" y="48" font-size="42" text-anchor="end" font-weight="700" fill="#0891b2">358</text>
 <text x="674" y="78" font-size="18" text-anchor="end" fill="#64748b">累计下载次数</text>
 <text x="78" y="119" font-size="18" fill="#0891b2">累计汉化包下载</text>
 <line x1="78" y1="292.0" x2="674" y2="292.0" stroke="#e2e8f0" stroke-width="1" />
@@ -19,9 +19,9 @@
 <line x1="78" y1="152.0" x2="674" y2="152.0" stroke="#e2e8f0" stroke-width="1" />
 <text x="66" y="158.0" font-size="18" text-anchor="end" fill="#64748b">400</text>
 <text x="78" y="324" font-size="18" >2026-10-03</text>
-<text x="674" y="324" font-size="18" text-anchor="end">2026-10-19</text>
-<path d="M 78.0,260.5 L 115.25,257.7 L 152.5,254.2 L 189.75,246.5 L 227.0,240.9 L 264.25,227.95 L 301.5,223.05 L 338.75,216.4 L 376.0,210.45 L 413.25,204.85 L 450.5,202.05 L 487.75,196.8 L 525.0,192.25 L 562.25,188.05 L 599.5,182.45 L 636.75,177.2 L 674.0,169.85" fill="none" stroke="#0891b2" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
-<circle cx="674.0" cy="169.85" r="5" fill="#0891b2" />
+<text x="674" y="324" font-size="18" text-anchor="end">2026-10-20</text>
+<path d="M 78.0,260.5 L 113.06,257.7 L 148.12,254.2 L 183.18,246.5 L 218.24,240.9 L 253.29,227.95 L 288.35,223.05 L 323.41,216.4 L 358.47,210.45 L 393.53,204.85 L 428.59,202.05 L 463.65,196.8 L 498.71,192.25 L 533.76,188.05 L 568.82,182.45 L 603.88,177.2 L 638.94,169.85 L 674.0,166.7" fill="none" stroke="#0891b2" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
+<circle cx="674.0" cy="166.7" r="5" fill="#0891b2" />
 <text x="32" y="359" font-size="18" fill="#64748b">仅统计 GitHub 汉化 ZIP，含已记录历史包的下载。</text>
-<text x="32" y="386" font-size="18" fill="#64748b">记录起点：2026-10-03 · 更新：2026-10-19（北京时间）</text>
+<text x="32" y="386" font-size="18" fill="#64748b">记录起点：2026-10-03 · 更新：2026-10-20（北京时间）</text>
 </g></svg>
