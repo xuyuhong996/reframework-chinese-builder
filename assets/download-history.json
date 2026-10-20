@@ -49,11 +49,11 @@
     },
     "629365649": {
       "name": "REFramework-01429.zip",
-      "downloadCount": 9
+      "downloadCount": 10
     },
     "629995624": {
       "name": "REFramework-01432.zip",
-      "downloadCount": 108
+      "downloadCount": 116
     }
   },
   "history": [
@@ -124,7 +124,11 @@
     {
       "date": "2026-10-19",
       "total": 349
+    },
+    {
+      "date": "2026-10-20",
+      "total": 358
     }
   ],
-  "updatedAt": "2026-10-19T14:46:37+08:00"
+  "updatedAt": "2026-10-20T14:34:05+08:00"
 }
