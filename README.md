@@ -45,7 +45,7 @@ GitHub Actions（自动工作流）计划每 15 分钟检查一次 [官方 Night
 <p>
   <img src="assets/wechat-reward-qr.jpg" alt="微信收款二维码" width="320" align="middle">
   &nbsp;&nbsp;
-  <a href="https://github.com/im0qianqian/QQ-Emoticon" title="动图来源：QQ-Emoticon"><img src="assets/support-kowtow.gif" alt="跪地磕头，感谢支持" width="112" align="middle"></a>
+  <a href="https://p.qqan.com/up/2023-6/16867938501951795.gif" title="查看动图原始来源"><img src="assets/support-kowtow.gif" alt="跪地磕头，感谢支持" width="112" align="middle"></a>
 </p>
 
 ## 本地手动构建
