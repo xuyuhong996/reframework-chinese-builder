@@ -20,7 +20,7 @@ REFramework 的原作者项目为 [praydog/REFramework](https://github.com/prayd
 
 ## 提交未汉化 Mod
 
-如果你在《怪物猎人：荒野》中发现仍未汉化的 Mod，欢迎在本仓库的 Issues 中贴出 Mod 的发布链接，并说明界面中未汉化的大致位置。我会根据实际情况补充汉化库；是否能够适配取决于 Mod 的实现方式与可取得的文本内容。
+无论是《怪物猎人：荒野》，还是 REFramework 支持的其他游戏，只要有 Mod 汉化需求，都欢迎在本仓库的 Issues 中反馈。请提供游戏名称、Mod 发布链接，并说明需要汉化的界面位置，最好附上截图。我会根据大家的反馈持续补充汉化库，让更多游戏的玩家用上中文界面。
 
 ## 获取成品
 
@@ -42,7 +42,11 @@ GitHub Actions（自动工作流）计划每 15 分钟检查一次 [官方 Night
 
 如果这个项目对你有帮助，欢迎通过微信打赏支持维护。
 
-<img src="assets/wechat-reward-qr.jpg" alt="微信收款二维码" width="320">
+<p>
+  <img src="assets/wechat-reward-qr.jpg" alt="微信收款二维码" width="320" align="middle">
+  &nbsp;&nbsp;
+  <a href="https://github.com/im0qianqian/QQ-Emoticon" title="动图来源：QQ-Emoticon"><img src="assets/support-kowtow.gif" alt="跪地磕头，感谢支持" width="112" align="middle"></a>
+</p>
 
 ## 本地手动构建
 
