@@ -1,6 +1,6 @@
 # REFramework Chinese Builder
 
-为 REFramework 注入中文文本，跟随官方 Nightly（开发版）自动构建和发布，让《怪物猎人：荒野》的玩家更方便地使用中文界面。
+为 REFramework 注入中文文本，跟随官方 Nightly（开发版）自动构建和发布，让 REFramework 所支持游戏的玩家更方便地使用中文界面。
 
 **[下载最新汉化包](https://github.com/xuyuhong996/reframework-chinese-builder/releases/latest)** · [查看历史版本](https://github.com/xuyuhong996/reframework-chinese-builder/releases) · [反馈未汉化内容](https://github.com/xuyuhong996/reframework-chinese-builder/issues)
 
@@ -14,9 +14,9 @@ REFramework 的原作者项目为 [praydog/REFramework](https://github.com/prayd
 
 ## 使用范围说明
 
-当前发布的 DLL **仅在《怪物猎人：荒野》** 中由作者实际使用过。
+本项目基于官方 REFramework 源码注入汉化库后构建。官方新版框架已支持多款游戏，因此本汉化版原则上也保留对应版本的多游戏支持能力，**不仅限于《怪物猎人：荒野》**。
 
-REFramework 也会被其他游戏使用，但作者没有在其他游戏中安装或验证过本项目生成的 DLL。因此，**不保证它适用于任何其他游戏**；请不要把它当作其他游戏的通用汉化 DLL 使用。
+目前作者**仅在《怪物猎人：荒野》中实际使用过**，其他游戏尚未逐一验证。实际兼容范围以对应官方版本为准。
 
 ## 提交未汉化 Mod
 
