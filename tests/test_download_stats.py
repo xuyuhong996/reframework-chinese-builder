@@ -46,11 +46,14 @@ def makeHistory(assets=None, timestamp="2026-10-03T00:00:00+00:00"):
 
 
 class DownloadStatsTests(unittest.TestCase):
-    def testPaginationIncludesPrereleasesAndExcludesDraftAndChecksum(self):
+    def testPaginationExcludesDraftChecksumAndOptionalCompanions(self):
         pages = {
             FIRST_URL: ([
                 {"draft": True, "assets": [makeAsset(100, 99)]},
-                {"draft": False, "assets": [makeAsset(101, 12), makeAsset(102, 4, "package.zip.sha256")]},
+                {"draft": False, "assets": [
+                    makeAsset(101, 12), makeAsset(102, 4, "package.zip.sha256"),
+                    makeAsset(104, 50, "VR.zip"), makeAsset(105, 30, "csharp-api.zip"),
+                ]},
             ], SECOND_URL),
             SECOND_URL: ([{"draft": False, "prerelease": True, "assets": [makeAsset(103, 5)]}], None),
         }
