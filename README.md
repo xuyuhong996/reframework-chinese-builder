@@ -42,10 +42,12 @@ GitHub Actions（自动工作流）计划每 15 分钟检查一次 [官方 Night
 
 如果这个项目对你有帮助，欢迎通过微信打赏支持维护。
 
+**感谢每一位打赏支持的大佬！您的支持是持续维护的动力，给您磕头啦！**
+
 <p>
   <img src="assets/wechat-reward-qr.jpg" alt="微信收款二维码" width="320" align="middle">
   &nbsp;&nbsp;
-  <a href="https://p.qqan.com/up/2023-6/16867938501951795.gif" title="查看动图原始来源"><img src="assets/support-kowtow.gif" alt="跪地磕头，感谢支持" width="112" align="middle"></a>
+  <a href="https://p.qqan.com/up/2023-6/16867938501951795.gif" title="查看动图原始来源"><img src="assets/support-kowtow.gif" alt="跪地磕头，感谢支持" width="336" align="middle"></a>
 </p>
 
 ## 本地手动构建
