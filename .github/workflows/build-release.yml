@@ -1,20 +1,6 @@
 name: Build and release REFramework Chinese
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - build_chinese.py
-      - scripts/release_packages.py
-      - translations.txt
-      - hash_dict.txt
-      - .github/workflows/build-release.yml
-  pull_request:
-    paths:
-      - build_chinese.py
-      - scripts/release_packages.py
-      - tests/**
-      - .github/workflows/build-release.yml
   schedule:
     - cron: "7,22,37,52 * * * *"
   workflow_dispatch:
@@ -28,7 +14,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: reframework-chinese-${{ github.event.pull_request.number || 'release' }}
+  group: reframework-chinese-build
   cancel-in-progress: false
 
 jobs:
@@ -42,7 +28,7 @@ jobs:
       - id: interval
         env:
           GH_TOKEN: ${{ github.token }}
-          FORCE_BUILD: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request' || github.event_name == 'push' }}
+          FORCE_BUILD: ${{ github.event_name == 'workflow_dispatch' }}
           CHECK_ONLY: ${{ github.event_name == 'workflow_dispatch' && inputs.check_only }}
         shell: bash
         run: |
@@ -58,11 +44,6 @@ jobs:
           latest_release=$(gh api "repos/${GITHUB_REPOSITORY}/releases/latest" 2>/dev/null || true)
           latest_title=$(printf '%s' "$latest_release" | jq -r '.name // "尚未发布"')
           latest_notes=$(printf '%s' "$latest_release" | jq -r '.body // ""')
-          release_matches=false
-          if printf '%s' "$latest_notes" | grep -Fq "Nightly 发布: $upstream_release_tag" &&
-             printf '%s' "$latest_notes" | grep -Fq 'Release layout: official-nightly'; then
-            release_matches=true
-          fi
           {
             echo "## 汉化版本检查"
             printf '官方 Nightly 标签：`%s`\n\n' "$upstream_release_tag"
@@ -73,21 +54,21 @@ jobs:
 
           if [ "$CHECK_ONLY" = "true" ]; then
             echo "should_build=false" >> "$GITHUB_OUTPUT"
-            if [ "$release_matches" = "true" ]; then
-              echo "本次结果：仅检查版本；汉化主包与官方同版本配套包均已发布。" >> "$GITHUB_STEP_SUMMARY"
+            if printf '%s' "$latest_notes" | grep -Fq "Nightly 发布: $upstream_release_tag"; then
+              echo "本次结果：仅检查版本；汉化已与官方 Nightly 同步。" >> "$GITHUB_STEP_SUMMARY"
             else
-              echo "本次结果：仅检查版本；尚未发布对应的新结构汉化包。" >> "$GITHUB_STEP_SUMMARY"
+              echo "本次结果：仅检查版本；尚未发布对应的官方 Nightly。" >> "$GITHUB_STEP_SUMMARY"
             fi
             exit 0
           fi
 
           if [ "$FORCE_BUILD" = "true" ]; then
             echo "should_build=true" >> "$GITHUB_OUTPUT"
-            echo "本次结果：代码更新或手动触发，继续构建；合并请求只验证，不发布。" >> "$GITHUB_STEP_SUMMARY"
+            echo "本次结果：手动触发，继续重新构建。" >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
 
-          if [ "$release_matches" = "true" ]; then
+          if printf '%s' "$latest_notes" | grep -Fq "Nightly 发布: $upstream_release_tag"; then
             echo "should_build=false" >> "$GITHUB_OUTPUT"
             echo "本次结果：版本已同步，官方没有新 Nightly，正常跳过打包。" >> "$GITHUB_STEP_SUMMARY"
             exit 0
@@ -101,25 +82,19 @@ jobs:
     if: needs.decide.outputs.should_build == 'true'
     runs-on: windows-2022
     steps:
-      - uses: actions/checkout@v7
-        with:
-          persist-credentials: false
+      - uses: actions/checkout@v4
 
       - name: Checkout matching official source
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
         with:
           repository: praydog/REFramework
           ref: ${{ needs.decide.outputs.upstream_sha }}
           path: REFramework-src
           submodules: recursive
-          persist-credentials: false
 
-      - uses: actions/setup-python@v7
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.13"
-
-      - name: Test localization and packaging
-        run: python -m unittest discover -s tests -v
 
       - name: Build localized ZIP
         env:
@@ -129,42 +104,38 @@ jobs:
         shell: pwsh
         run: python build_chinese.py
 
-      - name: Prepare official-layout release
-        env:
-          GH_TOKEN: ${{ github.token }}
-          UPSTREAM_RELEASE_TAG: ${{ needs.decide.outputs.upstream_release_tag }}
-        shell: pwsh
-        run: |
-          $packages = @(Get-ChildItem -Filter 'REF Nightly *.zip' -File)
-          if ($packages.Count -ne 1) { throw '应当且只能生成一个汉化主包。' }
-          python scripts/release_packages.py $packages[0].FullName --tag $env:UPSTREAM_RELEASE_TAG
-          if ($LASTEXITCODE -ne 0) { throw '汉化主包或官方配套包验证失败。' }
-
-      - name: Upload verified release files
-        uses: actions/upload-artifact@v7
-        with:
-          name: REFramework-Chinese-Release
-          path: release/*
-          if-no-files-found: error
-
       - name: Create historical release
-        if: github.event_name != 'pull_request'
         env:
           GH_TOKEN: ${{ github.token }}
           UPSTREAM_RELEASE_TAG: ${{ needs.decide.outputs.upstream_release_tag }}
         shell: pwsh
         run: |
-          $bundle = Get-Content -Raw release/bundle-info.json | ConvertFrom-Json
-          $tag = $bundle.releaseTag
-          if ($env:UPSTREAM_RELEASE_TAG -notmatch '^nightly-([0-9]{5})-') { throw '官方编号无效。' }
-          $releaseTitle = "REFramework-汉化-$($Matches[1])"
+          $package = Get-ChildItem -Filter 'REF Nightly *.zip' -File |
+            Sort-Object LastWriteTime -Descending |
+            Select-Object -First 1
+          if ($null -eq $package) { throw '未找到构建生成的 ZIP。' }
+
+          $hash = (Get-FileHash -LiteralPath $package.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+          if ($env:UPSTREAM_RELEASE_TAG -notmatch '^nightly-(\d+)') {
+            throw "无法识别 Nightly 编号: $env:UPSTREAM_RELEASE_TAG"
+          }
+          $nightlyNumber = $Matches[1]
+          $releaseTitle = "REFramework-汉化-$nightlyNumber"
+          $releaseAssetBase = "REFramework-$nightlyNumber"
+          $releasePackage = Join-Path $package.DirectoryName "$releaseAssetBase.zip"
+          $checksum = "$releasePackage.sha256"
+          Copy-Item -LiteralPath $package.FullName -Destination $releasePackage
+          Set-Content -LiteralPath $checksum -Value "$hash  $releaseAssetBase.zip" -Encoding ascii
+          $tag = "build-$($hash.Substring(0, 12))"
+          # GitHub 会过滤中文附件名；使用稳定的 ASCII 名称，中文名称保留在 Release 标题。
+
           gh release view $tag --repo $env:GITHUB_REPOSITORY 2>$null
           if ($LASTEXITCODE -eq 0) {
-            Write-Host '这组成品已有历史发布，不重复创建。'
+            Write-Host '这个 ZIP 已有历史发布版本，不重复创建。'
             exit 0
           }
-          gh release create $tag release/REFramework.zip release/VR.zip release/csharp-api.zip `
-            release/SHA256SUMS.txt release/bundle-info.json `
+
+          gh release create $tag $releasePackage $checksum `
             --repo $env:GITHUB_REPOSITORY `
             --title $releaseTitle `
-            --notes-file release/release-notes.md
+            --notes "由 GitHub Actions 的 Windows Visual Studio 2022 环境自动构建。`n`nNightly 发布: $env:UPSTREAM_RELEASE_TAG"

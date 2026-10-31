@@ -8,7 +8,7 @@
   3. 在 ImGui 源码中插入安全的运行时翻译钩子
   4. 添加 CJK 字体支持
   5. 编译 dinput8.dll
-  6. 打包汉化 DLL、游戏清单和安装说明
+  6. 打包为 zip (仅含 dll)
 
 用法:
   python build_chinese.py
@@ -17,7 +17,6 @@
 import os, sys, re, shutil, subprocess, zipfile, textwrap, json, locale, ctypes, hashlib
 from pathlib import Path
 from datetime import datetime
-from scripts.release_packages import CoreFiles, createCorePackage, validateUniversalSource
 import threading, time, itertools
 
 class TaskProgress:
@@ -246,7 +245,7 @@ SRC_DIR = Path(os.environ.get("REF_SOURCE_DIR", str(DEFAULT_SRC_DIR)))
 BUILD_ROOT_BASE = Path(os.environ.get("REF_BUILD_ROOT", str(DEFAULT_BUILD_ROOT)))
 BUILD_ROOT   = BUILD_ROOT_BASE / "bootstrap"
 BUILD_DIR_NAME = "build"
-# 校验当前官方 Nightly 的统一目标，保留官方运行时游戏识别能力。
+# 构建目标由复制后的上游源码自动识别，兼容旧版 MHWILDS 与新版统一 REFramework 目标。
 BUILD_TARGET = ""
 DICT_FILE    = SCRIPT_DIR / "translations.txt"
 HASH_DICT    = SCRIPT_DIR / "hash_dict.txt"
@@ -1328,13 +1327,14 @@ def replace_cmake_regex_once(content: str, pattern: str, new: str, label: str) -
 
 
 def resolve_build_target(build: Path) -> str:
-    """仅为当前官方 Nightly 的通用源码生成新版汉化核心包。"""
-    try:
-        games = validateUniversalSource(build)
-    except (OSError, ValueError) as error:
-        fail(str(error))
-    log(f"已校验通用目标；对应官方 README 列出 {len(games)} 款游戏。")
-    return "REFramework"
+    """按上游 CMake 的目标声明选择实际需要输出 dinput8.dll 的目标。"""
+    cmake_lists = build / "CMakeLists.txt"
+    content = read_text(cmake_lists)
+    if "# Target: REFramework\n" in content:
+        return "REFramework"
+    if "# Target: MHWILDS\n" in content:
+        return "MHWILDS"
+    fail("未识别到可构建的 REFramework 目标；上游 CMake 结构已变化，已停止以避免生成错误 DLL")
 
 
 def patch_linux_cmake(build: Path):
@@ -1875,14 +1875,25 @@ def build():
 # ============================================================================
 def package(zip_label: str):
     dll_path = BUILD_ROOT / BUILD_DIR_NAME / "bin" / BUILD_TARGET / "dinput8.dll"
-    zip_path = OUTPUT_DIR / f"{zip_label}.zip"
-    try:
-        createCorePackage(CoreFiles(BUILD_ROOT, dll_path, zip_path, REWARD_QR_FILE))
-    except (OSError, ValueError) as error:
-        fail(str(error))
+    if not dll_path.exists():
+        fail(f"找不到编译产物: {dll_path}")
+    if not REWARD_QR_FILE.exists():
+        fail(f"找不到打赏二维码: {REWARD_QR_FILE}")
+
+    dll_size = dll_path.stat().st_size
+    log(f"DLL 大小: {dll_size:,} 字节")
+
+    zip_name = f"{zip_label}.zip"
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    zip_path = OUTPUT_DIR / zip_name
+    with zipfile.ZipFile(str(zip_path), 'w', zipfile.ZIP_DEFLATED) as zf:
+        zf.write(str(dll_path), "dinput8.dll")
+        zf.write(str(REWARD_QR_FILE), "赏口饭吃.jpg")
+
+    zip_size = zip_path.stat().st_size
     log(f"已打包: {zip_path}")
-    log("已包含汉化 DLL、官方游戏清单、安装说明、原项目许可证和打赏图片。")
-    log(f"ZIP 大小: {zip_path.stat().st_size:,} 字节")
+    log("已包含打赏二维码: 赏口饭吃.jpg")
+    log(f"ZIP 大小: {zip_size:,} 字节")
     return zip_path
 
 

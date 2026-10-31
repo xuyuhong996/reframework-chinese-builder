@@ -6,7 +6,6 @@ __pycache__/
 
 # Build artifacts
 ref_build/
-release/
 REF Nightly *.zip
 dinput8.dll
 

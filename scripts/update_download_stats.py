@@ -19,7 +19,6 @@ API_VERSION = "2026-03-10"
 DEFAULT_REPOSITORY = "xuyuhong996/reframework-chinese-builder"
 REQUEST_TIMEOUT_SECONDS = 30
 PAGE_SIZE = 100
-COMPANION_ASSET_NAMES = {"vr.zip", "csharp-api.zip"}
 FIRST_PAGE = 1
 ZERO_COUNT = 0
 ONE_POINT = 1
@@ -118,8 +117,7 @@ def readAssetCounts(releases):
         if release.get("draft", False):
             continue
         for asset in release["assets"]:
-            assetName = asset["name"].lower()
-            if not assetName.endswith(".zip") or assetName in COMPANION_ASSET_NAMES:
+            if not asset["name"].lower().endswith(".zip"):
                 continue
             if asset.get("state", "uploaded") != "uploaded":
                 continue
