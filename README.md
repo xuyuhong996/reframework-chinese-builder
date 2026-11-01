@@ -38,27 +38,6 @@ GitHub Actions（自动工作流）计划每 15 分钟检查一次 [官方 Night
 
 汉化包使用官方 **Nightly 编号**：例如官方 `nightly-01424-…` 对应发布标题 `REFramework-汉化-01424` 和附件 `REFramework-01424.zip`。官方主仓库的稳定版使用 `v1.5.9.1` 这类编号，属于不同发布系列，不能直接用来判断汉化版是否落后。
 
-## 自动同步到 N网
-
-公开仓库成功创建 GitHub 新包后，立即触发 [私有发布仓库](https://github.com/xuyuhong996/reframework-nexus-publisher) 的 `publish-nexus.yml`，仅传递本次 `release_tag`（发布标签）。没有独立的定时同步任务；没有新包、构建失败、发布已存在或使用“仅检查版本”时，都不会触发。
-
-N网 API Key（接口密钥）只保存在私有仓库的 `NEXUSMODS_API_KEY` 机密中。公开仓库只配置专用的 `NEXUS_PUBLISH_TOKEN`（GitHub 调度令牌），仅授权私有发布仓库的 Actions（工作流）读写权限，用来启动指定工作流。默认目标为 `xuyuhong996/reframework-nexus-publisher`，可以通过仓库变量 `NEXUS_PUBLISH_REPOSITORY` 覆盖。
-
-私有仓库从固定的公开仓库下载该标签的 ZIP 和 SHA256（文件摘要）附件，核对源码标记、编号、包名、摘要和构建标签后，使用 [Nexus Mods 官方组件](https://github.com/Nexus-Mods/upload-action) 上传。默认沿用已从浏览器核实的主文件 `8284890`，对应 [N网项目页面](https://www.nexusmods.com/monsterhunterwilds/mods/5269?tab=files) 的当前默认下载版本链。
-
-未配置调度令牌时，公开工作流只在摘要中提示尚未启用同步。触发失败不会回滚已经发布的 GitHub 包；实际上传结果在私有仓库的运行记录中查看，失败后可在那里重新运行。N网密钥和调度令牌均不应写入源码。
-
-```mermaid
-flowchart TD
-  A[公开仓库构建 ZIP 与 SHA256] --> B{GitHub 新包创建成功}
-  B -->|是| C[使用专用令牌发送本次发布标签]
-  B -->|否或发布已存在| D[不触发 N网同步]
-  C --> E[私有仓库获取指定标签的同一份附件]
-  E --> F[核对摘要、编号及压缩包]
-  F --> G[官方组件使用私有仓库中的 N网密钥上传]
-  G --> H[创建主文件新版本并归档旧版本]
-```
-
 ## 打赏支持
 
 如果这个项目对你有帮助，欢迎通过微信打赏支持维护。
