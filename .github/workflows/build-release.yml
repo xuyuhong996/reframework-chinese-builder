@@ -141,8 +141,16 @@ jobs:
             exit 0
           }
 
+          # 附注标签记录本次发布时间，并准确指向参与构建的仓库提交。
+          git -c 'user.name=github-actions[bot]' -c 'user.email=41898282+github-actions[bot]@users.noreply.github.com' `
+            tag --annotate $tag $env:GITHUB_SHA --message $releaseTitle
+          if ($LASTEXITCODE -ne 0) { throw '发布标签创建失败。' }
+          git push origin "refs/tags/$tag"
+          if ($LASTEXITCODE -ne 0) { throw '发布标签推送失败。' }
+
           gh release create $tag $releasePackage $checksum `
             --repo $env:GITHUB_REPOSITORY `
+            --verify-tag --latest `
             --title $releaseTitle `
             --notes "由 GitHub Actions 的 Windows Visual Studio 2022 环境自动构建。`n`nNightly 发布: $env:UPSTREAM_RELEASE_TAG"
           if ($LASTEXITCODE -ne 0) { throw 'GitHub 新包发布失败。' }
