@@ -96,6 +96,10 @@ jobs:
         with:
           python-version: "3.13"
 
+      - name: Verify release workflow
+        shell: pwsh
+        run: python -m unittest discover -s tests -v
+
       - name: Build localized ZIP
         env:
           SKIP_GITHUB_PUBLISH: "1"
@@ -105,11 +109,13 @@ jobs:
         run: python build_chinese.py
 
       - name: Create historical release
+        id: release
         env:
           GH_TOKEN: ${{ github.token }}
           UPSTREAM_RELEASE_TAG: ${{ needs.decide.outputs.upstream_release_tag }}
         shell: pwsh
         run: |
+          "created=false" >> $env:GITHUB_OUTPUT
           $package = Get-ChildItem -Filter 'REF Nightly *.zip' -File |
             Sort-Object LastWriteTime -Descending |
             Select-Object -First 1
@@ -139,3 +145,27 @@ jobs:
             --repo $env:GITHUB_REPOSITORY `
             --title $releaseTitle `
             --notes "由 GitHub Actions 的 Windows Visual Studio 2022 环境自动构建。`n`nNightly 发布: $env:UPSTREAM_RELEASE_TAG"
+          if ($LASTEXITCODE -ne 0) { throw 'GitHub 新包发布失败，已停止 N网同步。' }
+
+          "filename=$releasePackage" >> $env:GITHUB_OUTPUT
+          "version=$nightlyNumber.$($hash.Substring(0, 12))" >> $env:GITHUB_OUTPUT
+          "release_tag=$tag" >> $env:GITHUB_OUTPUT
+          "display_name=REFramework Chinese $nightlyNumber" >> $env:GITHUB_OUTPUT
+          "description=简体中文汉化。Nightly: $env:UPSTREAM_RELEASE_TAG; SHA256: $hash; https://github.com/$env:GITHUB_REPOSITORY/releases/tag/$tag" >> $env:GITHUB_OUTPUT
+          "created=true" >> $env:GITHUB_OUTPUT
+
+      - name: Dispatch private Nexus publication
+        if: steps.release.outputs.created == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.NEXUS_PUBLISH_TOKEN }}
+          NEXUS_PUBLISH_REPOSITORY: ${{ vars.NEXUS_PUBLISH_REPOSITORY || 'xuyuhong996/reframework-nexus-publisher' }}
+          RELEASE_TAG: ${{ steps.release.outputs.release_tag }}
+        shell: pwsh
+        run: |
+          if ([string]::IsNullOrWhiteSpace($env:GH_TOKEN)) {
+            'N网同步未启用：请配置 NEXUS_PUBLISH_TOKEN，以触发私有仓库；N网密钥只保存在私有仓库。' >> $env:GITHUB_STEP_SUMMARY
+            exit 0
+          }
+          gh workflow run publish-nexus.yml --repo $env:NEXUS_PUBLISH_REPOSITORY --ref main -f "release_tag=$env:RELEASE_TAG"
+          if ($LASTEXITCODE -ne 0) { throw '私有仓库的 N网发布工作流触发失败。' }
+          "已将新包 $env:RELEASE_TAG 交给私有仓库 $env:NEXUS_PUBLISH_REPOSITORY 上传到 N网。" >> $env:GITHUB_STEP_SUMMARY
