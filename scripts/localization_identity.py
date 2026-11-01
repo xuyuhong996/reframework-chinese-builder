@@ -4,9 +4,10 @@ import json
 import re
 from pathlib import Path
 
+from scripts.nexus_links import NEXUS_PAGES_PATH, buildNexusLinkCode, loadNexusPages
+
 LOCALIZATION_AUTHOR = "xuyuhong996"
 LOCALIZATION_REPOSITORY_URL = "https://github.com/xuyuhong996/reframework-chinese-builder"
-LOCALIZATION_NEXUS_URL = "https://www.nexusmods.com/monsterhunterwilds/mods/5269"
 IDENTITY_HEADER_NAME = "LocalizationIdentity.hpp"
 PATCH_MARKER = "/* REF_LOCALIZATION_IDENTITY */"
 EXPECTED_MATCH_COUNT = 1
@@ -22,7 +23,10 @@ ABOUT_INSPIRATION_PATTERN = (
 LOCALIZED_ABOUT_LINES = (
     '    ImGui::TextUnformatted(REF_LOCALIZATION_AUTHOR);',
     '    reframework::localization::drawProjectLink("GitHub", REF_LOCALIZATION_PROJECT);',
-    '    reframework::localization::drawProjectLink("Nexus Mods", REF_LOCALIZATION_NEXUS);',
+    '    reframework::localization::drawNexusProjectLink();',
+)
+LEGACY_NEXUS_LINK = (
+    '    reframework::localization::drawProjectLink("Nexus Mods", REF_LOCALIZATION_NEXUS);'
 )
 LINK_HELPER = '''
 #include <windows.h>
@@ -44,7 +48,7 @@ namespace reframework::localization {
 '''
 
 
-def writeBuildIdentity(buildDirectory, nightlyNumber):
+def writeBuildIdentity(buildDirectory, nightlyNumber, pagesPath=NEXUS_PAGES_PATH):
     """版本来自本次打包已确定的官方编号，不再单独请求最新版本。"""
     if not re.fullmatch(r"[0-9]{5}", nightlyNumber):
         raise ValueError("界面版本必须使用五位官方 Nightly 编号。")
@@ -52,14 +56,14 @@ def writeBuildIdentity(buildDirectory, nightlyNumber):
         "REF_NIGHTLY_NUMBER": nightlyNumber,
         "REF_LOCALIZATION_AUTHOR": f"汉化作者：{LOCALIZATION_AUTHOR}",
         "REF_LOCALIZATION_PROJECT": LOCALIZATION_REPOSITORY_URL,
-        "REF_LOCALIZATION_NEXUS": LOCALIZATION_NEXUS_URL,
     }
+    nexusCode = buildNexusLinkCode(buildDirectory, loadNexusPages(pagesPath))
     lines = ["#pragma once", "// 由本次构建生成，界面编号与发布包保持一致。"]
     lines.extend(f"#define {name} {json.dumps(value, ensure_ascii=False)}"
                  for name, value in definitions.items())
     headerPath = Path(buildDirectory) / "src" / IDENTITY_HEADER_NAME
     headerPath.parent.mkdir(parents=True, exist_ok=True)
-    headerPath.write_text("\n".join(lines) + "\n" + LINK_HELPER, encoding="utf-8")
+    headerPath.write_text("\n".join(lines) + "\n" + LINK_HELPER + nexusCode, encoding="utf-8")
     return headerPath
 
 
@@ -81,6 +85,8 @@ def patchSourceIdentity(content):
     """全部锚点验证成功后才返回结果，重复执行不会重复插入。"""
     content = removeAboutInspiration(content, required=PATCH_MARKER not in content)
     if PATCH_MARKER in content:
+        if LEGACY_NEXUS_LINK in content:
+            return replaceUnique(content, LEGACY_NEXUS_LINK, LOCALIZED_ABOUT_LINES[-1])
         return content
     content = replaceUnique(content, UPSTREAM_HEADER,
                             f'{UPSTREAM_HEADER}\n#include "{IDENTITY_HEADER_NAME}"\n{PATCH_MARKER}')
