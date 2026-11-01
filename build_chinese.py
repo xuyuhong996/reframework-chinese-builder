@@ -108,7 +108,10 @@ CONSOLE_ENCODING = getattr(sys.stdout, "encoding", None) or PREFERRED_TEXT_ENCOD
 
 def console_safe_text(text: str, stream=None) -> str:
     stream = stream or sys.stdout
-    encoding = getattr(stream, "encoding", None) or CONSOLE_ENCODING or "utf-8"
+    encoding = getattr(stream, "encoding", None)
+    # 内存文本流没有编码限制，不能套用终端编码后丢失中文。
+    if encoding is None:
+        return text
     try:
         text.encode(encoding)
         return text
