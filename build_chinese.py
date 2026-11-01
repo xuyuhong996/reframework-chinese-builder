@@ -18,6 +18,7 @@ import os, sys, re, shutil, subprocess, zipfile, textwrap, json, locale, ctypes,
 from pathlib import Path
 from datetime import datetime
 import threading, time, itertools
+from scripts.localization_identity import patchBuildIdentity, writeBuildIdentity
 
 class TaskProgress:
     def __init__(self, message="正在处理中", zeno_speed=0.03, use_fake_percent=True):
@@ -107,7 +108,10 @@ CONSOLE_ENCODING = getattr(sys.stdout, "encoding", None) or PREFERRED_TEXT_ENCOD
 
 def console_safe_text(text: str, stream=None) -> str:
     stream = stream or sys.stdout
-    encoding = getattr(stream, "encoding", None) or CONSOLE_ENCODING or "utf-8"
+    encoding = getattr(stream, "encoding", None)
+    # 内存文本流没有编码限制，不能套用终端编码后丢失中文。
+    if encoding is None:
+        return text
     try:
         text.encode(encoding)
         return text
@@ -1486,6 +1490,7 @@ def patch_cmake_toml(build: Path):
 # 步骤 8: Patch REFramework.cpp
 # ============================================================================
 def patch_reframework_cpp(build: Path):
+    patchBuildIdentity(build)
     p = build / "src" / "REFramework.cpp"
     c = read_text(p)
     marker = "/* REF_TRANSLATE_INIT */"
@@ -2074,6 +2079,7 @@ def main():
     log("=" * 60)
 
     generate_commit_hash()
+    writeBuildIdentity(BUILD_ROOT, nightly_num)
 
     generate_translation_hpp(BUILD_ROOT / "src" / "Translation.hpp")
     generate_translation_cpp(translations, hash_translations, BUILD_ROOT / "src" / "Translation.cpp")
