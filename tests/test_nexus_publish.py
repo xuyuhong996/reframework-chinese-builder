@@ -15,6 +15,7 @@ POWERSHELL_PATH = shutil.which("pwsh")
 PACKAGE_CONTENT = b"localized-framework-fixture"
 PACKAGE_HASH = hashlib.sha256(PACKAGE_CONTENT).hexdigest()
 SOURCE_SHA = "d4611aef1d63effd3a736bdf9404ea702428017d"
+BUILDER_SHA = "a" * 40
 UPSTREAM_TAG = f"nightly-01433-{SOURCE_SHA}"
 PACKAGE_NAME = "REF Nightly 01433 -前置汉化版.zip"
 RELEASE_PACKAGE_NAME = "REFramework-01433.zip"
@@ -25,6 +26,11 @@ OUTPUT_SPLIT_COUNT = 1
 COMMAND_TIMEOUT_SECONDS = 30
 FAKE_GH_SCRIPT = """
 $ErrorActionPreference = 'Stop'
+function git {
+    Add-Content -LiteralPath $env:GH_CALLS_FILE -Value ("git " + ($args -join ' '))
+    $exitCode = if ($args -contains 'push') { $env:GIT_PUSH_EXIT_CODE } else { $env:GIT_TAG_EXIT_CODE }
+    $global:LASTEXITCODE = [int]$exitCode
+}
 function gh {
     $commandText = $args -join ' '
     Add-Content -LiteralPath $env:GH_CALLS_FILE -Value $commandText
@@ -60,12 +66,15 @@ class NexusPublishTests(unittest.TestCase):
     def runStep(self, directory, stepName, overrides=None):
         environment = os.environ.copy() | {
             "GITHUB_REPOSITORY": "xuyuhong996/reframework-chinese-builder",
+            "GITHUB_SHA": BUILDER_SHA,
             "UPSTREAM_RELEASE_TAG": UPSTREAM_TAG,
             "GITHUB_OUTPUT": str(Path(directory) / "outputs.txt"),
             "GITHUB_STEP_SUMMARY": str(Path(directory) / "summary.md"),
             "GH_CALLS_FILE": str(Path(directory) / "calls.txt"),
             "GH_VIEW_EXIT_CODE": str(FAILURE_EXIT_CODE),
             "GH_CREATE_EXIT_CODE": str(SUCCESS_EXIT_CODE),
+            "GIT_TAG_EXIT_CODE": str(SUCCESS_EXIT_CODE),
+            "GIT_PUSH_EXIT_CODE": str(SUCCESS_EXIT_CODE),
             "GH_TOKEN": "", "NEXUS_PUBLISH_REPOSITORY": "xuyuhong996/reframework-nexus-publisher",
             "RELEASE_TAG": f"build-{PACKAGE_HASH[:HASH_PREFIX_LENGTH]}",
         } | (overrides or {})
@@ -93,6 +102,9 @@ class NexusPublishTests(unittest.TestCase):
             calls = (Path(directory) / "calls.txt").read_text("utf-8")
             self.assertIn(f"release create build-{PACKAGE_HASH[:HASH_PREFIX_LENGTH]}", calls)
             self.assertIn(str(packagePath), calls)
+            self.assertIn(f"tag --annotate build-{PACKAGE_HASH[:HASH_PREFIX_LENGTH]} {BUILDER_SHA}", calls)
+            self.assertIn(f"git push origin refs/tags/build-{PACKAGE_HASH[:HASH_PREFIX_LENGTH]}", calls)
+            self.assertIn("--verify-tag --latest", calls)
             self.assertEqual(Path(f"{packagePath}.sha256").read_text("ascii").strip(),
                              f"{PACKAGE_HASH}  {RELEASE_PACKAGE_NAME}")
 
@@ -122,6 +134,17 @@ class NexusPublishTests(unittest.TestCase):
             self.assertNotEqual(result.returncode, SUCCESS_EXIT_CODE)
             self.assertEqual(readOutputs(directory), {"created": "false"})
             self.assertFalse((Path(directory) / "calls.txt").exists())
+
+    def testTagFailureStopsBeforeCreatingAReleaseOrEnablingNexusUpload(self):
+        for exitVariable in ("GIT_TAG_EXIT_CODE", "GIT_PUSH_EXIT_CODE"):
+            with self.subTest(variable=exitVariable), tempfile.TemporaryDirectory() as directory:
+                (Path(directory) / PACKAGE_NAME).write_bytes(PACKAGE_CONTENT)
+                result = self.runStep(directory, "Create historical release", {
+                    exitVariable: str(FAILURE_EXIT_CODE),
+                })
+                self.assertNotEqual(result.returncode, SUCCESS_EXIT_CODE)
+                self.assertEqual(readOutputs(directory), {"created": "false"})
+                self.assertNotIn("release create", (Path(directory) / "calls.txt").read_text("utf-8"))
 
     def testMissingDispatchTokenDoesNotContactThePrivateRepository(self):
         with tempfile.TemporaryDirectory() as directory:

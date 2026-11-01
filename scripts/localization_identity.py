@@ -16,6 +16,9 @@ UPSTREAM_TITLE = (
 )
 LOCALIZED_TITLE = 'std::format("REFramework [Nightly {}]", REF_NIGHTLY_NUMBER)'
 UPSTREAM_AUTHOR_LINE = '    ImGui::Text("Author: praydog");'
+ABOUT_INSPIRATION_PATTERN = (
+    r'^[ \t]*ImGui::Text\("(?:Inspired by the Kanan project\.|灵感来自Kanan项目。)"\);[ \t]*\n?'
+)
 LOCALIZED_ABOUT_LINES = (
     '    ImGui::TextUnformatted(REF_LOCALIZATION_AUTHOR);',
     '    reframework::localization::drawProjectLink("GitHub", REF_LOCALIZATION_PROJECT);',
@@ -66,8 +69,17 @@ def replaceUnique(content, anchor, replacement):
     return content.replace(anchor, replacement, EXPECTED_MATCH_COUNT)
 
 
+def removeAboutInspiration(content, required):
+    """兼容首次构建与已有界面补丁，其他作者信息和许可证保持原样。"""
+    patchedContent, matchCount = re.subn(ABOUT_INSPIRATION_PATTERN, "", content, flags=re.MULTILINE)
+    if matchCount > EXPECTED_MATCH_COUNT or (required and matchCount != EXPECTED_MATCH_COUNT):
+        raise ValueError("关于界面的文本锚点缺失或重复。")
+    return patchedContent
+
+
 def patchSourceIdentity(content):
     """全部锚点验证成功后才返回结果，重复执行不会重复插入。"""
+    content = removeAboutInspiration(content, required=PATCH_MARKER not in content)
     if PATCH_MARKER in content:
         return content
     content = replaceUnique(content, UPSTREAM_HEADER,

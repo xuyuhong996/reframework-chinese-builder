@@ -14,7 +14,6 @@ This menu will close after initialization if you have the remember option enable
 REFramework error: %s=REFramework错误: %s
 About=关于
 Author: praydog=原版作者：praydog
-Inspired by the Kanan project.=灵感来自Kanan项目。
 Branch: %s=分支: %s
 Commits: %i=提交: %i
 Commit hash: %s=提交哈希: %s

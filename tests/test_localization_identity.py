@@ -45,7 +45,7 @@ class LocalizationIdentityTests(unittest.TestCase):
     def testProjectIdentityKeepsOriginalCreditsAndLicenses(self):
         patchedSource = identity.patchSourceIdentity(UPSTREAM_SOURCE)
         self.assertIn(identity.UPSTREAM_AUTHOR_LINE, patchedSource)
-        self.assertIn('ImGui::Text("Inspired by the Kanan project.");', patchedSource)
+        self.assertNotIn('ImGui::Text("Inspired by the Kanan project.");', patchedSource)
         self.assertIn('ImGui::Text("https://github.com/praydog/REFramework");', patchedSource)
         self.assertIn('ImGui::TreeNode("Licenses");', patchedSource)
         for aboutLine in identity.LOCALIZED_ABOUT_LINES:
@@ -56,8 +56,19 @@ class LocalizationIdentityTests(unittest.TestCase):
         self.assertEqual(identity.patchSourceIdentity(patchedSource), patchedSource)
         self.assertEqual(patchedSource.count(identity.PATCH_MARKER), identity.EXPECTED_MATCH_COUNT)
 
+    def testExistingPatchedSourcesRemoveBothOriginalAndTranslatedAboutText(self):
+        patchedSource = identity.patchSourceIdentity(UPSTREAM_SOURCE)
+        for text in ("Inspired by the Kanan project.", "灵感来自Kanan项目。"):
+            with self.subTest(text=text):
+                legacySource = patchedSource.replace(
+                    identity.UPSTREAM_AUTHOR_LINE,
+                    f'{identity.UPSTREAM_AUTHOR_LINE}\n    ImGui::Text("{text}");',
+                )
+                self.assertEqual(identity.patchSourceIdentity(legacySource), patchedSource)
+
     def testUpstreamDriftFailsWithoutPartiallyWritingTheSource(self):
-        anchors = (identity.UPSTREAM_HEADER, identity.UPSTREAM_TITLE, identity.UPSTREAM_AUTHOR_LINE)
+        anchors = (identity.UPSTREAM_HEADER, identity.UPSTREAM_TITLE, identity.UPSTREAM_AUTHOR_LINE,
+                   '    ImGui::Text("Inspired by the Kanan project.");')
         for anchor in anchors:
             with self.subTest(anchor=anchor), tempfile.TemporaryDirectory() as directory:
                 sourcePath = Path(directory) / "src" / "REFramework.cpp"
