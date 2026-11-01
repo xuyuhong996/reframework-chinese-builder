@@ -96,6 +96,10 @@ jobs:
         with:
           python-version: "3.13"
 
+      - name: Verify release workflow
+        shell: pwsh
+        run: python -m unittest discover -s tests -v
+
       - name: Build localized ZIP
         env:
           SKIP_GITHUB_PUBLISH: "1"
@@ -105,11 +109,13 @@ jobs:
         run: python build_chinese.py
 
       - name: Create historical release
+        id: release
         env:
           GH_TOKEN: ${{ github.token }}
           UPSTREAM_RELEASE_TAG: ${{ needs.decide.outputs.upstream_release_tag }}
         shell: pwsh
         run: |
+          "created=false" >> $env:GITHUB_OUTPUT
           $package = Get-ChildItem -Filter 'REF Nightly *.zip' -File |
             Sort-Object LastWriteTime -Descending |
             Select-Object -First 1
@@ -139,3 +145,12 @@ jobs:
             --repo $env:GITHUB_REPOSITORY `
             --title $releaseTitle `
             --notes "由 GitHub Actions 的 Windows Visual Studio 2022 环境自动构建。`n`nNightly 发布: $env:UPSTREAM_RELEASE_TAG"
+          if ($LASTEXITCODE -ne 0) { throw 'GitHub 新包发布失败。' }
+
+          "filename=$releasePackage" >> $env:GITHUB_OUTPUT
+          "version=$nightlyNumber.$($hash.Substring(0, 12))" >> $env:GITHUB_OUTPUT
+          "release_tag=$tag" >> $env:GITHUB_OUTPUT
+          "display_name=REFramework Chinese $nightlyNumber" >> $env:GITHUB_OUTPUT
+          "description=简体中文汉化。Nightly: $env:UPSTREAM_RELEASE_TAG; SHA256: $hash; https://github.com/$env:GITHUB_REPOSITORY/releases/tag/$tag" >> $env:GITHUB_OUTPUT
+          "created=true" >> $env:GITHUB_OUTPUT
+

@@ -22,6 +22,13 @@ SCRIPT_SPEC.loader.exec_module(buildScript)
 
 
 class NightlyReleaseTests(unittest.TestCase):
+    def testMemoryTextStreamDoesNotLoseChineseWithAnAsciiConsole(self):
+        text = "UPSTREAM_RELEASE_TAG 格式无效"
+        with patch.object(buildScript, "CONSOLE_ENCODING", "ascii"):
+            self.assertEqual(buildScript.console_safe_text(text, io.StringIO()), text)
+        self.assertEqual(buildScript.console_safe_text(text, SimpleNamespace(encoding="ascii")),
+                         "UPSTREAM_RELEASE_TAG ????")
+
     def testPinnedTagDoesNotQueryNetwork(self):
         with (
             patch.dict(os.environ, {"UPSTREAM_RELEASE_TAG": PINNED_TAG}, clear=True),
