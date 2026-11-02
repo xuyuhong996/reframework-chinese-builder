@@ -24,7 +24,7 @@ REFramework 的原作者项目为 [praydog/REFramework](https://github.com/prayd
 
 ## 获取成品
 
-请从 **[最新汉化包](https://github.com/xuyuhong996/reframework-chinese-builder/releases/latest)** 页面下载 `REFramework-编号.zip`。每个 Release（发布版本）都会保留历史下载，并附带同名的 `SHA256` 校验文件。
+请从 **[最新汉化包](https://github.com/xuyuhong996/reframework-chinese-builder/releases/latest)** 页面下载 `REFramework-Nightly-编号.zip`。每个 Release（发布版本）都会保留历史下载，并附带同名的 `SHA256` 校验文件。
 
 最新版本请以页面的 **Latest（最新）** 标记为准，不要只看历史发布列表的第一条。
 
@@ -36,7 +36,7 @@ GitHub Actions（自动工作流）计划每 15 分钟检查一次 [官方 Night
 
 自动构建会固定使用本次检测到的 Nightly 对应源码提交，并将同一编号用于包名和发布记录，避免构建期间官方更新导致编号与源码不一致。
 
-汉化包使用官方 **Nightly 编号**：例如官方 `nightly-01424-…` 对应发布标题 `REFramework-汉化-01424` 和附件 `REFramework-01424.zip`。官方主仓库的稳定版使用 `v1.5.9.1` 这类编号，属于不同发布系列，不能直接用来判断汉化版是否落后。
+汉化包使用官方 **Nightly 编号**：例如官方 `nightly-01424-…` 对应发布标题 `REFramework-Nightly-汉化-01424` 和附件 `REFramework-Nightly-01424.zip`。官方主仓库的稳定版使用 `v1.5.9.1` 这类编号，属于不同发布系列，不能直接用来判断汉化版是否落后。历史发布保留原名称。
 
 ## 打赏支持
 

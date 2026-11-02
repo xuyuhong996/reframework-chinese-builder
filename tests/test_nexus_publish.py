@@ -17,8 +17,8 @@ PACKAGE_HASH = hashlib.sha256(PACKAGE_CONTENT).hexdigest()
 SOURCE_SHA = "d4611aef1d63effd3a736bdf9404ea702428017d"
 BUILDER_SHA = "a" * 40
 UPSTREAM_TAG = f"nightly-01433-{SOURCE_SHA}"
-PACKAGE_NAME = "REF Nightly 01433 -前置汉化版.zip"
-RELEASE_PACKAGE_NAME = "REFramework-01433.zip"
+PACKAGE_NAME = "REFramework-Nightly-01433.zip"
+RELEASE_PACKAGE_NAME = PACKAGE_NAME
 HASH_PREFIX_LENGTH = 12
 SUCCESS_EXIT_CODE = 0
 FAILURE_EXIT_CODE = 1
@@ -105,6 +105,7 @@ class NexusPublishTests(unittest.TestCase):
             self.assertIn(f"tag --annotate build-{PACKAGE_HASH[:HASH_PREFIX_LENGTH]} {BUILDER_SHA}", calls)
             self.assertIn(f"git push origin refs/tags/build-{PACKAGE_HASH[:HASH_PREFIX_LENGTH]}", calls)
             self.assertIn("--verify-tag --latest", calls)
+            self.assertIn("--title REFramework-Nightly-汉化-01433", calls)
             self.assertEqual(Path(f"{packagePath}.sha256").read_text("ascii").strip(),
                              f"{PACKAGE_HASH}  {RELEASE_PACKAGE_NAME}")
 
@@ -134,6 +135,16 @@ class NexusPublishTests(unittest.TestCase):
             self.assertNotEqual(result.returncode, SUCCESS_EXIT_CODE)
             self.assertEqual(readOutputs(directory), {"created": "false"})
             self.assertFalse((Path(directory) / "calls.txt").exists())
+
+    def testDifferentNightlyAndLegacyPackagesAreNotPublished(self):
+        for filename in ("REFramework-Nightly-01434.zip", "REFramework-01433.zip",
+                         "REF Nightly 01433 -前置汉化版.zip"):
+            with self.subTest(filename=filename), tempfile.TemporaryDirectory() as directory:
+                (Path(directory) / filename).write_bytes(PACKAGE_CONTENT)
+                result = self.runStep(directory, "Create historical release")
+                self.assertNotEqual(result.returncode, SUCCESS_EXIT_CODE)
+                self.assertEqual(readOutputs(directory), {"created": "false"})
+                self.assertFalse((Path(directory) / "calls.txt").exists())
 
     def testTagFailureStopsBeforeCreatingAReleaseOrEnablingNexusUpload(self):
         for exitVariable in ("GIT_TAG_EXIT_CODE", "GIT_PUSH_EXIT_CODE"):

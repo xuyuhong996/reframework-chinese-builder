@@ -7,6 +7,8 @@ __pycache__/
 # Build artifacts
 ref_build/
 REF Nightly *.zip
+REFramework-Nightly-*.zip
+REFramework-Nightly-*.zip.sha256
 dinput8.dll
 
 # Recovery / temporary files

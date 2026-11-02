@@ -116,21 +116,18 @@ jobs:
         shell: pwsh
         run: |
           "created=false" >> $env:GITHUB_OUTPUT
-          $package = Get-ChildItem -Filter 'REF Nightly *.zip' -File |
-            Sort-Object LastWriteTime -Descending |
-            Select-Object -First 1
-          if ($null -eq $package) { throw '未找到构建生成的 ZIP。' }
-
-          $hash = (Get-FileHash -LiteralPath $package.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
           if ($env:UPSTREAM_RELEASE_TAG -notmatch '^nightly-(\d+)') {
             throw "无法识别 Nightly 编号: $env:UPSTREAM_RELEASE_TAG"
           }
           $nightlyNumber = $Matches[1]
-          $releaseTitle = "REFramework-汉化-$nightlyNumber"
-          $releaseAssetBase = "REFramework-$nightlyNumber"
-          $releasePackage = Join-Path $package.DirectoryName "$releaseAssetBase.zip"
+          $releaseTitle = "REFramework-Nightly-汉化-$nightlyNumber"
+          $releaseAssetBase = "REFramework-Nightly-$nightlyNumber"
+          $package = Get-Item -LiteralPath "$releaseAssetBase.zip" -ErrorAction SilentlyContinue
+          if ($null -eq $package -or $package.PSIsContainer) { throw '未找到构建生成的 ZIP。' }
+
+          $hash = (Get-FileHash -LiteralPath $package.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+          $releasePackage = $package.FullName
           $checksum = "$releasePackage.sha256"
-          Copy-Item -LiteralPath $package.FullName -Destination $releasePackage
           Set-Content -LiteralPath $checksum -Value "$hash  $releaseAssetBase.zip" -Encoding ascii
           $tag = "build-$($hash.Substring(0, 12))"
           # GitHub 会过滤中文附件名；使用稳定的 ASCII 名称，中文名称保留在 Release 标题。
@@ -158,7 +155,7 @@ jobs:
           "filename=$releasePackage" >> $env:GITHUB_OUTPUT
           "version=$nightlyNumber.$($hash.Substring(0, 12))" >> $env:GITHUB_OUTPUT
           "release_tag=$tag" >> $env:GITHUB_OUTPUT
-          "display_name=REFramework Chinese $nightlyNumber" >> $env:GITHUB_OUTPUT
+          "display_name=REFramework-Nightly Chinese $nightlyNumber" >> $env:GITHUB_OUTPUT
           "description=简体中文汉化。Nightly: $env:UPSTREAM_RELEASE_TAG; SHA256: $hash; https://github.com/$env:GITHUB_REPOSITORY/releases/tag/$tag" >> $env:GITHUB_OUTPUT
           "created=true" >> $env:GITHUB_OUTPUT
 

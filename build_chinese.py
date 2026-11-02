@@ -1962,9 +1962,9 @@ def initialize_publish_repository():
 
 def stage_current_package(package_path: Path) -> tuple[Path, str]:
     """用新 ZIP 替换仓库首页的旧成品，并生成校验文件。"""
-    for old_package in PUBLISH_CACHE_DIR.glob("REF Nightly *.zip"):
+    for old_package in PUBLISH_CACHE_DIR.glob("REFramework-Nightly-*.zip"):
         old_package.unlink()
-    for old_checksum in PUBLISH_CACHE_DIR.glob("REF Nightly *.zip.sha256"):
+    for old_checksum in PUBLISH_CACHE_DIR.glob("REFramework-Nightly-*.zip.sha256"):
         old_checksum.unlink()
 
     published_package = PUBLISH_CACHE_DIR / package_path.name
@@ -1975,7 +1975,7 @@ def stage_current_package(package_path: Path) -> tuple[Path, str]:
 
     run_publish_command([
         "git", "-C", str(PUBLISH_CACHE_DIR), "add", "--all", "--",
-        "REF Nightly *.zip", "REF Nightly *.zip.sha256",
+        "REFramework-Nightly-*.zip", "REFramework-Nightly-*.zip.sha256",
     ])
     return checksum_path, package_hash
 
@@ -2008,25 +2008,17 @@ def create_github_release(package_path: Path, checksum_path: Path, package_hash:
         log("这个 ZIP 已存在对应的 GitHub 历史发布版本。")
         return
 
-    nightly_match = re.match(r"REF Nightly (\d+)", package_path.stem)
+    nightly_match = re.fullmatch(r"REFramework-Nightly-([0-9]{5})", package_path.stem)
     if nightly_match is None:
         fail(f"无法从包名识别 Nightly 编号: {package_path.name}")
 
     nightly_number = nightly_match.group(1)
-    release_asset_name = f"REFramework-{nightly_number}.zip"
-    release_package_path = package_path.with_name(release_asset_name)
-    release_checksum_path = release_package_path.with_name(f"{release_asset_name}.sha256")
-    shutil.copy2(package_path, release_package_path)
-    release_checksum_path.write_text(
-        f"{package_hash}  {release_asset_name}\n", encoding="ascii"
-    )
-
     run_publish_command([
         "gh", "release", "create", release_tag,
-        str(release_package_path),
-        str(release_checksum_path),
+        str(package_path),
+        str(checksum_path),
         "--repo", GITHUB_RELEASE_REPOSITORY,
-        "--title", f"REFramework-汉化-{nightly_number}",
+        "--title", f"REFramework-Nightly-汉化-{nightly_number}",
         "--notes", "由本机 Visual Studio 构建并自动发布。",
     ])
     log(f"已创建 GitHub 历史版本: https://github.com/{GITHUB_RELEASE_REPOSITORY}/releases")
@@ -2067,7 +2059,7 @@ def main():
 
     # 包名严格使用 REFramework-nightly 发布列表的 Nightly 编号。
     nightly_num = get_nightly_number()
-    zip_label = f"REF Nightly {nightly_num} -前置汉化版"
+    zip_label = f"REFramework-Nightly-{nightly_num}"
 
     translations = load_translations()
     hash_translations = load_hash_dict()
