@@ -5,75 +5,75 @@
   "assets": {
     "542299883": {
       "name": "REFramework-01414.zip",
-      "downloadCount": 30
+      "downloadCount": 31
     },
     "540984589": {
       "name": "REFramework-01409.zip",
-      "downloadCount": 4
+      "downloadCount": 5
     },
     "559243286": {
       "name": "REFramework-01422.zip",
-      "downloadCount": 22
+      "downloadCount": 23
     },
     "568554899": {
       "name": "REFramework-01424.zip",
-      "downloadCount": 155
+      "downloadCount": 156
     },
     "544150059": {
       "name": "REFramework-01415.zip",
-      "downloadCount": 4
+      "downloadCount": 5
     },
     "555754091": {
       "name": "REFramework-01421.zip",
-      "downloadCount": 11
+      "downloadCount": 12
     },
     "542018731": {
       "name": "REFramework-01411.zip",
-      "downloadCount": 1
+      "downloadCount": 2
     },
     "545593616": {
       "name": "REFramework-01417.zip",
-      "downloadCount": 6
+      "downloadCount": 7
     },
     "541299669": {
       "name": "REFramework-01410.zip",
-      "downloadCount": 2
+      "downloadCount": 3
     },
     "538765050": {
       "name": "REFramework-01398.zip",
-      "downloadCount": 2
+      "downloadCount": 4
     },
     "538765563": {
       "name": "REFramework-01398.zip",
-      "downloadCount": 7
+      "downloadCount": 9
     },
     "629365649": {
       "name": "REFramework-01429.zip",
-      "downloadCount": 12
+      "downloadCount": 13
     },
     "629995624": {
       "name": "REFramework-01432.zip",
-      "downloadCount": 130
+      "downloadCount": 131
     },
     "662026103": {
       "name": "REFramework-01433.zip",
-      "downloadCount": 161
+      "downloadCount": 162
     },
     "697696204": {
       "name": "REFramework-01436.zip",
-      "downloadCount": 14
+      "downloadCount": 161
     },
     "697260300": {
       "name": "REFramework-01436.zip",
-      "downloadCount": 14
+      "downloadCount": 16
     },
     "697015339": {
       "name": "REFramework-01435.zip",
-      "downloadCount": 9
+      "downloadCount": 10
     },
     "697166073": {
       "name": "REFramework-01436.zip",
-      "downloadCount": 10
+      "downloadCount": 11
     }
   },
   "history": [
@@ -196,7 +196,11 @@
     {
       "date": "2026-11-01",
       "total": 594
+    },
+    {
+      "date": "2026-11-02",
+      "total": 761
     }
   ],
-  "updatedAt": "2026-11-01T16:07:00+08:00"
+  "updatedAt": "2026-11-02T16:14:59+08:00"
 }
