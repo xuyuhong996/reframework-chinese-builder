@@ -1,14 +1,18 @@
 """验证固定官方发布编号及工作流源码绑定，不执行联网或真实构建。"""
 
+import hashlib
 import importlib.util
 import io
 import os
 import re
+import subprocess
+import tempfile
 import unittest
 from contextlib import redirect_stderr
 from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
+from zipfile import ZipFile
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 SOURCE_SHA = "d1461375aee4ec3f313170f8eaad12064eb542d9"
@@ -22,6 +26,40 @@ SCRIPT_SPEC.loader.exec_module(buildScript)
 
 
 class NightlyReleaseTests(unittest.TestCase):
+    def testLocalPackageChecksumAndReleaseKeepTheNightlyName(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            dllPath = root / "build/bin/REFramework/dinput8.dll"
+            dllPath.parent.mkdir(parents=True)
+            dllPath.write_bytes(b"framework-fixture")
+            rewardPath = root / "reward.jpg"
+            rewardPath.write_bytes(b"reward-fixture")
+            cachePath = root / "publish"
+            subprocess.run(["git", "init", "--quiet", str(cachePath)], check=True)
+            with (
+                patch.object(buildScript, "BUILD_ROOT", root),
+                patch.object(buildScript, "BUILD_TARGET", "REFramework"),
+                patch.object(buildScript, "OUTPUT_DIR", root / "output"),
+                patch.object(buildScript, "REWARD_QR_FILE", rewardPath),
+                patch.object(buildScript, "PUBLISH_CACHE_DIR", cachePath),
+                patch.object(buildScript, "SILENT_LOG", True),
+            ):
+                packagePath = buildScript.package("REFramework-Nightly-01424")
+                checksumPath, packageHash = buildScript.stage_current_package(packagePath)
+                with ZipFile(packagePath) as archive:
+                    self.assertIsNone(archive.testzip())
+                    self.assertEqual(archive.read("dinput8.dll"), dllPath.read_bytes())
+                self.assertEqual(packageHash, hashlib.sha256(packagePath.read_bytes()).hexdigest())
+                self.assertEqual(checksumPath.read_text("ascii"), f"{packageHash}  {packagePath.name}\n")
+                self.assertEqual((cachePath / packagePath.name).read_bytes(), packagePath.read_bytes())
+                with patch.object(buildScript, "run_publish_command") as runCommand:
+                    runCommand.return_value = SimpleNamespace(returncode=1)
+                    buildScript.create_github_release(packagePath, checksumPath, packageHash)
+                publishArguments = runCommand.call_args.args[0]
+                self.assertIn(str(packagePath), publishArguments)
+                self.assertIn(str(checksumPath), publishArguments)
+                self.assertIn("REFramework-Nightly-汉化-01424", publishArguments)
+
     def testMemoryTextStreamDoesNotLoseChineseWithAnAsciiConsole(self):
         text = "UPSTREAM_RELEASE_TAG 格式无效"
         with patch.object(buildScript, "CONSOLE_ENCODING", "ascii"):
