@@ -16,6 +16,7 @@
 #endif
 
 const char* (*g_imgui_translate_fn)(const char*, const char*) = nullptr;
+const char* (*g_imgui_translate_format_fn)(const char*) = nullptr;
 
 namespace reframework::translation {
 namespace {
@@ -86,6 +87,26 @@ namespace {
         result.resize(result.find("##") == std::string::npos ? result.size() : result.find("##"));
         result.append(text.substr(marker));
         return true;
+    }
+
+    bool matchingFormatTokens(std::string_view original, std::string_view translated) {
+        constexpr std::string_view CONVERSIONS = "%diuoxXfFeEgGaAcCsSpn";
+        size_t originalPosition = 0, translatedPosition = 0;
+        while (true) {
+            const auto originalStart = original.find('%', originalPosition);
+            const auto translatedStart = translated.find('%', translatedPosition);
+            if (originalStart == std::string_view::npos || translatedStart == std::string_view::npos)
+                return originalStart == translatedStart;
+            const auto originalEnd = original.find_first_of(CONVERSIONS, originalStart + 1);
+            const auto translatedEnd = translated.find_first_of(CONVERSIONS, translatedStart + 1);
+            if (originalEnd == std::string_view::npos || translatedEnd == std::string_view::npos)
+                return false;
+            if (original.substr(originalStart, originalEnd - originalStart + 1) !=
+                translated.substr(translatedStart, translatedEnd - translatedStart + 1))
+                return false;
+            originalPosition = originalEnd + 1;
+            translatedPosition = translatedEnd + 1;
+        }
     }
 
     void loadBuiltin() {
@@ -171,6 +192,13 @@ namespace {
         }
     }
 
+    const char* translateFormat(const char* format) {
+        if (!format) return format;
+        const auto* translated = translate(format);
+        // 保留参数类型、顺序、宽度和精度，译文中的占位符写错时使用原文。
+        return translated == format || matchingFormatTokens(format, translated) ? translated : format;
+    }
+
     void startup() {
         std::call_once(initialization, [] {
             loadBuiltin();
@@ -184,5 +212,6 @@ namespace {
             initialized = true;
         });
         g_imgui_translate_fn = &REF_ImGui_TranslateCB;
+        g_imgui_translate_format_fn = &REF_ImGui_TranslateFormatCB;
     }
 }

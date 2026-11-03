@@ -69,8 +69,17 @@ class TranslationRuntimeTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             directory = Path(temporary)
             generateTranslation(
-                {"Enable": "启用", "Enabled": "启用", "Long": "长" * 3000},
-                {hashText("HashOnly"): "哈希翻译"},
+                {
+                    "Enable": "启用",
+                    "Enabled": "启用",
+                    "Long": "长" * 3000,
+                    "Commits: %i": "提交: %i",
+                    "Branch: %s": "分支: %s",
+                    "Precise: %.2f%%": "精度: %.2f%%",
+                    "Broken: %i": "错误: %s",
+                    "Missing: %s %i": "缺失: %s",
+                },
+                {hashText("HashOnly"): "哈希翻译", hashText("HashCount: %i"): "哈希计数: %i"},
                 directory,
             )
             executable = directory / ("verify.exe" if os.name == "nt" else "verify")

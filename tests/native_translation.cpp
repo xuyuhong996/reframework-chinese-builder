@@ -4,6 +4,7 @@
 #include <cstring>
 #include <iostream>
 #include <string>
+#include <string_view>
 
 #ifdef _WIN32
 #include <windows.h>
@@ -37,6 +38,9 @@ void checkDictionaryAndRanges() {
     require(std::string(translate("Enable##original")) == "启用##original", "hidden suffix");
     require(std::string(translate("HashOnly")) == "哈希翻译", "hash fallback");
     require(std::strlen(translate("Long")) == 9000, "long translation");
+    require(reframework::translation::translateFormat(nullptr) == nullptr, "null format");
+    require(std::string(reframework::translation::translateFormat("Broken: %i")) == "Broken: %i", "preserve argument types");
+    require(std::string(reframework::translation::translateFormat("Missing: %s %i")) == "Missing: %s %i", "preserve argument count");
 }
 
 void checkNonTerminatedPageBoundary() {
@@ -65,6 +69,48 @@ void checkNonTerminatedPageBoundary() {
 }
 
 #ifdef REF_TEST_IMGUI
+const char* expectedFormattedText = nullptr;
+bool sawFormattedTranslation = false;
+
+const char* observeFormattedText(const char* text, const char* end) {
+    if (text && expectedFormattedText) {
+        const std::string_view value(text, end ? static_cast<size_t>(end - text) : std::strlen(text));
+        if (value == expectedFormattedText) sawFormattedTranslation = true;
+    }
+    return translate(text, end);
+}
+
+void expectFormattedText(const char* expected, void (*render)()) {
+    expectedFormattedText = expected;
+    sawFormattedTranslation = false;
+    g_imgui_translate_fn = &observeFormattedText;
+    render();
+    g_imgui_translate_fn = &REF_ImGui_TranslateCB;
+    require(sawFormattedTranslation, "formatted text must translate before substituting arguments");
+}
+
+void checkFormattedImGui() {
+    expectFormattedText("提交: 7", [] { ImGui::Text("Commits: %i", 7); });
+    expectFormattedText("分支: main", [] { ImGui::TextAligned(0.0f, 200.0f, "Branch: %s", "main"); });
+    expectFormattedText("分支: main", [] { ImGui::LabelText("value-label", "Branch: %s", "main"); });
+    expectFormattedText("提交: 7", [] { ImGui::BulletText("Commits: %i", 7); });
+    expectFormattedText("哈希计数: 7", [] { ImGui::Text("HashCount: %i", 7); });
+    expectFormattedText("精度: 25.50%", [] {
+        ImGui::TextColored(ImVec4(1, 1, 1, 1), "Precise: %.2f%%", 25.5);
+    });
+    const auto expectedId = ImGui::GetID("format-node");
+    expectFormattedText("提交: 7", [] {
+        ImGui::TreeNodeEx("format-node", ImGuiTreeNodeFlags_NoTreePushOnOpen, "Commits: %i", 7);
+    });
+    require(GImGui->LastItemData.ID == expectedId, "formatted tree preserves string identity");
+    static const int node = 7;
+    const auto expectedPointerId = ImGui::GetID(&node);
+    expectFormattedText("分支: main", [] {
+        ImGui::TreeNodeEx(&node, ImGuiTreeNodeFlags_NoTreePushOnOpen, "Branch: %s", "main");
+    });
+    require(GImGui->LastItemData.ID == expectedPointerId, "formatted tree preserves pointer identity");
+}
+
 void checkActualImGui() {
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO();
@@ -76,6 +122,7 @@ void checkActualImGui() {
     int width = 0, height = 0;
     io.Fonts->GetTexDataAsRGBA32(&pixels, &width, &height);
     ImGui::NewFrame();
+    ImGui::SetNextWindowSize(ImVec2(700, 500));
     ImGui::Begin("Enable");
     require(std::string(ImGui::GetCurrentWindow()->Name) == "Enable", "window identity");
     const auto expectedFirst = ImGui::GetID("Enable");
@@ -90,6 +137,7 @@ void checkActualImGui() {
     const char slice[] = "EnableTrailingText";
     ImGui::TextUnformatted(slice, slice + 6);
     ImGui::Text("Value: %d", 7);
+    checkFormattedImGui();
     ImGui::End();
     ImGui::Render();
     ImGui::DestroyContext();

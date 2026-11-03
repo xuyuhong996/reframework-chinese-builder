@@ -21,17 +21,24 @@ def patch_imconfig(build):
     path = build / "src/re2-imgui/re2_imconfig.hpp"
     content = read_text(path)
     marker = "// [REF_TRANSLATE_HOOK]"
-    callback = "extern const char* (*g_imgui_translate_fn)(const char*, const char*);"
+    callbacks = (
+        "extern const char* (*g_imgui_translate_fn)(const char*, const char*);",
+        "extern const char* (*g_imgui_translate_format_fn)(const char*);",
+    )
     if marker in content:
-        if callback not in content:
+        if not all(callback in content for callback in callbacks):
             raise ValueError("翻译回调声明不一致，请使用干净源码重新构建。")
         return
     snippet = textwrap.dedent("""\
 
         // [REF_TRANSLATE_HOOK] 显示文本与控件标识分别处理，文本片段保留结束位置。
         extern const char* (*g_imgui_translate_fn)(const char*, const char*);
+        extern const char* (*g_imgui_translate_format_fn)(const char*);
         static inline const char* ImGui_Translate(const char* text, const char* textEnd = nullptr) {
             return text && g_imgui_translate_fn ? g_imgui_translate_fn(text, textEnd) : text;
+        }
+        static inline const char* ImGui_TranslateFormat(const char* format) {
+            return format && g_imgui_translate_format_fn ? g_imgui_translate_format_fn(format) : format;
         }
         """)
     write_text(path, content + snippet)
@@ -122,7 +129,18 @@ def patch_text_rendering(build):
 
 def patch_imgui_widgets(build):
     signature = "void ImGui::TextEx(const char* text, const char* text_end, ImGuiTextFlags flags)\n{\n"
-    patches = ((signature, TEXT_RANGE_PATCH, "TextEx"),)
+    formatSignatures = (
+        "void ImGui::TextV(const char* fmt, va_list args)",
+        "void ImGui::TextAlignedV(float align_x, float size_x, const char* fmt, va_list args)",
+        "void ImGui::LabelTextV(const char* label, const char* fmt, va_list args)",
+        "void ImGui::BulletTextV(const char* fmt, va_list args)",
+        "bool ImGui::TreeNodeExV(const char* str_id, ImGuiTreeNodeFlags flags, const char* fmt, va_list args)",
+        "bool ImGui::TreeNodeExV(const void* ptr_id, ImGuiTreeNodeFlags flags, const char* fmt, va_list args)",
+    )
+    # 仅翻译显示模板，树节点仍使用原始 str_id/ptr_id 计算标识。
+    patches = ((signature, TEXT_RANGE_PATCH, "TextEx"),) + tuple(
+        (value + "\n{\n", "    fmt = ImGui_TranslateFormat(fmt);\n", value) for value in formatSignatures
+    )
     patchFile(build / "dependencies/imgui/imgui_widgets.cpp", "/* REF_TRANSLATE_WIDGETS */", patches)
 
 
