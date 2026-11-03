@@ -9,6 +9,10 @@ on:
         description: "仅检查版本，不重新打包"
         type: boolean
         default: false
+      publish_release:
+        description: "正式发布；关闭时仅保存测试包"
+        type: boolean
+        default: true
 
 permissions:
   contents: write
@@ -125,7 +129,20 @@ jobs:
             --upstream-tag $env:UPSTREAM_RELEASE_TAG --builder-sha $env:GITHUB_SHA
           if ($LASTEXITCODE -ne 0) { throw '新包来源或 DLL 验证失败，停止发布。' }
 
+      - name: Save test package
+        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.publish_release }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: REFramework-Nightly-test-${{ github.run_id }}
+          path: |
+            REFramework-Nightly-*.zip
+            REFramework-Nightly-*.zip.sha256
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 7
+
       - name: Create historical release
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.publish_release }}
         id: release
         env:
           GH_TOKEN: ${{ github.token }}
