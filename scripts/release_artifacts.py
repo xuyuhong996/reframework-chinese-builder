@@ -16,6 +16,8 @@ PE_COFF_HEADER_SIZE = 24
 AMD64_MACHINE = 0x8664
 PE32_PLUS_MAGIC = 0x20B
 DLL_CHARACTERISTIC = 0x2000
+PACKAGE_MEMBERS = frozenset({"dinput8.dll", "赏口饭吃.jpg"})
+MAX_ZIP_COMMENT_BYTES = 65535
 
 
 def buildSourceIdentity(repositoryRoot):
@@ -35,6 +37,9 @@ def createPackage(settings, release, target):
     for path in (dll, reward, licensePath):
         if not path.is_file():
             raise FileNotFoundError(f"缺少打包文件：{path}")
+    notice = licensePath.read_bytes()
+    if not notice or len(notice) > MAX_ZIP_COMMENT_BYTES:
+        raise ValueError("上游版权声明为空或超出 ZIP 注释长度限制。")
     settings.outputDirectory.mkdir(parents=True, exist_ok=True)
     package = settings.outputDirectory / f"REFramework-Nightly-{release.number}.zip"
     temporary = package.with_suffix(".zip.tmp")
@@ -42,22 +47,34 @@ def createPackage(settings, release, target):
         "upstreamTag": release.tag,
         "upstreamSha": release.sourceSha,
         "dllSha256": hashlib.sha256(dll.read_bytes()).hexdigest(),
+        "licenseSha256": hashlib.sha256(notice).hexdigest(),
         **buildSourceIdentity(settings.repositoryRoot),
     }
     try:
         with ZipFile(temporary, "w", ZIP_DEFLATED) as archive:
             archive.write(dll, "dinput8.dll")
             archive.write(reward, "赏口饭吃.jpg")
-            archive.write(licensePath, "LICENSE-REFramework.txt")
-            archive.writestr("build-manifest.json", json.dumps(manifest, ensure_ascii=False, indent=2))
+            archive.comment = notice
         retainPackage(temporary, package, settings.repositoryRoot)
     finally:
         temporary.unlink(missing_ok=True)
+    return writePackageRecords(settings, package, manifest)
+
+
+def packageRecordPath(package):
+    return Path(f"{package}.build.json")
+
+
+def writePackageRecords(settings, package, manifest):
     digest = hashlib.sha256(package.read_bytes()).hexdigest()
+    manifest["packageSha256"] = digest
+    packageRecordPath(package).write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
     checksum = Path(f"{package}.sha256")
     checksum.write_text(f"{digest}  {package.name}\n", encoding="ascii")
     delivery = (
-        f"# 当前交付说明\n\n成品：{package.name}\n\n官方版本：{release.tag}\n\n"
+        f"# 当前交付说明\n\n成品：{package.name}\n\n官方版本：{manifest['upstreamTag']}\n\n"
         f"SHA256：{digest}\n\n构建工作区：{settings.workDirectory}\n\n"
         "状态：已打包并生成摘要；尚未安装或进行游戏内验证。\n"
     )
@@ -100,6 +117,7 @@ def publishPackage(artifact, release, settings):
             tag,
             package,
             checksum,
+            str(packageRecordPath(package)),
             "--repo",
             repository,
             "--target",
@@ -132,19 +150,24 @@ def verifyPackage(package, expectedIdentity):
     with ZipFile(package) as archive:
         if archive.testzip() is not None:
             raise ValueError("压缩包完整性校验失败。")
-        manifest = json.loads(archive.read("build-manifest.json"))
+        if len(archive.namelist()) != len(PACKAGE_MEMBERS) or set(archive.namelist()) != PACKAGE_MEMBERS:
+            raise ValueError("ZIP 内只能包含 dinput8.dll 和赏口饭吃.jpg。")
         dll = archive.read("dinput8.dll")
-        if not archive.read("LICENSE-REFramework.txt"):
-            raise ValueError("压缩包缺少上游许可证。")
+        notice = archive.comment
+    manifest = json.loads(packageRecordPath(package).read_text("utf-8"))
+    if manifest.get("packageSha256") != hashlib.sha256(package.read_bytes()).hexdigest():
+        raise ValueError("压缩包摘要与包外构建记录不一致。")
+    if not notice or manifest.get("licenseSha256") != hashlib.sha256(notice).hexdigest():
+        raise ValueError("ZIP 注释中的上游版权声明不完整。")
     verifyDllImage(dll)
     release = UpstreamRelease.fromTag(manifest["upstreamTag"])
     if manifest["upstreamSha"] != release.sourceSha:
-        raise ValueError("包内官方版本与源码提交不一致。")
+        raise ValueError("构建记录的官方版本与源码提交不一致。")
     if manifest["dllSha256"] != hashlib.sha256(dll).hexdigest():
-        raise ValueError("包内 DLL 摘要与来源清单不一致。")
+        raise ValueError("DLL 摘要与包外构建记录不一致。")
     for field, value in expectedIdentity.items():
         if manifest.get(field) != value:
-            raise ValueError(f"包内来源与本次构建不一致：{field}。")
+            raise ValueError(f"构建记录与本次源码不一致：{field}。")
     return manifest
 
 

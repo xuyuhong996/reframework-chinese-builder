@@ -137,6 +137,7 @@ jobs:
           path: |
             REFramework-Nightly-*.zip
             REFramework-Nightly-*.zip.sha256
+            REFramework-Nightly-*.zip.build.json
           if-no-files-found: error
           compression-level: 0
           retention-days: 7
@@ -162,6 +163,8 @@ jobs:
           $hash = (Get-FileHash -LiteralPath $package.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
           $releasePackage = $package.FullName
           $checksum = "$releasePackage.sha256"
+          $buildRecord = "$releasePackage.build.json"
+          if (-not (Test-Path -LiteralPath $buildRecord -PathType Leaf)) { throw '缺少包外构建记录。' }
           Set-Content -LiteralPath $checksum -Value "$hash  $releaseAssetBase.zip" -Encoding ascii
           $tag = "build-$($hash.Substring(0, 12))"
           # GitHub 会过滤中文附件名；使用稳定的 ASCII 名称，中文名称保留在 Release 标题。
@@ -179,7 +182,7 @@ jobs:
           git push origin "refs/tags/$tag"
           if ($LASTEXITCODE -ne 0) { throw '发布标签推送失败。' }
 
-          gh release create $tag $releasePackage $checksum `
+          gh release create $tag $releasePackage $checksum $buildRecord `
             --repo $env:GITHUB_REPOSITORY `
             --verify-tag --latest `
             --title $releaseTitle `

@@ -112,7 +112,7 @@ GitHub Actions（自动工作流）计划每 15 分钟检查一次 [官方 Night
 python build_chinese.py
 ```
 
-成品保存在 `deliverables/`，包含汉化 DLL、许可证及构建来源清单，并生成 SHA256 校验文件。本地构建不自动上传；自动发包由当前仓库的 GitHub Actions 完成。
+成品保存在 `deliverables/`。ZIP 内仅包含 `dinput8.dll` 和 `赏口饭吃.jpg`；构建记录及 SHA256 校验文件放在 ZIP 外，上游版权许可说明保留在 ZIP 注释中。本地构建不自动上传；自动发包由当前仓库的 GitHub Actions 完成。
 
 ## 下载趋势
 
