@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile
 
-from scripts.build_support import log, runCommand
+from scripts.build_support import log, runCommand, writeMessage
 from scripts.repository_identity import currentRepository
 from scripts.upstream_release import UpstreamRelease
 
@@ -158,7 +158,7 @@ def main():
     expected = buildSourceIdentity(root)
     expected.update({"builderCommit": arguments.builder_sha, "upstreamTag": arguments.upstream_tag})
     verifyPackage(arguments.package, expected)
-    print("压缩包、x64 DLL、构建提交和词库摘要验证通过。")
+    writeMessage("压缩包、x64 DLL、构建提交和词库摘要验证通过。")
 
 
 if __name__ == "__main__":

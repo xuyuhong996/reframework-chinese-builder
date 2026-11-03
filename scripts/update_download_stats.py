@@ -14,6 +14,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
+from scripts.build_support import writeMessage
 from scripts.repository_identity import currentRepository
 
 API_BASE_URL = "https://api.github.com"
@@ -462,9 +463,9 @@ def main():
         historyPath = historyPathForRepository(args.history, args.repository)
         data = collectStats(args.repository, os.environ.get("GH_TOKEN", ""), (historyPath, args.svg))
     except (OSError, ValueError, KeyError, TypeError) as error:
-        print(f"下载量统计失败，未提交统计更新：{error}", file=sys.stderr)
+        writeMessage(f"下载量统计失败，未提交统计更新：{error}", sys.stderr)
         return ONE_POINT
-    print(
+    writeMessage(
         f"已记录 {data['history'][-ONE_POINT]['date']}：累计 {data['history'][-ONE_POINT]['total']} 次下载。"
     )
     return ZERO_COUNT
