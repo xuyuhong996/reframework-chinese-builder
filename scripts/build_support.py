@@ -2,6 +2,7 @@
 
 import os
 import subprocess
+import sys
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
@@ -34,8 +35,16 @@ class BuildSettings:
         )
 
 
+def writeMessage(message, stream=None):
+    stream = sys.stdout if stream is None else stream
+    reconfigure = getattr(stream, "reconfigure", None)
+    if callable(reconfigure):
+        reconfigure(encoding="utf-8", errors="backslashreplace")
+    print(message, file=stream, flush=True)
+
+
 def log(message):
-    print(f"[汉化构建] {message}", flush=True)
+    writeMessage(f"[汉化构建] {message}")
 
 
 def runCommand(command, cwd=None, timeout=COMMAND_TIMEOUT_SECONDS, capture=True):

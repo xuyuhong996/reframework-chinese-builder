@@ -9,7 +9,7 @@ from dataclasses import replace
 from pathlib import Path
 
 from scripts import cmake_patches, imgui_patches
-from scripts.build_support import BUILD_TIMEOUT_SECONDS, BuildSettings, log, runCommand
+from scripts.build_support import BUILD_TIMEOUT_SECONDS, BuildSettings, log, runCommand, writeMessage
 from scripts.localization_identity import writeBuildIdentity
 from scripts.release_artifacts import createPackage, publishPackage
 from scripts.repository_identity import currentRepository
@@ -96,8 +96,8 @@ def main(arguments=None):
             log("本地打包完成；发布请显式使用 --publish，或使用 GitHub 工作流。")
         return 0
     except (OSError, ValueError, RuntimeError) as error:
-        print(f"[构建失败] {error}", file=sys.stderr)
+        writeMessage(f"[构建失败] {error}", sys.stderr)
         return 1
     except KeyboardInterrupt:
-        print("[构建停止] 维护者取消了本次任务。", file=sys.stderr)
+        writeMessage("[构建停止] 维护者取消了本次任务。", sys.stderr)
         return 1

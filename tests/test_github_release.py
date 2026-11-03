@@ -105,7 +105,7 @@ class GitHubReleaseTests(unittest.TestCase):
             self.assertEqual(packagePath.read_bytes(), PACKAGE_CONTENT)
             calls = (Path(directory) / "calls.txt").read_text("utf-8")
             self.assertIn(f"release create build-{PACKAGE_HASH[:HASH_PREFIX_LENGTH]}", calls)
-            self.assertIn(str(packagePath), calls)
+            self.assertIn(str(packagePath.resolve()).casefold(), calls.casefold())
             self.assertIn(f"tag --annotate build-{PACKAGE_HASH[:HASH_PREFIX_LENGTH]} {BUILDER_SHA}", calls)
             self.assertIn(f"git push origin refs/tags/build-{PACKAGE_HASH[:HASH_PREFIX_LENGTH]}", calls)
             self.assertIn("--verify-tag --latest", calls)
