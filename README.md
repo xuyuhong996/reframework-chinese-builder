@@ -18,6 +18,30 @@ REFramework 的原作者项目为 [praydog/REFramework](https://github.com/prayd
 
 目前作者**已在《怪物猎人：荒野》和《怪物猎人：崛起》中实际使用过**，其他游戏尚未逐一验证。实际兼容范围以对应官方版本为准。
 
+**[官方列出的支持游戏](https://github.com/praydog/REFramework#supported-games)（共 19 款）：**
+
+| 游戏 | 官方英文名称 |
+| --- | --- |
+| 生化危机 2 重制版 | Resident Evil 2 |
+| 生化危机 3 重制版 | Resident Evil 3 |
+| 生化危机 4 重制版 | Resident Evil 4 |
+| 生化危机 7 | Resident Evil 7 |
+| 生化危机 8：村庄 | Resident Evil Village |
+| 生化危机：安魂曲 | Resident Evil Requiem |
+| 鬼泣 5 | Devil May Cry 5 |
+| 街头霸王 6 | Street Fighter 6 |
+| 怪物猎人：崛起 | Monster Hunter Rise |
+| 怪物猎人：荒野 | Monster Hunter Wilds |
+| 怪物猎人物语 3 | Monster Hunter Stories 3 |
+| 龙之信条 2 | Dragon's Dogma 2 |
+| 丧尸围城 豪华复刻版 | Dead Rising Deluxe Remaster |
+| 经典回归 魔界村 | Ghosts 'n Goblins Resurrection |
+| 逆转裁判 456 王泥喜精选集 | Apollo Justice: Ace Attorney Trilogy |
+| 祇：女神之路 | Kunitsu-Gami: Path of the Goddess |
+| 鬼武者 2 | Onimusha 2: Samurai's Destiny |
+| 鬼武者：剑之道 | Onimusha: Way of the Sword |
+| 流星洛克人 完美合集 | Mega Man Star Force Legacy Collection |
+
 ## 提交未汉化 Mod
 
 无论是《怪物猎人：荒野》，还是 REFramework 支持的其他游戏，只要有 Mod 汉化需求，都欢迎在本仓库的 Issues 中反馈。请提供游戏名称、Mod 发布链接，并说明需要汉化的界面位置，最好附上截图。我会根据大家的反馈持续补充汉化库，让更多游戏的玩家用上中文界面。
