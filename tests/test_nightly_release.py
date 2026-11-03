@@ -132,15 +132,13 @@ class NightlyReleaseTests(unittest.TestCase):
         self.assertIn("官方版本", output.getvalue())
         self.assertIn(PINNED_TAG, output.getvalue())
 
-    def testWorkflowPinsSourceAndTagAndDispatchesAfterSkippedBuild(self):
+    def testWorkflowPinsSourceAndTagWithoutExternalPublicationTasks(self):
         workflow = (ROOT / ".github/workflows/build-release.yml").read_text("utf-8")
         self.assertIn("ref: $" + "{{ needs.decide.outputs.upstream_sha }}", workflow)
         self.assertIn("UPSTREAM_SHA: $" + "{{ needs.decide.outputs.upstream_sha }}", workflow)
         self.assertIn("UPSTREAM_RELEASE_TAG: $" + "{{ needs.decide.outputs.upstream_release_tag }}", workflow)
         self.assertIn("REF_OUTPUT_DIR: $" + "{{ github.workspace }}", workflow)
-        self.assertIn("<!-- nexus-dispatch: pending -->", workflow)
-        self.assertIn("needs: [decide, build]", workflow)
-        self.assertIn("if: always() && needs.decide.result == 'success'", workflow)
+        self.assertNotIn("  dispatch:", workflow)
 
 
 if __name__ == "__main__":

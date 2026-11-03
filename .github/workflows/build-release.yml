@@ -167,32 +167,7 @@ jobs:
             --repo $env:GITHUB_REPOSITORY `
             --verify-tag --latest `
             --title $releaseTitle `
-            --notes "由 GitHub Actions 的 Windows Visual Studio 2022 环境自动构建。`n`nNightly 发布: $env:UPSTREAM_RELEASE_TAG`n`n<!-- nexus-dispatch: pending -->"
-          if ($LASTEXITCODE -ne 0) { throw 'GitHub 新包发布失败，已停止 N网同步。' }
+            --notes "由 GitHub Actions 的 Windows Visual Studio 2022 环境自动构建。`n`nNightly 发布: $env:UPSTREAM_RELEASE_TAG"
+          if ($LASTEXITCODE -ne 0) { throw 'GitHub 新包发布失败。' }
 
-          "filename=$releasePackage" >> $env:GITHUB_OUTPUT
-          "version=$nightlyNumber.$($hash.Substring(0, 12))" >> $env:GITHUB_OUTPUT
-          "release_tag=$tag" >> $env:GITHUB_OUTPUT
-          "display_name=REFramework-Nightly Chinese $nightlyNumber" >> $env:GITHUB_OUTPUT
-          "description=简体中文汉化。Nightly: $env:UPSTREAM_RELEASE_TAG; SHA256: $hash; https://github.com/$env:GITHUB_REPOSITORY/releases/tag/$tag" >> $env:GITHUB_OUTPUT
           "created=true" >> $env:GITHUB_OUTPUT
-
-  dispatch:
-    name: 交接待派发的 N网发布
-    needs: [decide, build]
-    if: always() && needs.decide.result == 'success' && !(github.event_name == 'workflow_dispatch' && inputs.check_only)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-
-      - uses: actions/setup-python@v7
-        with:
-          python-version: "3.13"
-
-      - name: Dispatch private Nexus publication
-        env:
-          GH_TOKEN: ${{ github.token }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
-          NEXUS_PUBLISH_TOKEN: ${{ secrets.NEXUS_PUBLISH_TOKEN }}
-          NEXUS_PUBLISH_REPOSITORY: ${{ vars.NEXUS_PUBLISH_REPOSITORY || format('{0}/reframework-nexus-publisher', github.repository_owner) }}
-        run: python -m scripts.nexus_dispatch

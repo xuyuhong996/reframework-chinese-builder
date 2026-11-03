@@ -62,7 +62,7 @@ def readOutputs(directory):
 
 
 @unittest.skipUnless(POWERSHELL_PATH, "工作流脚本需要 PowerShell，Windows 构建环境会执行这些测试。")
-class NexusPublishTests(unittest.TestCase):
+class GitHubReleaseTests(unittest.TestCase):
     def runStep(self, directory, stepName, overrides=None):
         environment = (
             os.environ.copy()
@@ -78,8 +78,6 @@ class NexusPublishTests(unittest.TestCase):
                 "GIT_TAG_EXIT_CODE": str(SUCCESS_EXIT_CODE),
                 "GIT_PUSH_EXIT_CODE": str(SUCCESS_EXIT_CODE),
                 "GH_TOKEN": "",
-                "NEXUS_PUBLISH_REPOSITORY": "xuyuhong996/reframework-nexus-publisher",
-                "RELEASE_TAG": f"build-{PACKAGE_HASH[:HASH_PREFIX_LENGTH]}",
             }
             | (overrides or {})
         )
@@ -102,12 +100,9 @@ class NexusPublishTests(unittest.TestCase):
             self.assertEqual(result.returncode, SUCCESS_EXIT_CODE, result.stderr)
             outputs = readOutputs(directory)
             self.assertEqual(outputs["created"], "true")
-            packagePath = Path(outputs["filename"])
+            packagePath = Path(directory) / PACKAGE_NAME
             self.assertEqual(packagePath.name, RELEASE_PACKAGE_NAME)
             self.assertEqual(packagePath.read_bytes(), PACKAGE_CONTENT)
-            self.assertEqual(outputs["version"], f"01433.{PACKAGE_HASH[:HASH_PREFIX_LENGTH]}")
-            self.assertIn(PACKAGE_HASH, outputs["description"])
-            self.assertIn(UPSTREAM_TAG, outputs["description"])
             calls = (Path(directory) / "calls.txt").read_text("utf-8")
             self.assertIn(f"release create build-{PACKAGE_HASH[:HASH_PREFIX_LENGTH]}", calls)
             self.assertIn(str(packagePath), calls)
@@ -120,7 +115,7 @@ class NexusPublishTests(unittest.TestCase):
                 f"{PACKAGE_HASH}  {RELEASE_PACKAGE_NAME}",
             )
 
-    def testExistingReleaseDoesNotEnableAnotherNexusUpload(self):
+    def testExistingReleaseIsNotPublishedAgain(self):
         with tempfile.TemporaryDirectory() as directory:
             (Path(directory) / PACKAGE_NAME).write_bytes(PACKAGE_CONTENT)
             result = self.runStep(
@@ -134,7 +129,7 @@ class NexusPublishTests(unittest.TestCase):
             self.assertEqual(readOutputs(directory), {"created": "false"})
             self.assertNotIn("release create", (Path(directory) / "calls.txt").read_text("utf-8"))
 
-    def testFailedGithubReleaseDoesNotEnableNexusUpload(self):
+    def testFailedGithubReleaseStopsTheWorkflow(self):
         with tempfile.TemporaryDirectory() as directory:
             (Path(directory) / PACKAGE_NAME).write_bytes(PACKAGE_CONTENT)
             result = self.runStep(
@@ -168,7 +163,7 @@ class NexusPublishTests(unittest.TestCase):
                 self.assertEqual(readOutputs(directory), {"created": "false"})
                 self.assertFalse((Path(directory) / "calls.txt").exists())
 
-    def testTagFailureStopsBeforeCreatingAReleaseOrEnablingNexusUpload(self):
+    def testTagFailureStopsBeforeCreatingARelease(self):
         for exitVariable in ("GIT_TAG_EXIT_CODE", "GIT_PUSH_EXIT_CODE"):
             with self.subTest(variable=exitVariable), tempfile.TemporaryDirectory() as directory:
                 (Path(directory) / PACKAGE_NAME).write_bytes(PACKAGE_CONTENT)

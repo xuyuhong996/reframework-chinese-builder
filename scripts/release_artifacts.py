@@ -91,7 +91,7 @@ def publishPackage(artifact, release, settings):
     builderSha = runCommand(["git", "rev-parse", "HEAD"], settings.repositoryRoot)
     # 发布由维护者显式选择；复用 GitHub CLI 已有登录，不自动登录或推送源码。
     runCommand(["gh", "auth", "status", "--hostname", "github.com"])
-    notes = f"本地构建。\n\nNightly 发布: {release.tag}\n\n<!-- nexus-dispatch: pending -->"
+    notes = f"本地构建。\n\nNightly 发布: {release.tag}"
     runCommand(
         [
             "gh",

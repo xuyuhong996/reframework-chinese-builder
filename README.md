@@ -20,27 +20,27 @@ REFramework 的原作者项目为 [praydog/REFramework](https://github.com/prayd
 
 **[官方列出的支持游戏](https://github.com/praydog/REFramework#supported-games)（共 19 款）：**
 
-| 游戏 | 官方英文名称 | N网汉化页面 |
-| --- | --- | --- |
-| 生化危机 2 重制版 | Resident Evil 2 | [前往N网](https://www.nexusmods.com/residentevil22019/mods/3122) |
-| 生化危机 3 重制版 | Resident Evil 3 | [前往N网](https://www.nexusmods.com/residentevil32020/mods/1632) |
-| 生化危机 4 重制版 | Resident Evil 4 | [前往N网](https://www.nexusmods.com/residentevil42023/mods/7850) |
-| 生化危机 7 | Resident Evil 7 | [前往N网](https://www.nexusmods.com/residentevil7/mods/335) |
-| 生化危机 8：村庄 | Resident Evil Village | [前往N网](https://www.nexusmods.com/residentevilvillage/mods/869) |
-| 生化危机：安魂曲 | Resident Evil Requiem | [前往N网](https://www.nexusmods.com/residentevilrequiem/mods/3215) |
-| 鬼泣 5 | Devil May Cry 5 | [前往N网](https://www.nexusmods.com/devilmaycry5/mods/4919) |
-| 街头霸王 6 | Street Fighter 6 | [前往N网](https://www.nexusmods.com/streetfighter6/mods/4283) |
-| 怪物猎人：崛起 | Monster Hunter Rise | [前往N网](https://www.nexusmods.com/monsterhunterrise/mods/4057) |
-| 怪物猎人：荒野 | Monster Hunter Wilds | [前往N网](https://www.nexusmods.com/monsterhunterwilds/mods/5269) |
-| 怪物猎人物语 3 | Monster Hunter Stories 3 | [前往N网](https://www.nexusmods.com/monsterhunterstories3twistedreflection/mods/222) |
-| 龙之信条 2 | Dragon's Dogma 2 | [前往N网](https://www.nexusmods.com/dragonsdogma2/mods/2393) |
-| 丧尸围城 豪华复刻版 | Dead Rising Deluxe Remaster | [前往N网](https://www.nexusmods.com/deadrisingdeluxeremaster/mods/189) |
-| 经典回归 魔界村 | Ghosts 'n Goblins Resurrection | 暂未提供链接 |
-| 逆转裁判 456 王泥喜精选集 | Apollo Justice: Ace Attorney Trilogy | [前往N网](https://www.nexusmods.com/apollojusticeaceattorneytrilogy/mods/19) |
-| 祇：女神之路 | Kunitsu-Gami: Path of the Goddess | [前往N网](https://www.nexusmods.com/kunitsugamipathofthegoddess/mods/2) |
-| 鬼武者 2 | Onimusha 2: Samurai's Destiny | [前往N网](https://www.nexusmods.com/onimusha2samuraisdestiny/mods/13) |
-| 鬼武者：剑之道 | Onimusha: Way of the Sword | [前往N网](https://www.nexusmods.com/onimushawayofthesword/mods/370) |
-| 流星洛克人 完美合集 | Mega Man Star Force Legacy Collection | [前往N网](https://www.nexusmods.com/megamanstarforcelegacycollection/mods/8) |
+| 游戏 | 官方英文名称 |
+| --- | --- |
+| 生化危机 2 重制版 | Resident Evil 2 |
+| 生化危机 3 重制版 | Resident Evil 3 |
+| 生化危机 4 重制版 | Resident Evil 4 |
+| 生化危机 7 | Resident Evil 7 |
+| 生化危机 8：村庄 | Resident Evil Village |
+| 生化危机：安魂曲 | Resident Evil Requiem |
+| 鬼泣 5 | Devil May Cry 5 |
+| 街头霸王 6 | Street Fighter 6 |
+| 怪物猎人：崛起 | Monster Hunter Rise |
+| 怪物猎人：荒野 | Monster Hunter Wilds |
+| 怪物猎人物语 3 | Monster Hunter Stories 3 |
+| 龙之信条 2 | Dragon's Dogma 2 |
+| 丧尸围城 豪华复刻版 | Dead Rising Deluxe Remaster |
+| 经典回归 魔界村 | Ghosts 'n Goblins Resurrection |
+| 逆转裁判 456 王泥喜精选集 | Apollo Justice: Ace Attorney Trilogy |
+| 祇：女神之路 | Kunitsu-Gami: Path of the Goddess |
+| 鬼武者 2 | Onimusha 2: Samurai's Destiny |
+| 鬼武者：剑之道 | Onimusha: Way of the Sword |
+| 流星洛克人 完美合集 | Mega Man Star Force Legacy Collection |
 
 ## 已收录汉化库的 Mod
 
@@ -69,7 +69,7 @@ REFramework 的原作者项目为 [praydog/REFramework](https://github.com/prayd
 
 GitHub Actions（自动工作流）计划每 15 分钟检查一次 [官方 Nightly 发布](https://github.com/praydog/REFramework-nightly/releases/latest)。发现新的 Nightly 标签后，使用 Windows Server 2022 和 Visual Studio 2022 构建环境拉取源码、注入汉化并创建 ZIP 发布。GitHub 的定时任务可能排队延迟，实际执行时间以 [运行记录](https://github.com/xuyuhong996/reframework-chinese-builder/actions/workflows/build-release.yml) 为准。
 
-官方没有发布新版本时，检查成功后会跳过打包，这是正常行为。已发布但尚未交接的 N网待办会单独重试，不需要重新编译；交接成功与 N网上传成功分别以对应工作流记录为准。运行页面的摘要会显示官方标签、汉化发布和本次处理结果；需要重新构建时，维护者也可以手动运行工作流。手动运行时勾选“仅检查版本，不重新打包”，可以直接核对版本而不进行编译。
+官方没有发布新版本时，检查成功后会跳过打包，这是正常行为。运行页面的摘要会显示官方标签、汉化发布和本次处理结果；需要重新构建时，维护者也可以手动运行工作流。手动运行时勾选“仅检查版本，不重新打包”，可以直接核对版本而不进行编译。
 
 自动构建会固定使用本次检测到的 Nightly 对应源码提交，并将同一编号用于包名和发布记录，避免构建期间官方更新导致编号与源码不一致。
 
@@ -87,38 +87,15 @@ GitHub Actions（自动工作流）计划每 15 分钟检查一次 [官方 Night
   <a href="https://p.qqan.com/up/2023-6/16867938501951795.gif" title="查看动图原始来源"><img src="assets/support-kowtow.gif" alt="跪地磕头，感谢支持" width="336" align="middle"></a>
 </p>
 
-## 本地手动构建
+## 本地构建
 
-需要 Python 3.13、Git，以及 Visual Studio 2022 的“使用 C++ 的桌面开发”和 CMake 工具。正式发布使用 Windows；运行脚本本身不需要安装第三方 Python 库。请在 Visual Studio 开发者 PowerShell 中运行，或确保 CMake 已加入 PATH。
+需要 Python 3.13、Git、CMake 和 Visual Studio 2022 的 C++ 桌面开发工具。在开发者 PowerShell 中运行：
 
 ```powershell
-# 只检查当前官方版本，不编译、不发布
-python build_chinese.py --check-only
-
-# 在本机生成汉化包，不上传
 python build_chinese.py
 ```
 
-包名、窗口编号和源码提交都来自同一次确定的官方 Nightly。脚本在独立临时目录里修改和编译，结束后回收临时目录；源码缓存及生成的 ZIP、SHA256 文件保留。默认成品位于 `deliverables/`，包内 `build-manifest.json` 记录官方标签、源码提交、构建仓库和 DLL 摘要，并附上 REFramework 许可证。固定目录的 `CURRENT.md` 记录本次交付状态；同编号出现不同内容时保留原件，候选包另存到 `outputs/build-candidates/` 并报告冲突，不静默覆盖。
-
-**普通运行只生成本地文件，不会向本仓库或 N网上传。** 维护者明确需要发布时，使用 `python build_chinese.py --publish`。目标从当前克隆仓库的 `origin` 识别，需要 GitHub CLI 已登录且具有该仓库权限；源码需先提交并推送，脚本不自动登录、不自动提交或推送源码，也不再把 ZIP 写入源码历史。
-
-### Fork 与发布归属
-
-- 自己运行副本：文件保存在自己本机。
-- 在 Fork 的 GitHub 工作流中构建：Release 和附件发布到自己的仓库。
-- 本地明确使用 `--publish`：发布到当前 `origin` 对应的仓库，不固定指向原作者。
-- 保留原作者署名；界面项目链接和包内构建来源显示实际构建仓库。
-- N网联动默认关闭。仅配置 `NEXUS_PUBLISH_TOKEN` 后才会派发，默认目标为当前仓库所有者名下的 `reframework-nexus-publisher`；也可通过 `NEXUS_PUBLISH_REPOSITORY` 明确指定。Fork 不继承原项目的密钥，也不会默认连接原作者的私有发布仓库。私有工作流需要支持 `run-name: Nexus ${{ inputs.release_tag }}` 以识别已接收的标签。
-- 下载统计按当前仓库单独记录。副本保留带来的原项目历史，另建自己的历史文件，不合并或覆盖原项目计数。
-
-可用路径设置：`REF_SOURCE_DIR` 指定上游源码缓存，`REF_BUILD_ROOT` 指定临时构建目录的父目录，`REF_OUTPUT_DIR` 指定成品目录。环境变量 `UPSTREAM_RELEASE_TAG` 可固定官方标签；同时指定 `UPSTREAM_SHA` 时，两者必须匹配。交叉编译需要另外指定 `REF_TOOLCHAIN_FILE`，仍以正式 Windows 构建结果为准。
-
-## 参与维护
-
-[代码结构与构建流程](docs/architecture.md) · [词库格式、开发检查与贡献约定](CONTRIBUTING.md)
-
-每次提交和合并请求都会检查代码、格式和核心行为；正式构建也必须先通过这些检查。核心验证会编译实际 C++ 翻译代码与固定的 ImGui 源码，覆盖文本片段、长文本、控件标识和绘制尺寸，不以“构建脚本运行成功”代替汉化验证。
+成品保存在 `deliverables/`，包含汉化 DLL、许可证及构建来源清单，并生成 SHA256 校验文件。本地构建不自动上传；自动发包由当前仓库的 GitHub Actions 完成。
 
 ## 下载趋势
 
