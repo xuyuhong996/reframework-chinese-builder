@@ -15,3 +15,11 @@ dinput8.dll
 *.bak
 recovered_*.py
 build_chinese_recovered*.py
+
+# Local verification and build output
+.build/
+dist/
+deliverables/
+outputs/
+tests/upstream-imgui/
+.ruff_cache/
