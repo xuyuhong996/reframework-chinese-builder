@@ -77,22 +77,29 @@ jobs:
           echo "should_build=true" >> "$GITHUB_OUTPUT"
           echo "本次结果：尚未发布对应的官方 Nightly，继续汉化打包。" >> "$GITHUB_STEP_SUMMARY"
 
-  build:
+  verify:
     needs: decide
+    if: needs.decide.outputs.should_build == 'true'
+    uses: ./.github/workflows/verify.yml
+    permissions:
+      contents: read
+
+  build:
+    needs: [decide, verify]
     if: needs.decide.outputs.should_build == 'true'
     runs-on: windows-2022
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Checkout matching official source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: praydog/REFramework
           ref: ${{ needs.decide.outputs.upstream_sha }}
           path: REFramework-src
           submodules: recursive
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.13"
 
@@ -103,10 +110,21 @@ jobs:
       - name: Build localized ZIP
         env:
           SKIP_GITHUB_PUBLISH: "1"
+          REF_OUTPUT_DIR: ${{ github.workspace }}
           UPSTREAM_SHA: ${{ needs.decide.outputs.upstream_sha }}
           UPSTREAM_RELEASE_TAG: ${{ needs.decide.outputs.upstream_release_tag }}
         shell: pwsh
         run: python build_chinese.py
+
+      - name: Verify complete package
+        env:
+          UPSTREAM_RELEASE_TAG: ${{ needs.decide.outputs.upstream_release_tag }}
+        shell: pwsh
+        run: |
+          $nightlyNumber = ($env:UPSTREAM_RELEASE_TAG -split '-')[1]
+          python -m scripts.release_artifacts "REFramework-Nightly-$nightlyNumber.zip" `
+            --upstream-tag $env:UPSTREAM_RELEASE_TAG --builder-sha $env:GITHUB_SHA
+          if ($LASTEXITCODE -ne 0) { throw '新包来源或 DLL 验证失败，停止发布。' }
 
       - name: Create historical release
         id: release

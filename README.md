@@ -69,7 +69,7 @@ REFramework 的原作者项目为 [praydog/REFramework](https://github.com/prayd
 
 GitHub Actions（自动工作流）计划每 15 分钟检查一次 [官方 Nightly 发布](https://github.com/praydog/REFramework-nightly/releases/latest)。发现新的 Nightly 标签后，使用 Windows Server 2022 和 Visual Studio 2022 构建环境拉取源码、注入汉化并创建 ZIP 发布。GitHub 的定时任务可能排队延迟，实际执行时间以 [运行记录](https://github.com/xuyuhong996/reframework-chinese-builder/actions/workflows/build-release.yml) 为准。
 
-官方没有发布新版本时，检查成功后会跳过打包，这是正常行为。运行页面的摘要会显示官方标签、汉化发布和本次处理结果；需要重新构建时，维护者也可以手动运行工作流。手动运行时勾选“仅检查版本，不重新打包”，可以直接核对版本而不进行编译。
+官方没有发布新版本时，检查成功后会跳过打包，这是正常行为。已发布但尚未交接的 N网待办会单独重试，不需要重新编译；交接成功与 N网上传成功分别以对应工作流记录为准。运行页面的摘要会显示官方标签、汉化发布和本次处理结果；需要重新构建时，维护者也可以手动运行工作流。手动运行时勾选“仅检查版本，不重新打包”，可以直接核对版本而不进行编译。
 
 自动构建会固定使用本次检测到的 Nightly 对应源码提交，并将同一编号用于包名和发布记录，避免构建期间官方更新导致编号与源码不一致。
 
@@ -89,9 +89,19 @@ GitHub Actions（自动工作流）计划每 15 分钟检查一次 [官方 Night
 
 ## 本地手动构建
 
+需要 Python 3.13、Git，以及 Visual Studio 2022 的“使用 C++ 的桌面开发”和 CMake 工具。正式发布使用 Windows；运行脚本本身不需要安装第三方 Python 库。请在 Visual Studio 开发者 PowerShell 中运行，或确保 CMake 已加入 PATH。
+
 ```powershell
+# 只检查当前官方版本，不编译、不发布
+python build_chinese.py --check-only
+
+# 在本机生成汉化包，不上传
 python build_chinese.py
 ```
+
+包名、窗口编号和源码提交都来自同一次确定的官方 Nightly。脚本在独立临时目录里修改和编译，结束后回收临时目录；源码缓存及生成的 ZIP、SHA256 文件保留。默认成品位于 `deliverables/`，包内 `build-manifest.json` 记录官方标签、源码提交、构建仓库和 DLL 摘要，并附上 REFramework 许可证。固定目录的 `CURRENT.md` 记录本次交付状态；同编号出现不同内容时保留原件，候选包另存到 `outputs/build-candidates/` 并报告冲突，不静默覆盖。
+
+**普通运行只生成本地文件，不会向本仓库或 N网上传。** 维护者明确需要发布时，使用 `python build_chinese.py --publish`。目标从当前克隆仓库的 `origin` 识别，需要 GitHub CLI 已登录且具有该仓库权限；源码需先提交并推送，脚本不自动登录、不自动提交或推送源码，也不再把 ZIP 写入源码历史。
 
 ## 下载趋势
 
