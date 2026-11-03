@@ -1,6 +1,6 @@
 # REFramework Chinese Builder
 
-为 REFramework 注入中文文本，跟随官方 Nightly（开发版）自动构建和发布，让 REFramework 所支持游戏的玩家更方便地使用中文界面。
+本仓库负责获取官方 REFramework 源码、注入汉化词库、构建并发布 GitHub 成品，跟随官方 Nightly（开发版）更新，让受支持游戏的玩家更方便地使用中文界面。
 
 **[下载最新汉化包](https://github.com/xuyuhong996/reframework-chinese-builder/releases/latest)** · [查看历史版本](https://github.com/xuyuhong996/reframework-chinese-builder/releases) · [反馈未汉化内容](https://github.com/xuyuhong996/reframework-chinese-builder/issues)
 

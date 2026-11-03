@@ -11,6 +11,14 @@ from scripts.build_support import writeText as write_text
 from scripts.localization_identity import patchBuildIdentity
 
 IMGUI_TITLE_PATCH_MATCH_COUNT = 1
+FONT_INITIALIZATION_ANCHOR = (
+    "void REFramework::init_fonts() {\n"
+    "    if (!m_fonts_need_init) {\n"
+    "        return;\n"
+    "    }\n\n"
+    "    m_fonts_need_init = false;\n"
+)
+TRANSLATION_STARTUP = "    reframework::translation::startup();\n"
 
 
 def fail(message):
@@ -150,6 +158,8 @@ def patch_reframework_cpp(build: Path):
     c = read_text(p)
     marker = "/* REF_TRANSLATE_INIT */"
     if marker in c:
+        if FONT_INITIALIZATION_ANCHOR + TRANSLATION_STARTUP not in c:
+            fail("REFramework.cpp: 初始化标记与代码不一致，请使用干净上游源码。")
         return
 
     inc_anchor = "#include <REFramework.hpp>"
@@ -171,20 +181,7 @@ def patch_reframework_cpp(build: Path):
             "cfg.GlyphRanges = fonts->GetGlyphRangesChineseFull();\n            " + full_font_line,
         )
 
-    # 调用 startup()
-    startup_anchor = 'spdlog::info("Loaded default font: {}", m_default_font_file);'
-    if startup_anchor in c:
-        c = c.replace(
-            startup_anchor, startup_anchor + "\n                reframework::translation::startup();"
-        )
-    else:
-        alt_anchor = 'm_default_font = loaded_fonts["DEFAULT"];'
-        if alt_anchor in c:
-            idx = c.rfind(alt_anchor)
-            end = idx + len(alt_anchor)
-            c = c[:end] + "\n        reframework::translation::startup();" + c[end:]
-
-    if "reframework::translation::startup();" not in c:
-        fail("REFramework.cpp: 未定位到翻译初始化位置。")
+    # 在字体选择前统一初始化，默认、自定义、缓存和回退路径均生效。
+    c = patch_insert_after(c, FONT_INITIALIZATION_ANCHOR, TRANSLATION_STARTUP, "汉化初始化")
     write_text(p, c)
     log("已 patch REFramework.cpp (CJK 字体 + 翻译初始化)")

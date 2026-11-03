@@ -6,6 +6,7 @@ import subprocess
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from scripts import imgui_patches
 from scripts.translation_assets import generateTranslation, load_translations, unescape_translation
@@ -13,6 +14,53 @@ from scripts.translation_assets import generateTranslation, load_translations, u
 ROOT = Path(__file__).resolve().parents[1]
 COMPILE_TIMEOUT_SECONDS = 240
 RUN_TIMEOUT_SECONDS = 30
+
+# 用可执行的字体选择分支验证启动位置，不依赖真实游戏或字体资源。
+FONT_SOURCE = """#include <REFramework.hpp>
+namespace spdlog { void info(const char*, const char*) {} }
+struct REFramework {
+    bool m_fonts_need_init = true;
+    bool custom = false, cached = false, failed = false;
+    const char* m_default_font_file = "DEFAULT";
+    void init_fonts();
+};
+void REFramework::init_fonts() {
+    if (!m_fonts_need_init) {
+        return;
+    }
+
+    m_fonts_need_init = false;
+    if (!custom && !cached && !failed) {
+        spdlog::info("Loaded default font: {}", m_default_font_file);
+    }
+}
+extern const char* (*g_imgui_translate_fn)(const char*, const char*);
+extern const char* (*g_imgui_translate_format_fn)(const char*);
+void require(bool, const char*);
+void checkFontInitialization() {
+    for (int scenario = 0; scenario < 4; ++scenario) {
+        REFramework framework;
+        framework.custom = scenario == 1;
+        framework.cached = scenario == 2;
+        framework.failed = scenario == 3;
+        g_imgui_translate_fn = nullptr;
+        g_imgui_translate_format_fn = nullptr;
+        framework.init_fonts();
+        require(g_imgui_translate_fn && g_imgui_translate_format_fn,
+                "translation startup must not depend on the font choice or load result");
+    }
+}
+"""
+
+
+def prepareFontInitializer(directory):
+    source = directory / "src/REFramework.cpp"
+    source.parent.mkdir(parents=True)
+    source.write_text(FONT_SOURCE, encoding="utf-8")
+    (directory / "REFramework.hpp").write_text("#pragma once\n", encoding="utf-8")
+    with patch.object(imgui_patches, "patchBuildIdentity"):
+        imgui_patches.patch_reframework_cpp(directory)
+    return str(source)
 
 
 def hashText(text):
@@ -90,6 +138,7 @@ class TranslationRuntimeTests(unittest.TestCase):
                 str(directory),
                 str(directory / "Translation.cpp"),
                 str(ROOT / "tests/native_translation.cpp"),
+                prepareFontInitializer(directory),
                 *prepareImGui(directory),
                 "-o",
                 str(executable),

@@ -19,6 +19,7 @@
 #endif
 
 using reframework::translation::translate;
+void checkFontInitialization();
 
 void require(bool condition, const char* message) {
     if (!condition) {
@@ -147,6 +148,7 @@ void checkActualImGui() {
 int main() {
     checkDictionaryAndRanges();
     checkNonTerminatedPageBoundary();
+    checkFontInitialization();
 #ifdef REF_TEST_IMGUI
     checkActualImGui();
 #endif
