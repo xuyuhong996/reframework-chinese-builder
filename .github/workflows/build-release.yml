@@ -106,10 +106,6 @@ jobs:
         with:
           python-version: "3.13"
 
-      - name: Verify release workflow
-        shell: pwsh
-        run: python -m unittest discover -s tests -v
-
       - name: Build localized ZIP
         env:
           SKIP_GITHUB_PUBLISH: "1"

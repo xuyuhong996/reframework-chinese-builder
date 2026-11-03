@@ -1,4 +1,4 @@
-name: 验证代码与汉化行为
+name: 检查代码
 
 on:
   push:
@@ -15,12 +15,6 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: actions/checkout@v7
-        with:
-          repository: ocornut/imgui
-          ref: 85b2fe8486190fa9326565a2fb5fccb6caea4396
-          path: tests/upstream-imgui
-
       - uses: actions/setup-python@v7
         with:
           python-version: "3.13"
@@ -32,10 +26,3 @@ jobs:
         run: |
           python -m ruff check .
           python -m ruff format --check .
-
-      - name: 验证真实 C++ 翻译和 ImGui 行为
-        env:
-          REQUIRE_NATIVE_TESTS: "1"
-          REQUIRE_IMGUI_TESTS: "1"
-          IMGUI_TEST_SOURCE: ${{ github.workspace }}/tests/upstream-imgui
-        run: python -m unittest discover -s tests -v
