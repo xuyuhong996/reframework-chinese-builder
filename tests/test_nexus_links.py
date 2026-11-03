@@ -13,7 +13,7 @@ PAGES = {
     "MHRISE": "https://www.nexusmods.com/monsterhunterrise/mods/4057",
     "RE2": "https://www.nexusmods.com/residentevil22019/mods/3122",
 }
-GAME_HEADER = '''#pragma once
+GAME_HEADER = """#pragma once
 namespace sdk {
 // 测试保留已发布源码的枚举结构与行尾注释形式。
 enum class GameID : uint8_t {
@@ -25,7 +25,7 @@ enum class GameID : uint8_t {
     Count
 };
 }
-'''
+"""
 NIGHTLY_NUMBER = "01436"
 
 
@@ -112,9 +112,13 @@ class NexusLinkTests(unittest.TestCase):
             self.assertFalse((Path(directory) / "src").exists())
 
     def testInvalidConfigsAreRejectedBeforeCreatingTheHeader(self):
-        configs = ({"pages": []}, {"pages": PAGES, "extra": "unexpected"}, [],
-                   {"pages": {"badGame": PAGES["RE2"]}},
-                   {"pages": {"RE2": PAGES["RE2"], "MHRISE": PAGES["RE2"]}})
+        configs = (
+            {"pages": []},
+            {"pages": PAGES, "extra": "unexpected"},
+            [],
+            {"pages": {"badGame": PAGES["RE2"]}},
+            {"pages": {"RE2": PAGES["RE2"], "MHRISE": PAGES["RE2"]}},
+        )
         for config in configs:
             with self.subTest(config=config), tempfile.TemporaryDirectory() as directory:
                 configPath = writeConfig(directory, config)
@@ -123,12 +127,18 @@ class NexusLinkTests(unittest.TestCase):
                 self.assertFalse((Path(directory) / "src").exists())
 
     def testExternalOrNonCanonicalAddressesAreRejected(self):
-        invalidUrls = ("http://www.nexusmods.com/monsterhunterrise/mods/4057",
-                       "https://example.com/monsterhunterrise/mods/4057",
-                       "https://user@www.nexusmods.com/monsterhunterrise/mods/4057",
-                       PAGES["MHRISE"] + "?tab=description", PAGES["MHRISE"] + "#anchor",
-                       PAGES["MHRISE"] + "\n", PAGES["MHRISE"] + "/", "not a URL",
-                       "https://www.nexusmods.com/monsterhunterrise/mods/0", None)
+        invalidUrls = (
+            "http://www.nexusmods.com/monsterhunterrise/mods/4057",
+            "https://example.com/monsterhunterrise/mods/4057",
+            "https://user@www.nexusmods.com/monsterhunterrise/mods/4057",
+            PAGES["MHRISE"] + "?tab=description",
+            PAGES["MHRISE"] + "#anchor",
+            PAGES["MHRISE"] + "\n",
+            PAGES["MHRISE"] + "/",
+            "not a URL",
+            "https://www.nexusmods.com/monsterhunterrise/mods/0",
+            None,
+        )
         for url in invalidUrls:
             with self.subTest(url=url), tempfile.TemporaryDirectory() as directory:
                 configPath = writeConfig(directory, {"pages": {"MHRISE": url}})

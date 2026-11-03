@@ -14,9 +14,10 @@ from pathlib import Path
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
+from scripts.repository_identity import currentRepository
+
 API_BASE_URL = "https://api.github.com"
 API_VERSION = "2026-03-10"
-DEFAULT_REPOSITORY = "xuyuhong996/reframework-chinese-builder"
 REQUEST_TIMEOUT_SECONDS = 30
 PAGE_SIZE = 100
 FIRST_PAGE = 1
@@ -244,20 +245,33 @@ def chartAxes(history, yMax):
         y = round(CHART_BOTTOM - fraction * (CHART_BOTTOM - CHART_TOP), NUMBER_PRECISION)
         count = int(fraction * yMax)
         elements.append(lineElement((CHART_LEFT, y), (CHART_RIGHT, y)))
-        elements.append(textElement(
-            (CHART_LEFT - LABEL_GAP, y + TEXT_BASELINE_OFFSET), f"{count:,}", FONT_AXIS,
-            f'text-anchor="end" fill="{COLORS["muted"]}"',
-        ))
+        elements.append(
+            textElement(
+                (CHART_LEFT - LABEL_GAP, y + TEXT_BASELINE_OFFSET),
+                f"{count:,}",
+                FONT_AXIS,
+                f'text-anchor="end" fill="{COLORS["muted"]}"',
+            )
+        )
     if len(history) == ONE_POINT:
-        elements.append(textElement(
-            ((CHART_LEFT + CHART_RIGHT) / MIDPOINT_DIVISOR, DATE_LABEL_Y),
-            history[ZERO_COUNT]["date"], FONT_AXIS, 'text-anchor="middle"',
-        ))
+        elements.append(
+            textElement(
+                ((CHART_LEFT + CHART_RIGHT) / MIDPOINT_DIVISOR, DATE_LABEL_Y),
+                history[ZERO_COUNT]["date"],
+                FONT_AXIS,
+                'text-anchor="middle"',
+            )
+        )
     elif history:
         elements.append(textElement((CHART_LEFT, DATE_LABEL_Y), history[ZERO_COUNT]["date"], FONT_AXIS))
-        elements.append(textElement(
-            (CHART_RIGHT, DATE_LABEL_Y), history[-ONE_POINT]["date"], FONT_AXIS, 'text-anchor="end"',
-        ))
+        elements.append(
+            textElement(
+                (CHART_RIGHT, DATE_LABEL_Y),
+                history[-ONE_POINT]["date"],
+                FONT_AXIS,
+                'text-anchor="end"',
+            )
+        )
     return "\n".join(elements)
 
 
@@ -278,7 +292,9 @@ def chartSeries(history, yMax):
     if not history:
         return textElement(
             ((CHART_LEFT + CHART_RIGHT) / MIDPOINT_DIVISOR, EMPTY_STATE_Y),
-            "暂无下载记录", FONT_BODY, f'text-anchor="middle" fill="{COLORS["muted"]}"',
+            "暂无下载记录",
+            FONT_BODY,
+            f'text-anchor="middle" fill="{COLORS["muted"]}"',
         )
     points = chartPoints(history, yMax)
     elements = []
@@ -291,11 +307,14 @@ def chartSeries(history, yMax):
     x, y = points[-ONE_POINT]
     elements.append(f'<circle cx="{x}" cy="{y}" r="{POINT_RADIUS}" fill="{COLORS["accent"]}" />')
     if len(points) == ONE_POINT:
-        elements.append(textElement(
-            ((CHART_LEFT + CHART_RIGHT) / MIDPOINT_DIVISOR, CHART_BOTTOM - FONT_BODY),
-            "首日真实采样，后续每天更新", FONT_BODY,
-            f'text-anchor="middle" fill="{COLORS["muted"]}"',
-        ))
+        elements.append(
+            textElement(
+                ((CHART_LEFT + CHART_RIGHT) / MIDPOINT_DIVISOR, CHART_BOTTOM - FONT_BODY),
+                "首日真实采样，后续每天更新",
+                FONT_BODY,
+                f'text-anchor="middle" fill="{COLORS["muted"]}"',
+            )
+        )
     return "\n".join(elements)
 
 
@@ -303,19 +322,33 @@ def chartHeader(data):
     history = data["history"]
     total = history[-ONE_POINT]["total"] if history else ZERO_COUNT
     elements = [textElement((CARD_PADDING, TITLE_Y), "汉化包下载趋势", FONT_TITLE, 'font-weight="700"')]
-    elements.append(textElement(
-        (CARD_PADDING, SUBTITLE_Y), f"最近 {DISPLAY_DAYS} 天的真实累计记录", FONT_BODY,
-        f'fill="{COLORS["muted"]}"',
-    ))
-    elements.append(textElement(
-        (CHART_RIGHT, TITLE_Y), f"{total:,}", FONT_TOTAL,
-        f'text-anchor="end" font-weight="700" fill="{COLORS["accent"]}"',
-    ))
-    elements.append(textElement(
-        (CHART_RIGHT, SUBTITLE_Y), "累计下载次数", FONT_BODY,
-        f'text-anchor="end" fill="{COLORS["muted"]}"',
-    ))
-    elements.append(textElement((CHART_LEFT, LEGEND_Y), "累计汉化包下载", FONT_BODY, f'fill="{COLORS["accent"]}"'))
+    elements.append(
+        textElement(
+            (CARD_PADDING, SUBTITLE_Y),
+            f"最近 {DISPLAY_DAYS} 天的真实累计记录",
+            FONT_BODY,
+            f'fill="{COLORS["muted"]}"',
+        )
+    )
+    elements.append(
+        textElement(
+            (CHART_RIGHT, TITLE_Y),
+            f"{total:,}",
+            FONT_TOTAL,
+            f'text-anchor="end" font-weight="700" fill="{COLORS["accent"]}"',
+        )
+    )
+    elements.append(
+        textElement(
+            (CHART_RIGHT, SUBTITLE_Y),
+            "累计下载次数",
+            FONT_BODY,
+            f'text-anchor="end" fill="{COLORS["muted"]}"',
+        )
+    )
+    elements.append(
+        textElement((CHART_LEFT, LEGEND_Y), "累计汉化包下载", FONT_BODY, f'fill="{COLORS["accent"]}"')
+    )
     return "\n".join(elements)
 
 
@@ -323,14 +356,22 @@ def chartFooter(data):
     history = data["history"]
     startDate = history[ZERO_COUNT]["date"] if history else "首次采样后"
     updatedDate = history[-ONE_POINT]["date"] if history else "暂无"
-    elements = [textElement(
-        (CARD_PADDING, FOOTER_Y), "仅统计 GitHub 汉化 ZIP，含已记录历史包的下载。", FONT_BODY,
-        f'fill="{COLORS["muted"]}"',
-    )]
-    elements.append(textElement(
-        (CARD_PADDING, DETAIL_Y), f"记录起点：{startDate} · 更新：{updatedDate}（北京时间）", FONT_BODY,
-        f'fill="{COLORS["muted"]}"',
-    ))
+    elements = [
+        textElement(
+            (CARD_PADDING, FOOTER_Y),
+            "仅统计 GitHub 汉化 ZIP，含已记录历史包的下载。",
+            FONT_BODY,
+            f'fill="{COLORS["muted"]}"',
+        )
+    ]
+    elements.append(
+        textElement(
+            (CARD_PADDING, DETAIL_Y),
+            f"记录起点：{startDate} · 更新：{updatedDate}（北京时间）",
+            FONT_BODY,
+            f'fill="{COLORS["muted"]}"',
+        )
+    )
     return "\n".join(elements)
 
 
@@ -373,7 +414,9 @@ def writeStats(data, historyPath, svgPath):
     try:
         for path, content in outputs.items():
             path.parent.mkdir(parents=True, exist_ok=True)
-            with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=path.parent, delete=False) as output:
+            with tempfile.NamedTemporaryFile(
+                mode="w", encoding="utf-8", dir=path.parent, delete=False
+            ) as output:
                 output.write(content)
                 temporaryFiles.append((Path(output.name), path))
         for temporaryPath, path in temporaryFiles:
@@ -392,18 +435,38 @@ def collectStats(repository, token, paths, opener=urlopen):
     return updated
 
 
+def historyPathForRepository(path, repository):
+    """副本的统计单独保存，保留原仓库的已记录历史。"""
+    if not path.exists():
+        return path
+    data = json.loads(path.read_text("utf-8"))
+    owner = data.get("repository")
+    validateHistory(data, owner)
+    if owner == repository:
+        return path
+    if not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", repository):
+        raise ValueError("统计仓库名称无效。")
+    return path.with_name(f"{path.stem}-{repository.replace('/', '--')}{path.suffix}")
+
+
 def main():
     parser = argparse.ArgumentParser(description="采样 GitHub 汉化 ZIP 下载量并更新 SVG 趋势图。")
-    parser.add_argument("--repository", default=os.environ.get("GITHUB_REPOSITORY", DEFAULT_REPOSITORY))
+    defaultRepository = os.environ.get("GITHUB_REPOSITORY") or currentRepository(ROOT_PATH, required=False)
+    parser.add_argument("--repository", default=defaultRepository)
     parser.add_argument("--history", type=Path, default=HISTORY_PATH)
     parser.add_argument("--svg", type=Path, default=SVG_PATH)
     args = parser.parse_args()
+    if not args.repository:
+        parser.error("无法识别当前仓库，请使用 --repository owner/repo 指定统计对象。")
     try:
-        data = collectStats(args.repository, os.environ.get("GH_TOKEN", ""), (args.history, args.svg))
+        historyPath = historyPathForRepository(args.history, args.repository)
+        data = collectStats(args.repository, os.environ.get("GH_TOKEN", ""), (historyPath, args.svg))
     except (OSError, ValueError, KeyError, TypeError) as error:
         print(f"下载量统计失败，未提交统计更新：{error}", file=sys.stderr)
         return ONE_POINT
-    print(f"已记录 {data['history'][-ONE_POINT]['date']}：累计 {data['history'][-ONE_POINT]['total']} 次下载。")
+    print(
+        f"已记录 {data['history'][-ONE_POINT]['date']}：累计 {data['history'][-ONE_POINT]['total']} 次下载。"
+    )
     return ZERO_COUNT
 
 

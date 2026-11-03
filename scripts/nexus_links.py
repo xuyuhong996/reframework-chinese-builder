@@ -10,13 +10,13 @@ GAME_IDENTITY_HEADER = Path("shared/sdk/GameIdentity.hpp")
 GAME_KEY_PATTERN = r"[A-Z][A-Z0-9_]*"
 NEXUS_PATH_PATTERN = r"/[a-z0-9][a-z0-9_-]*/mods/[1-9][0-9]*"
 GAME_ENUM_PATTERN = r"enum\s+class\s+GameID\s*(?::[^{}]+)?\{([^}]+)\}"
-DRAW_NEXUS_LINK = '''
+DRAW_NEXUS_LINK = """
     inline void drawNexusProjectLink() {
         if (const auto* url = getNexusProjectUrl(); url != nullptr) {
             drawProjectLink("Nexus Mods", url);
         }
     }
-'''
+"""
 
 
 def rejectDuplicateKeys(pairs):
@@ -34,9 +34,14 @@ def validateNexusUrl(url):
     if not isinstance(url, str):
         raise ValueError("N网页面地址必须是字符串。")
     parts = urlsplit(url)
-    if (parts.scheme != "https" or parts.netloc != "www.nexusmods.com"
-            or not re.fullmatch(NEXUS_PATH_PATTERN, parts.path)
-            or parts.query or parts.fragment or url != parts.geturl()):
+    if (
+        parts.scheme != "https"
+        or parts.netloc != "www.nexusmods.com"
+        or not re.fullmatch(NEXUS_PATH_PATTERN, parts.path)
+        or parts.query
+        or parts.fragment
+        or url != parts.geturl()
+    ):
         raise ValueError("N网页面地址必须是无凭据、无参数的公开N网模组页面。")
 
 
@@ -73,11 +78,22 @@ def readAvailableGames(buildDirectory):
 
 def buildRuntimeSelector(pages, availableGames):
     lines = ["    inline const char* nexusUrlForGame(sdk::GameID game) {", "        switch (game) {"]
-    lines.extend(f"        case sdk::GameID::{game}: return {json.dumps(url)};"
-                 for game, url in pages.items() if game in availableGames)
-    lines.extend(["        default: return nullptr;", "        }", "    }", "",
-                  "    inline const char* getNexusProjectUrl() {",
-                  "        return nexusUrlForGame(sdk::GameIdentity::get().game());", "    }"])
+    lines.extend(
+        f"        case sdk::GameID::{game}: return {json.dumps(url)};"
+        for game, url in pages.items()
+        if game in availableGames
+    )
+    lines.extend(
+        [
+            "        default: return nullptr;",
+            "        }",
+            "    }",
+            "",
+            "    inline const char* getNexusProjectUrl() {",
+            "        return nexusUrlForGame(sdk::GameIdentity::get().game());",
+            "    }",
+        ]
+    )
     return "\n".join(lines)
 
 
@@ -100,6 +116,9 @@ def buildLegacySelector(pages):
 def buildNexusLinkCode(buildDirectory, pages):
     availableGames = readAvailableGames(buildDirectory)
     include = "#include <sdk/GameIdentity.hpp>\n" if availableGames is not None else ""
-    selector = (buildRuntimeSelector(pages, availableGames) if availableGames is not None
-                else buildLegacySelector(pages))
+    selector = (
+        buildRuntimeSelector(pages, availableGames)
+        if availableGames is not None
+        else buildLegacySelector(pages)
+    )
     return f"{include}\nnamespace reframework::localization {{\n{selector}\n{DRAW_NEXUS_LINK}}}\n"

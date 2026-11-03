@@ -77,22 +77,29 @@ jobs:
           echo "should_build=true" >> "$GITHUB_OUTPUT"
           echo "本次结果：尚未发布对应的官方 Nightly，继续汉化打包。" >> "$GITHUB_STEP_SUMMARY"
 
-  build:
+  verify:
     needs: decide
+    if: needs.decide.outputs.should_build == 'true'
+    uses: ./.github/workflows/verify.yml
+    permissions:
+      contents: read
+
+  build:
+    needs: [decide, verify]
     if: needs.decide.outputs.should_build == 'true'
     runs-on: windows-2022
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Checkout matching official source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: praydog/REFramework
           ref: ${{ needs.decide.outputs.upstream_sha }}
           path: REFramework-src
           submodules: recursive
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.13"
 
@@ -103,10 +110,21 @@ jobs:
       - name: Build localized ZIP
         env:
           SKIP_GITHUB_PUBLISH: "1"
+          REF_OUTPUT_DIR: ${{ github.workspace }}
           UPSTREAM_SHA: ${{ needs.decide.outputs.upstream_sha }}
           UPSTREAM_RELEASE_TAG: ${{ needs.decide.outputs.upstream_release_tag }}
         shell: pwsh
         run: python build_chinese.py
+
+      - name: Verify complete package
+        env:
+          UPSTREAM_RELEASE_TAG: ${{ needs.decide.outputs.upstream_release_tag }}
+        shell: pwsh
+        run: |
+          $nightlyNumber = ($env:UPSTREAM_RELEASE_TAG -split '-')[1]
+          python -m scripts.release_artifacts "REFramework-Nightly-$nightlyNumber.zip" `
+            --upstream-tag $env:UPSTREAM_RELEASE_TAG --builder-sha $env:GITHUB_SHA
+          if ($LASTEXITCODE -ne 0) { throw '新包来源或 DLL 验证失败，停止发布。' }
 
       - name: Create historical release
         id: release
@@ -149,7 +167,7 @@ jobs:
             --repo $env:GITHUB_REPOSITORY `
             --verify-tag --latest `
             --title $releaseTitle `
-            --notes "由 GitHub Actions 的 Windows Visual Studio 2022 环境自动构建。`n`nNightly 发布: $env:UPSTREAM_RELEASE_TAG"
+            --notes "由 GitHub Actions 的 Windows Visual Studio 2022 环境自动构建。`n`nNightly 发布: $env:UPSTREAM_RELEASE_TAG`n`n<!-- nexus-dispatch: pending -->"
           if ($LASTEXITCODE -ne 0) { throw 'GitHub 新包发布失败，已停止 N网同步。' }
 
           "filename=$releasePackage" >> $env:GITHUB_OUTPUT
@@ -159,18 +177,22 @@ jobs:
           "description=简体中文汉化。Nightly: $env:UPSTREAM_RELEASE_TAG; SHA256: $hash; https://github.com/$env:GITHUB_REPOSITORY/releases/tag/$tag" >> $env:GITHUB_OUTPUT
           "created=true" >> $env:GITHUB_OUTPUT
 
+  dispatch:
+    name: 交接待派发的 N网发布
+    needs: [decide, build]
+    if: always() && needs.decide.result == 'success' && !(github.event_name == 'workflow_dispatch' && inputs.check_only)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
       - name: Dispatch private Nexus publication
-        if: steps.release.outputs.created == 'true'
         env:
-          GH_TOKEN: ${{ secrets.NEXUS_PUBLISH_TOKEN }}
-          NEXUS_PUBLISH_REPOSITORY: ${{ vars.NEXUS_PUBLISH_REPOSITORY || 'xuyuhong996/reframework-nexus-publisher' }}
-          RELEASE_TAG: ${{ steps.release.outputs.release_tag }}
-        shell: pwsh
-        run: |
-          if ([string]::IsNullOrWhiteSpace($env:GH_TOKEN)) {
-            'N网同步未启用：请配置 NEXUS_PUBLISH_TOKEN，以触发私有仓库；N网密钥只保存在私有仓库。' >> $env:GITHUB_STEP_SUMMARY
-            exit 0
-          }
-          gh workflow run publish-nexus.yml --repo $env:NEXUS_PUBLISH_REPOSITORY --ref main -f "release_tag=$env:RELEASE_TAG"
-          if ($LASTEXITCODE -ne 0) { throw '私有仓库的 N网发布工作流触发失败。' }
-          "已将新包 $env:RELEASE_TAG 交给私有仓库 $env:NEXUS_PUBLISH_REPOSITORY 上传到 N网。" >> $env:GITHUB_STEP_SUMMARY
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          NEXUS_PUBLISH_TOKEN: ${{ secrets.NEXUS_PUBLISH_TOKEN }}
+          NEXUS_PUBLISH_REPOSITORY: ${{ vars.NEXUS_PUBLISH_REPOSITORY || format('{0}/reframework-nexus-publisher', github.repository_owner) }}
+        run: python -m scripts.nexus_dispatch
