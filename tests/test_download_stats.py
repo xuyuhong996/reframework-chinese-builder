@@ -12,7 +12,9 @@ from xml.etree import ElementTree
 from scripts import update_download_stats as stats
 
 REPOSITORY = "xuyuhong996/reframework-chinese-builder"
-FIRST_URL = f"{stats.API_BASE_URL}/repos/{REPOSITORY}/releases?per_page={stats.PAGE_SIZE}&page={stats.FIRST_PAGE}"
+FIRST_URL = (
+    f"{stats.API_BASE_URL}/repos/{REPOSITORY}/releases?per_page={stats.PAGE_SIZE}&page={stats.FIRST_PAGE}"
+)
 SECOND_URL = f"{stats.API_BASE_URL}/repos/{REPOSITORY}/releases?per_page={stats.PAGE_SIZE}&page=2"
 SERVICE_UNAVAILABLE = 503
 SVG_NAMESPACE = {"svg": "http://www.w3.org/2000/svg"}
@@ -36,22 +38,39 @@ def makeOpener(pages, calls=None):
         if isinstance(payload, Exception):
             raise payload
         return FakeResponse(payload, nextUrl)
+
     return opener
 
 
 def makeHistory(assets=None, timestamp="2026-10-03T00:00:00+00:00"):
     return stats.updateHistory(
-        stats.emptyHistory(REPOSITORY), assets or {}, datetime.fromisoformat(timestamp),
+        stats.emptyHistory(REPOSITORY),
+        assets or {},
+        datetime.fromisoformat(timestamp),
     )
 
 
 class DownloadStatsTests(unittest.TestCase):
+    def testForkUsesItsOwnHistoryWithoutChangingTheOriginalHistory(self):
+        with tempfile.TemporaryDirectory() as directory:
+            originalPath = Path(directory) / "download-history.json"
+            originalPath.write_text(json.dumps(makeHistory()), encoding="utf-8")
+            before = originalPath.read_bytes()
+            forkPath = stats.historyPathForRepository(originalPath, "another-owner/fork")
+            self.assertEqual(forkPath.name, "download-history-another-owner--fork.json")
+            self.assertEqual(originalPath.read_bytes(), before)
+            self.assertFalse(forkPath.exists())
+            self.assertEqual(stats.historyPathForRepository(originalPath, REPOSITORY), originalPath)
+
     def testPaginationIncludesPrereleasesAndExcludesDraftAndChecksum(self):
         pages = {
-            FIRST_URL: ([
-                {"draft": True, "assets": [makeAsset(100, 99)]},
-                {"draft": False, "assets": [makeAsset(101, 12), makeAsset(102, 4, "package.zip.sha256")]},
-            ], SECOND_URL),
+            FIRST_URL: (
+                [
+                    {"draft": True, "assets": [makeAsset(100, 99)]},
+                    {"draft": False, "assets": [makeAsset(101, 12), makeAsset(102, 4, "package.zip.sha256")]},
+                ],
+                SECOND_URL,
+            ),
             SECOND_URL: ([{"draft": False, "prerelease": True, "assets": [makeAsset(103, 5)]}], None),
         }
         calls = []
@@ -63,7 +82,8 @@ class DownloadStatsTests(unittest.TestCase):
     def testSameDayUpdatesOnlyOnePointAndDoesNotMutatePrevious(self):
         previous = makeHistory({"101": {"name": "REFramework.zip", "downloadCount": 7}})
         updated = stats.updateHistory(
-            previous, {"101": {"name": "REFramework.zip", "downloadCount": 9}},
+            previous,
+            {"101": {"name": "REFramework.zip", "downloadCount": 9}},
             datetime.fromisoformat("2026-10-03T03:00:00+00:00"),
         )
         self.assertEqual(updated["history"], [{"date": "2026-10-03", "total": 9}])
@@ -72,7 +92,8 @@ class DownloadStatsTests(unittest.TestCase):
     def testBeijingDateAndDeletedAssetsKeepObservedCounts(self):
         previous = makeHistory({"101": {"name": "REFramework.zip", "downloadCount": 7}})
         updated = stats.updateHistory(
-            previous, {"102": {"name": "New.zip", "downloadCount": 3}},
+            previous,
+            {"102": {"name": "New.zip", "downloadCount": 3}},
             datetime.fromisoformat("2026-10-03T16:01:00+00:00"),
         )
         self.assertEqual(updated["history"][-1], {"date": "2026-10-04", "total": 10})
@@ -82,15 +103,21 @@ class DownloadStatsTests(unittest.TestCase):
     def testLowerCounterDoesNotErasePreviouslyObservedDownloads(self):
         previous = makeHistory({"101": {"name": "REFramework.zip", "downloadCount": 7}})
         updated = stats.updateHistory(
-            previous, {"101": {"name": "REFramework.zip", "downloadCount": 1}},
+            previous,
+            {"101": {"name": "REFramework.zip", "downloadCount": 1}},
             datetime.fromisoformat("2026-10-04T00:00:00+00:00"),
         )
         self.assertEqual(updated["history"][-1]["total"], 7)
 
     def testEmptyAndSinglePointSvgRemainValidWithoutInventedLine(self):
-        for data in [stats.emptyHistory(REPOSITORY), makeHistory({
-            "101": {"name": "REFramework.zip", "downloadCount": 88},
-        })]:
+        for data in [
+            stats.emptyHistory(REPOSITORY),
+            makeHistory(
+                {
+                    "101": {"name": "REFramework.zip", "downloadCount": 88},
+                }
+            ),
+        ]:
             with self.subTest(history=data["history"]):
                 root = ElementTree.fromstring(stats.renderSvg(data))
                 self.assertEqual(root.attrib["role"], "img")
