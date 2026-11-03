@@ -44,16 +44,33 @@ REFramework 的原作者项目为 [praydog/REFramework](https://github.com/prayd
 
 ## 已收录汉化库的 Mod
 
-已按 N 网全部时间热门顺序筛选并核对《怪物猎人：荒野》的 **20 个 REFramework 设置模组**，本次补充 **742 条**精确词条。独立程序、纯外观替换及没有设置界面的模组不计入。
+当前记录 **273 个**依赖 REFramework、且已有界面英文能由本前置词库匹配的设置模组。清单逐项维护名称、N 网原链接、核对来源／版本和词库范围。
 
 **[查看模组名称、N 网链接、版本与汉化范围](docs/mod-support.md)** · [查看结构化记录](mod-support.json)
 
 | 游戏 | 已记录的设置模组 | 词库状态 | 游戏内验证 |
 | --- | --- | --- | --- |
-| 怪物猎人：荒野 | 20 个 | 已收录菜单与提示词条 | 待验证 |
-| 其他受支持游戏 | 待逐游戏整理 | 待补充 | 待验证 |
+| [怪物猎人：荒野](docs/mod-support.md#monsterhunterwilds) | 50 个 | 菜单与提示部分收录 | 待验证 |
+| [街头霸王 6](docs/mod-support.md#streetfighter6) | 6 个 | 菜单与提示部分收录 | 待验证 |
+| [生化危机 4 重制版](docs/mod-support.md#residentevil42023) | 24 个 | 菜单与提示部分收录 | 待验证 |
+| [生化危机：安魂曲](docs/mod-support.md#residentevilrequiem) | 8 个 | 菜单与提示部分收录 | 待验证 |
+| [怪物猎人：崛起](docs/mod-support.md#monsterhunterrise) | 50 个 | 菜单与提示部分收录 | 待验证 |
+| [龙之信条 2](docs/mod-support.md#dragonsdogma2) | 23 个 | 菜单与提示部分收录 | 待验证 |
+| [鬼泣 5](docs/mod-support.md#devilmaycry5) | 9 个 | 菜单与提示部分收录 | 待验证 |
+| [生化危机 2 重制版](docs/mod-support.md#residentevil22019) | 10 个 | 菜单与提示部分收录 | 待验证 |
+| [生化危机 3 重制版](docs/mod-support.md#residentevil32020) | 4 个 | 菜单与提示部分收录 | 待验证 |
+| [生化危机 8：村庄](docs/mod-support.md#residentevilvillage) | 3 个 | 菜单与提示部分收录 | 待验证 |
+| [生化危机 7](docs/mod-support.md#residentevil7) | 13 个 | 菜单与提示部分收录 | 待验证 |
+| [怪物猎人物语 3](docs/mod-support.md#monsterhunterstories3twistedreflection) | 28 个 | 菜单与提示部分收录 | 待验证 |
+| [鬼武者：剑之道](docs/mod-support.md#onimushawayofthesword) | 37 个 | 菜单与提示部分收录 | 待验证 |
+| [丧尸围城 豪华复刻版](docs/mod-support.md#deadrisingdeluxeremaster) | 7 个 | 菜单与提示部分收录 | 待验证 |
+| [逆转裁判 456 王泥喜精选集](docs/mod-support.md#apollojusticeaceattorneytrilogy) | 1 个 | 菜单与提示部分收录 | 待验证 |
+| [祇：女神之路](docs/mod-support.md#kunitsugamipathofthegoddess) | 0 个 | 待补充 | — |
+| [鬼武者 2](docs/mod-support.md#onimusha2samuraisdestiny) | 0 个 | 待补充 | — |
+| [流星洛克人 完美合集](docs/mod-support.md#megamanstarforcelegacycollection) | 0 个 | 待补充 | — |
+| [经典回归 魔界村](docs/mod-support.md#ghostsngoblinsresurrection) | 0 个 | 待补充 | — |
 
-“词库已收录”表示源码词库已包含对应文字，**不表示整个 Mod 已完整汉化，也不表示当前发布包已包含本次改动**。动态文字、自定义名称及绕过前置翻译的绘制内容可能保留原文；详细边界见支持清单。
+“词库已收录”表示源码词库包含对应的部分界面文字或可复用的通用词条，**不表示整个 Mod 已完整汉化，也不表示当前发布包已包含本轮新增内容**。动态文字、作者自定义内容与绕过前置翻译的绘制内容可能保留原文；详细范围与来源见清单。
 
 ## 提交未汉化 Mod
 
