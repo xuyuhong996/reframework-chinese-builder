@@ -20,27 +20,27 @@ REFramework 的原作者项目为 [praydog/REFramework](https://github.com/prayd
 
 **[官方列出的支持游戏](https://github.com/praydog/REFramework#supported-games)（共 19 款）：**
 
-| 游戏 | 官方英文名称 |
-| --- | --- |
-| 生化危机 2 重制版 | Resident Evil 2 |
-| 生化危机 3 重制版 | Resident Evil 3 |
-| 生化危机 4 重制版 | Resident Evil 4 |
-| 生化危机 7 | Resident Evil 7 |
-| 生化危机 8：村庄 | Resident Evil Village |
-| 生化危机：安魂曲 | Resident Evil Requiem |
-| 鬼泣 5 | Devil May Cry 5 |
-| 街头霸王 6 | Street Fighter 6 |
-| 怪物猎人：崛起 | Monster Hunter Rise |
-| 怪物猎人：荒野 | Monster Hunter Wilds |
-| 怪物猎人物语 3 | Monster Hunter Stories 3 |
-| 龙之信条 2 | Dragon's Dogma 2 |
-| 丧尸围城 豪华复刻版 | Dead Rising Deluxe Remaster |
-| 经典回归 魔界村 | Ghosts 'n Goblins Resurrection |
-| 逆转裁判 456 王泥喜精选集 | Apollo Justice: Ace Attorney Trilogy |
-| 祇：女神之路 | Kunitsu-Gami: Path of the Goddess |
-| 鬼武者 2 | Onimusha 2: Samurai's Destiny |
-| 鬼武者：剑之道 | Onimusha: Way of the Sword |
-| 流星洛克人 完美合集 | Mega Man Star Force Legacy Collection |
+| 游戏 | 官方英文名称 | N网汉化页面 |
+| --- | --- | --- |
+| 生化危机 2 重制版 | Resident Evil 2 | [前往N网](https://www.nexusmods.com/residentevil22019/mods/3122) |
+| 生化危机 3 重制版 | Resident Evil 3 | [前往N网](https://www.nexusmods.com/residentevil32020/mods/1632) |
+| 生化危机 4 重制版 | Resident Evil 4 | [前往N网](https://www.nexusmods.com/residentevil42023/mods/7850) |
+| 生化危机 7 | Resident Evil 7 | [前往N网](https://www.nexusmods.com/residentevil7/mods/335) |
+| 生化危机 8：村庄 | Resident Evil Village | [前往N网](https://www.nexusmods.com/residentevilvillage/mods/869) |
+| 生化危机：安魂曲 | Resident Evil Requiem | [前往N网](https://www.nexusmods.com/residentevilrequiem/mods/3215) |
+| 鬼泣 5 | Devil May Cry 5 | [前往N网](https://www.nexusmods.com/devilmaycry5/mods/4919) |
+| 街头霸王 6 | Street Fighter 6 | [前往N网](https://www.nexusmods.com/streetfighter6/mods/4283) |
+| 怪物猎人：崛起 | Monster Hunter Rise | [前往N网](https://www.nexusmods.com/monsterhunterrise/mods/4057) |
+| 怪物猎人：荒野 | Monster Hunter Wilds | [前往N网](https://www.nexusmods.com/monsterhunterwilds/mods/5269) |
+| 怪物猎人物语 3 | Monster Hunter Stories 3 | [前往N网](https://www.nexusmods.com/monsterhunterstories3twistedreflection/mods/222) |
+| 龙之信条 2 | Dragon's Dogma 2 | [前往N网](https://www.nexusmods.com/dragonsdogma2/mods/2393) |
+| 丧尸围城 豪华复刻版 | Dead Rising Deluxe Remaster | [前往N网](https://www.nexusmods.com/deadrisingdeluxeremaster/mods/189) |
+| 经典回归 魔界村 | Ghosts 'n Goblins Resurrection | 暂未提供链接 |
+| 逆转裁判 456 王泥喜精选集 | Apollo Justice: Ace Attorney Trilogy | [前往N网](https://www.nexusmods.com/apollojusticeaceattorneytrilogy/mods/19) |
+| 祇：女神之路 | Kunitsu-Gami: Path of the Goddess | [前往N网](https://www.nexusmods.com/kunitsugamipathofthegoddess/mods/2) |
+| 鬼武者 2 | Onimusha 2: Samurai's Destiny | [前往N网](https://www.nexusmods.com/onimusha2samuraisdestiny/mods/13) |
+| 鬼武者：剑之道 | Onimusha: Way of the Sword | [前往N网](https://www.nexusmods.com/onimushawayofthesword/mods/370) |
+| 流星洛克人 完美合集 | Mega Man Star Force Legacy Collection | [前往N网](https://www.nexusmods.com/megamanstarforcelegacycollection/mods/8) |
 
 ## 提交未汉化 Mod
 
