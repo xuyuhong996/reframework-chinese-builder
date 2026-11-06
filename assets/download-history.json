@@ -37,7 +37,7 @@
     },
     "541299669": {
       "name": "REFramework-01410.zip",
-      "downloadCount": 3
+      "downloadCount": 4
     },
     "538765050": {
       "name": "REFramework-01398.zip",
@@ -45,11 +45,11 @@
     },
     "538765563": {
       "name": "REFramework-01398.zip",
-      "downloadCount": 9
+      "downloadCount": 10
     },
     "629365649": {
       "name": "REFramework-01429.zip",
-      "downloadCount": 14
+      "downloadCount": 15
     },
     "629995624": {
       "name": "REFramework-01432.zip",
@@ -61,7 +61,7 @@
     },
     "697696204": {
       "name": "REFramework-01436.zip",
-      "downloadCount": 203
+      "downloadCount": 206
     },
     "697260300": {
       "name": "REFramework-01436.zip",
@@ -77,7 +77,7 @@
     },
     "704621856": {
       "name": "REFramework-Nightly-01436.zip",
-      "downloadCount": 31
+      "downloadCount": 32
     },
     "704463520": {
       "name": "REFramework-Nightly-01436.zip",
@@ -93,7 +93,7 @@
     },
     "711250714": {
       "name": "REFramework-Nightly-01438.zip",
-      "downloadCount": 28
+      "downloadCount": 68
     }
   },
   "history": [
@@ -232,7 +232,11 @@
     {
       "date": "2026-11-05",
       "total": 986
+    },
+    {
+      "date": "2026-11-06",
+      "total": 1033
     }
   ],
-  "updatedAt": "2026-11-05T16:28:46+08:00"
+  "updatedAt": "2026-11-06T16:29:18+08:00"
 }

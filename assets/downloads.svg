@@ -5,23 +5,23 @@
 <g font-family="system-ui, -apple-system, Segoe UI, Microsoft YaHei, sans-serif" fill="#0f172a">
 <text x="32" y="48" font-size="28" font-weight="700">汉化包下载趋势</text>
 <text x="32" y="78" font-size="18" fill="#64748b">最近 90 天的真实累计记录</text>
-<text x="674" y="48" font-size="42" text-anchor="end" font-weight="700" fill="#0891b2">986</text>
+<text x="674" y="48" font-size="42" text-anchor="end" font-weight="700" fill="#0891b2">1,033</text>
 <text x="674" y="78" font-size="18" text-anchor="end" fill="#64748b">累计下载次数</text>
 <text x="78" y="119" font-size="18" fill="#0891b2">累计汉化包下载</text>
 <line x1="78" y1="292.0" x2="674" y2="292.0" stroke="#e2e8f0" stroke-width="1" />
 <text x="66" y="298.0" font-size="18" text-anchor="end" fill="#64748b">0</text>
 <line x1="78" y1="257.0" x2="674" y2="257.0" stroke="#e2e8f0" stroke-width="1" />
-<text x="66" y="263.0" font-size="18" text-anchor="end" fill="#64748b">250</text>
+<text x="66" y="263.0" font-size="18" text-anchor="end" fill="#64748b">500</text>
 <line x1="78" y1="222.0" x2="674" y2="222.0" stroke="#e2e8f0" stroke-width="1" />
-<text x="66" y="228.0" font-size="18" text-anchor="end" fill="#64748b">500</text>
+<text x="66" y="228.0" font-size="18" text-anchor="end" fill="#64748b">1,000</text>
 <line x1="78" y1="187.0" x2="674" y2="187.0" stroke="#e2e8f0" stroke-width="1" />
-<text x="66" y="193.0" font-size="18" text-anchor="end" fill="#64748b">750</text>
+<text x="66" y="193.0" font-size="18" text-anchor="end" fill="#64748b">1,500</text>
 <line x1="78" y1="152.0" x2="674" y2="152.0" stroke="#e2e8f0" stroke-width="1" />
-<text x="66" y="158.0" font-size="18" text-anchor="end" fill="#64748b">1,000</text>
+<text x="66" y="158.0" font-size="18" text-anchor="end" fill="#64748b">2,000</text>
 <text x="78" y="324" font-size="18" >2026-10-03</text>
-<text x="674" y="324" font-size="18" text-anchor="end">2026-11-05</text>
-<path d="M 78.0,279.4 L 96.06,278.28 L 114.12,276.88 L 132.18,273.8 L 150.24,271.56 L 168.3,266.38 L 186.36,264.42 L 204.42,261.76 L 222.48,259.38 L 240.55,257.14 L 258.61,256.02 L 276.67,253.92 L 294.73,252.1 L 312.79,250.42 L 330.85,248.18 L 348.91,246.08 L 366.97,243.14 L 385.03,241.88 L 403.09,240.34 L 421.15,238.8 L 439.21,237.26 L 457.27,234.6 L 475.33,230.82 L 493.39,228.72 L 511.45,226.9 L 529.52,223.96 L 547.58,222.42 L 565.64,221.16 L 583.7,219.9 L 601.76,208.84 L 619.82,185.46 L 637.88,169.36 L 655.94,160.54 L 674.0,153.96" fill="none" stroke="#0891b2" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
-<circle cx="674.0" cy="153.96" r="5" fill="#0891b2" />
+<text x="674" y="324" font-size="18" text-anchor="end">2026-11-06</text>
+<path d="M 78.0,285.7 L 95.53,285.14 L 113.06,284.44 L 130.59,282.9 L 148.12,281.78 L 165.65,279.19 L 183.18,278.21 L 200.71,276.88 L 218.24,275.69 L 235.76,274.57 L 253.29,274.01 L 270.82,272.96 L 288.35,272.05 L 305.88,271.21 L 323.41,270.09 L 340.94,269.04 L 358.47,267.57 L 376.0,266.94 L 393.53,266.17 L 411.06,265.4 L 428.59,264.63 L 446.12,263.3 L 463.65,261.41 L 481.18,260.36 L 498.71,259.45 L 516.24,257.98 L 533.76,257.21 L 551.29,256.58 L 568.82,255.95 L 586.35,250.42 L 603.88,238.73 L 621.41,230.68 L 638.94,226.27 L 656.47,222.98 L 674.0,219.69" fill="none" stroke="#0891b2" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
+<circle cx="674.0" cy="219.69" r="5" fill="#0891b2" />
 <text x="32" y="359" font-size="18" fill="#64748b">仅统计 GitHub 汉化 ZIP，含已记录历史包的下载。</text>
-<text x="32" y="386" font-size="18" fill="#64748b">记录起点：2026-10-03 · 更新：2026-11-05（北京时间）</text>
+<text x="32" y="386" font-size="18" fill="#64748b">记录起点：2026-10-03 · 更新：2026-11-06（北京时间）</text>
 </g></svg>
