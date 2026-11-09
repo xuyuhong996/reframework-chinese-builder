@@ -100,7 +100,7 @@ def retainPackage(temporary, package, repositoryRoot):
 
 
 def publishPackage(artifact, release, settings):
-    package, checksum, digest = artifact
+    package, _, digest = artifact
     tag = f"build-{digest[:HASH_PREFIX_LENGTH]}"
     repository = currentRepository(settings.repositoryRoot)
     if runCommand(["git", "status", "--porcelain"], settings.repositoryRoot):
@@ -108,7 +108,7 @@ def publishPackage(artifact, release, settings):
     builderSha = runCommand(["git", "rev-parse", "HEAD"], settings.repositoryRoot)
     # 发布由维护者显式选择；复用 GitHub CLI 已有登录，不自动登录或推送源码。
     runCommand(["gh", "auth", "status", "--hostname", "github.com"])
-    notes = f"本地构建。\n\nNightly 发布: {release.tag}"
+    notes = f"本地构建。\n\nNightly 发布: {release.tag}\n\nZIP SHA256: {digest}"
     runCommand(
         [
             "gh",
@@ -116,8 +116,6 @@ def publishPackage(artifact, release, settings):
             "create",
             tag,
             package,
-            checksum,
-            str(packageRecordPath(package)),
             "--repo",
             repository,
             "--target",

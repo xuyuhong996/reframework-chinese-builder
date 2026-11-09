@@ -128,16 +128,16 @@ jobs:
           python -m scripts.release_artifacts "REFramework-Nightly-$nightlyNumber.zip" `
             --upstream-tag $env:UPSTREAM_RELEASE_TAG --builder-sha $env:GITHUB_SHA
           if ($LASTEXITCODE -ne 0) { throw '新包来源或 DLL 验证失败，停止发布。' }
+          $buildRecord = Get-Content -LiteralPath "REFramework-Nightly-$nightlyNumber.zip.build.json" -Raw -ErrorAction Stop
+          @('### 构建校验记录', '', '```json', $buildRecord, '```') |
+            Add-Content -LiteralPath $env:GITHUB_STEP_SUMMARY -Encoding utf8
 
       - name: Save test package
         if: ${{ github.event_name == 'workflow_dispatch' && !inputs.publish_release }}
         uses: actions/upload-artifact@v7
         with:
           name: REFramework-Nightly-test-${{ github.run_id }}
-          path: |
-            REFramework-Nightly-*.zip
-            REFramework-Nightly-*.zip.sha256
-            REFramework-Nightly-*.zip.build.json
+          path: REFramework-Nightly-*.zip
           if-no-files-found: error
           compression-level: 0
           retention-days: 7
@@ -162,10 +162,8 @@ jobs:
 
           $hash = (Get-FileHash -LiteralPath $package.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
           $releasePackage = $package.FullName
-          $checksum = "$releasePackage.sha256"
           $buildRecord = "$releasePackage.build.json"
           if (-not (Test-Path -LiteralPath $buildRecord -PathType Leaf)) { throw '缺少包外构建记录。' }
-          Set-Content -LiteralPath $checksum -Value "$hash  $releaseAssetBase.zip" -Encoding ascii
           $tag = "build-$($hash.Substring(0, 12))"
           # GitHub 会过滤中文附件名；使用稳定的 ASCII 名称，中文名称保留在 Release 标题。
 
@@ -182,11 +180,11 @@ jobs:
           git push origin "refs/tags/$tag"
           if ($LASTEXITCODE -ne 0) { throw '发布标签推送失败。' }
 
-          gh release create $tag $releasePackage $checksum $buildRecord `
+          gh release create $tag $releasePackage `
             --repo $env:GITHUB_REPOSITORY `
             --verify-tag --latest `
             --title $releaseTitle `
-            --notes "由 GitHub Actions 的 Windows Visual Studio 2022 环境自动构建。`n`nNightly 发布: $env:UPSTREAM_RELEASE_TAG"
+            --notes "由 GitHub Actions 的 Windows Visual Studio 2022 环境自动构建。`n`nNightly 发布: $env:UPSTREAM_RELEASE_TAG`n`nZIP SHA256: $hash"
           if ($LASTEXITCODE -ne 0) { throw 'GitHub 新包发布失败。' }
 
           "created=true" >> $env:GITHUB_OUTPUT

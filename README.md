@@ -78,7 +78,7 @@ REFramework 的原作者项目为 [praydog/REFramework](https://github.com/prayd
 
 ## 获取成品
 
-请从 **[最新汉化包](https://github.com/xuyuhong996/reframework-chinese-builder/releases/latest)** 页面下载 `REFramework-Nightly-编号.zip`。每个 Release（发布版本）都会保留历史下载，并附带同名的 `SHA256` 校验文件。
+请从 **[最新汉化包](https://github.com/xuyuhong996/reframework-chinese-builder/releases/latest)** 页面下载 `REFramework-Nightly-编号.zip`。每个 Release（发布版本）仅上传汉化 ZIP 成品，保留历史版本下载；SHA256（文件校验值）可在附件旁或新发布的说明中查看。
 
 最新版本请以页面的 **Latest（最新）** 标记为准，不要只看历史发布列表的第一条。
 
@@ -112,7 +112,7 @@ GitHub Actions（自动工作流）计划每 15 分钟检查一次 [官方 Night
 python build_chinese.py
 ```
 
-成品保存在 `deliverables/`。ZIP 内仅包含 `dinput8.dll` 和 `赏口饭吃.jpg`；构建记录及 SHA256 校验文件放在 ZIP 外，上游版权许可说明保留在 ZIP 注释中。本地构建不自动上传；自动发包由当前仓库的 GitHub Actions 完成。
+成品保存在 `deliverables/`。ZIP 内仅包含 `dinput8.dll` 和 `赏口饭吃.jpg`，上游版权许可说明保留在 ZIP 注释中。构建记录及 SHA256 校验文件仅用于本地和构建流程内部核对，不作为发布或测试包的下载附件；自动构建的来源记录保留在工作流运行摘要中。本地构建不自动上传；自动发包由当前仓库的 GitHub Actions 完成。
 
 ## 下载趋势
 
