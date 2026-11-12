@@ -61,7 +61,7 @@
     },
     "697696204": {
       "name": "REFramework-01436.zip",
-      "downloadCount": 210
+      "downloadCount": 211
     },
     "697260300": {
       "name": "REFramework-01436.zip",
@@ -93,7 +93,7 @@
     },
     "711250714": {
       "name": "REFramework-Nightly-01438.zip",
-      "downloadCount": 217
+      "downloadCount": 251
     }
   },
   "history": [
@@ -256,7 +256,11 @@
     {
       "date": "2026-11-11",
       "total": 1191
+    },
+    {
+      "date": "2026-11-12",
+      "total": 1226
     }
   ],
-  "updatedAt": "2026-11-11T16:21:44+08:00"
+  "updatedAt": "2026-11-12T16:48:23+08:00"
 }
