@@ -25,7 +25,7 @@
     },
     "555754091": {
       "name": "REFramework-01421.zip",
-      "downloadCount": 12
+      "downloadCount": 14
     },
     "542018731": {
       "name": "REFramework-01411.zip",
@@ -97,15 +97,15 @@
     },
     "741683075": {
       "name": "REFramework-Nightly-01439.zip",
-      "downloadCount": 169
+      "downloadCount": 172
     },
     "757321820": {
       "name": "REFramework-Nightly-01440.zip",
-      "downloadCount": 66
+      "downloadCount": 67
     },
     "758746319": {
       "name": "REFramework-Nightly-01441.zip",
-      "downloadCount": 39
+      "downloadCount": 82
     }
   },
   "history": [
@@ -296,7 +296,11 @@
     {
       "date": "2026-11-18",
       "total": 1520
+    },
+    {
+      "date": "2026-11-19",
+      "total": 1569
     }
   ],
-  "updatedAt": "2026-11-18T17:04:55+08:00"
+  "updatedAt": "2026-11-19T17:28:40+08:00"
 }
