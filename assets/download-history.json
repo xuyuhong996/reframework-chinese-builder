@@ -101,11 +101,11 @@
     },
     "757321820": {
       "name": "REFramework-Nightly-01440.zip",
-      "downloadCount": 72
+      "downloadCount": 74
     },
     "758746319": {
       "name": "REFramework-Nightly-01441.zip",
-      "downloadCount": 189
+      "downloadCount": 210
     }
   },
   "history": [
@@ -312,7 +312,11 @@
     {
       "date": "2026-11-22",
       "total": 1690
+    },
+    {
+      "date": "2026-11-23",
+      "total": 1713
     }
   ],
-  "updatedAt": "2026-11-22T16:47:37+08:00"
+  "updatedAt": "2026-11-23T17:43:57+08:00"
 }
