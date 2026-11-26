@@ -95,6 +95,8 @@ jobs:
     needs: [decide, verify]
     if: needs.decide.outputs.should_build == 'true'
     runs-on: windows-2022
+    outputs:
+      release_tag: ${{ steps.release.outputs.release_tag }}
     steps:
       - uses: actions/checkout@v7
 
@@ -188,3 +190,16 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'GitHub 新包发布失败。' }
 
           "created=true" >> $env:GITHUB_OUTPUT
+          "release_tag=$tag" >> $env:GITHUB_OUTPUT
+
+  notify:
+    needs: build
+    if: needs.build.outputs.release_tag != ''
+    uses: ./.github/workflows/notify-nexus.yml
+    permissions:
+      contents: read
+    with:
+      release_tag: ${{ needs.build.outputs.release_tag }}
+      check_only: false
+    secrets:
+      NEXUS_PUBLISH_TOKEN: ${{ secrets.NEXUS_PUBLISH_TOKEN }}

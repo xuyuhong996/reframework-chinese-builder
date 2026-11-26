@@ -1,0 +1,47 @@
+name: 通知 N网同步
+run-name: N网通知 ${{ inputs.check_only && '仅检查' || '正式同步' }} ${{ inputs.release_tag || '最新成品' }}
+
+on:
+  workflow_call:
+    inputs:
+      release_tag:
+        type: string
+        required: true
+      check_only:
+        type: boolean
+        default: false
+    secrets:
+      NEXUS_PUBLISH_TOKEN:
+        required: true
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "留空通知最新成品，或填写需重发通知的 build 标签；不重新编译"
+        type: string
+        default: ''
+      check_only:
+        description: "仅联调通知和版本检查，不向 N网上传"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      - name: 核对成品并通知私有发布项目
+        env:
+          RELEASE_TAG: ${{ inputs.release_tag }}
+          CHECK_ONLY: ${{ inputs.check_only }}
+          GITHUB_TOKEN: ${{ github.token }}
+          NEXUS_PUBLISH_TOKEN: ${{ secrets.NEXUS_PUBLISH_TOKEN }}
+        run: python -m scripts.notify_nexus
